@@ -1,0 +1,28 @@
+@inject NavigationManager navMan
+<MudNavMenu >
+    <MudText Typo="Typo.h6" Class="px-4">Browse Recipes</MudText>
+    <MudDivider Class="my-2"/>
+    <MudNavLink OnClick="@(()=>Click("Profile"))">Profile</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Experience"))">Experience</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Education"))">Education</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Projects"))">Projects</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Tools"))">Tools & Technologies</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Skills"))">Programming Skills</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Certifications"))">Certifications</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Language"))">Languages</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Hobbies"))">Hobbies</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Volunteering"))">Volunteering</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Studying"))">Currently Studying</MudNavLink>
+    <MudNavLink OnClick="@(()=>Click("Contact"))">Contact Me</MudNavLink>
+    <div style="margin-top: 30vh"></div>
+    <MudNavLink Style="color: dodgerblue" OnClick="@(()=>Click("Copyright"))">Copyright @at@date</MudNavLink>
+</MudNavMenu>
+
+@code {
+    private int date = DateTime.Now.Year;
+    private string at = "@";
+    private async Task Click(string name)
+    {
+        navMan.NavigateTo($"/{name}");
+    }
+}
