@@ -2,26 +2,29 @@
 <MudNavMenu >
     <MudText Typo="Typo.h6" Class="px-4">Browse Recipes</MudText>
     <MudDivider Class="my-2"/>
-    <MudNavLink OnClick="@(()=>Click("Profile"))">Profile</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Experience"))">Experience</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Projects"))">Projects</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Tools"))">Tools & Technologies</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Skills"))">Programming Skills</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Certifications"))">Certifications</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Language"))">Languages</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Hobbies"))">Hobbies</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Volunteering"))">Volunteering</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Studying"))">Currently Studying</MudNavLink>
-    <MudNavLink OnClick="@(()=>Click("Contact"))">Contact Me</MudNavLink>
+    <MudList Clickable="true">
+        <MudListItem Text="Profile" OnClick="@(() => Click("Profile"))" Icon="@Icons.Material.Filled.AssignmentInd" IconColor="Color.Default"/>
+        <MudListItem Text="Experience" OnClick="@(() => Click("Experience"))" Icon="@Icons.Material.Filled.Work" IconColor="Color.Default"/>
+        <MudListItem Text="Projects" OnClick="@(() => Click("Projects"))" Icon="@Icons.Material.Filled.Dns" IconColor="Color.Default"/>
+        <MudListItem Text="Tools & Technologies" OnClick="@(() => Click("Tools"))" Icon="@Icons.Material.Filled.HomeRepairService" IconColor="Color.Default"/>
+        <MudListItem Text="Skills" OnClick="@(() => Click("Skills"))" Icon="@Icons.Material.Filled.Extension" IconColor="Color.Default"/>
+        <MudListItem Text="Certifications" OnClick="@(() => Click("Certifications"))" Icon="@Icons.Material.Filled.Task" IconColor="Color.Default"/>
+        <MudListItem Text="Languages" OnClick="@(() => Click("Languages"))" Icon="@Icons.Material.Filled.Forum" IconColor="Color.Default"/>
+        <MudListItem Text="Interests" OnClick="@(() => Click("Interests"))" Icon="@Icons.Material.Filled.Interests" IconColor="Color.Default"/>
+        <MudListItem Text="In progress" OnClick="@(() => Click("InProgress"))" Icon="@Icons.Material.Filled.Downloading" IconColor="Color.Default"/>
+        <MudListItem Text="Contact me" OnClick="@(() => Click("Contact"))" Icon="@Icons.Material.Filled.PermPhoneMsg" IconColor="Color.Default"/>
+    </MudList>
     <div style="margin-top: 30vh"></div>
-    <MudNavLink Style="color: dodgerblue" OnClick="@(()=>Click("Copyright"))">Copyright @at@date</MudNavLink>
+    <MudNavLink Style="color: dodgerblue" OnClick="@(() => Click("Copyright"))">Copyright @at@date</MudNavLink>
 </MudNavMenu>
 
 @code {
     private int date = DateTime.Now.Year;
     private string at = "@";
+
     private async Task Click(string name)
     {
         navMan.NavigateTo($"/{name}");
     }
+
 }
