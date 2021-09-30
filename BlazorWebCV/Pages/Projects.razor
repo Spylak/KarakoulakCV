@@ -1,4 +1,5 @@
 @page "/Projects"
+@inject IJSRuntime JsRuntime
 <div class="row" style="margin:5px 50px 0 50px;color: purple">
     
     <div style="width: 500px;height: 400px;margin:5px;">
@@ -37,7 +38,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">Blazor Project with Database.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton OnClick="@(()=>Code("HiddenVillaProject"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -51,7 +52,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">Used Discord.Net Library</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton OnClick="@(()=>Code("Botcraft"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -66,7 +67,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">MVC Project with Database.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton OnClick="@(()=>Code("BulkyBookProject"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -80,7 +81,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">MVC Project with database.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton OnClick="@(()=>Code("Crowdfund"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -107,7 +108,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">Used Discord.JS Library</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton  OnClick="@(()=>Code("DiscordBot"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -121,7 +122,7 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">Web API Project.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                <MudButton OnClick="@(()=>Code("Wolftrack"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                 <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
             </MudCardActions>
         </MudCard>
@@ -135,8 +136,8 @@
                     <MudText Style="color: mediumpurple"  Typo="Typo.body2">Static HTML page</MudText>
                 </MudCardContent>
                 <MudCardActions>
-                    <MudButton OnClick="@(()=>Click("ThemingProject"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
-                    <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
+                    <MudButton OnClick="@(()=>Code("ThemingProject"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                    <MudButton OnClick="@(()=>Click("ThemingProject"))" Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
                 </MudCardActions>
             </MudCard>
         </div >
@@ -144,6 +145,39 @@
 
 @code {
 
+    private async Task Code(string name)
+    {
+        switch (name)
+        {
+            case "ThemingProject":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/ThemingProject", "_blank");
+                break;
+            case "ProjectCamilla":
+                break;
+            case "ProjectCooking":
+                break;
+            case "HiddenVillaProject":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/HiddenVilla", "_blank");
+                break;
+            case "Botcraft":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/Botcraft", "_blank");
+                break;
+            case "BulkyBookProject":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/BulkyBookDone", "_blank");
+                break;
+            case "Crowdfund":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/Crowdfund", "_blank");
+                break; 
+            case "DiscordBot":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/DiscScript", "_blank");
+                break;
+            case "Wolftrack":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/Wolftrack", "_blank");
+                break;
+            case "ArduinoProject":
+                break;
+        }
+    }
     private async Task Click(string name)
     {
         switch (name)
