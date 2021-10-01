@@ -1,10 +1,14 @@
 @page "/Skills"
+@inject IResizeListener _listener
+@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
+@implements System.IDisposable
+
 <MudGrid>
 
 <MudItem xs="6">
 <MudCard>
 <MudCardHeader>
-    <MudText Typo="Typo.h5">Programming Skills</MudText>
+    <MudText Typo="@typo">Programming Skills</MudText>
 </MudCardHeader>
 <MudCardContent>
 <MudGrid>
@@ -16,7 +20,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fee%2F.NET_Core_Logo.svg%2F1200px-.NET_Core_Logo.svg.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> .Net Core</MudText>
                 </MudItem>
             </MudGrid>
@@ -27,7 +31,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fnewhp%2Fmicrosoft-sql-server-microsoft-azure-sql-database-microsoft.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> SQL</MudText>
                 </MudItem>
             </MudGrid>
@@ -38,7 +42,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fe7.pngegg.com%2Fpngimages%2F840%2F443%2Fpng-clipart-html-5-logo-web-development-html-css3-canvas-element-web-design-w3c-html5-logo-miscellaneous-text.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> HTML</MudText>
                 </MudItem>
             </MudGrid>
@@ -49,7 +53,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vhv.rs%2Fdpng%2Fd%2F456-4562295_library-of-javascript-icon-graphic-freeuse-png-files.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> JavaScript</MudText>
                 </MudItem>
             </MudGrid>
@@ -60,7 +64,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpluspng.com%2Fimg-png%2Fjquery-logo-png-jquerypro-600.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> jQuery</MudText>
                 </MudItem>
             </MudGrid>
@@ -71,7 +75,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-c3LY4cJYR4Q%2FXWf84NqegAI%2FAAAAAAAAADk%2F5a1NLXWsGgEC9Q2yikfcILPJjnnnObDjwCLcBGAs%2Fs1600%2FDevExpress-DXperience-e1494852896492.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> DevExtreme</MudText>
                 </MudItem>
             </MudGrid>
@@ -82,7 +86,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.mindgearstechnologies.com%2Fwp-content%2Fuploads%2F2020%2F04%2Fblazor-feature-360x260.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Blazor</MudText>
                 </MudItem>
             </MudGrid>
@@ -93,7 +97,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pinclipart.com%2Fpicdir%2Fmiddle%2F116-1161113_docker-logo-png-clipart.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Docker</MudText>
                 </MudItem>
             </MudGrid>
@@ -104,7 +108,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.koskila.net%2Fwp-content%2Fuploads%2F2019%2F11%2F2019-11-11_12-01-271-750x383.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Entity Framework Core</MudText>
                 </MudItem>
             </MudGrid>
@@ -115,7 +119,7 @@
                             <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fpython-logo-png-4.jpg&f=1&nofb=1">
                             </MudAvatar>
                         </MudItem>
-                        <MudItem xs="9">
+                        <MudItem Style=@(hidden)  xs="9">
                             <MudText Style="position: absolute;top: 30%;"> Python</MudText>
                         </MudItem>
                     </MudGrid>
@@ -130,7 +134,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.GWjlB9_708s3lbx8ufOYlwHaEl%26pid%3DApi&f=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> ASP.NET</MudText>
                 </MudItem>
             </MudGrid>
@@ -141,7 +145,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimmibbilisim.com%2Fuploads%2Fimages%2Farticles%2FNx5w9Kz1QRezev6ILVlC.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> C#</MudText>
                 </MudItem>
             </MudGrid>
@@ -152,7 +156,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.iconscout.com%2Ficon%2Ffree%2Fpng-256%2Fcss-118-569410.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> CSS</MudText>
                 </MudItem>
             </MudGrid>
@@ -163,7 +167,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fis4.mzstatic.com%2Fimage%2Fthumb%2FPurple6%2Fv4%2Fca%2F33%2Fc8%2Fca33c833-4b9d-3bfe-b094-8bfa2da43cf2%2Fsource%2F512x512bb.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> JSON</MudText>
                 </MudItem>
             </MudGrid>
@@ -174,7 +178,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fajax-icon%2Fajax-icon-7.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> AJAX</MudText>
                 </MudItem>
             </MudGrid>
@@ -185,7 +189,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Fclipart-bootstrap.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Bootstrap</MudText>
                 </MudItem>
             </MudGrid>
@@ -196,7 +200,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Favatars-03.gitter.im%2Fgroup%2Fiv%2F6%2F5f5b44c4d73408ce4feea23d&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> MudBlazor</MudText>
                 </MudItem>
             </MudGrid>
@@ -207,7 +211,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.knowledge7.com%2Fwp-content%2Fuploads%2F2014%2F06%2F20140619-git-logo.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Git</MudText>
                 </MudItem>
             </MudGrid>
@@ -218,7 +222,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F4b%2FBash_Logo_Colored.svg%2F1200px-Bash_Logo_Colored.svg.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem xs="9">
+                <MudItem Style=@(hidden)  xs="9">
                     <MudText Style="position: absolute;top: 30%;"> Bash</MudText>
                 </MudItem>
             </MudGrid>
@@ -229,7 +233,7 @@
                             <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fcoding-files-extensions%2F512%2Fcoding-file-extension-yaml-512.png&f=1&nofb=1">
                             </MudAvatar>
                         </MudItem>
-                        <MudItem xs="9">
+                        <MudItem Style=@(hidden)  xs="9">
                             <MudText Style="position: absolute;top: 30%;"> YAML</MudText>
                         </MudItem>
                     </MudGrid>
@@ -467,7 +471,7 @@
                             <MudItem xs="4">
                                 <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.logolynx.com%2Fimages%2Flogolynx%2F3b%2F3b5b6fc3685a97700e1d7a6fb6fdd329.jpeg&f=1&nofb=1"></MudAvatar>
                             </MudItem>
-                            <MudItem xs="8">
+                            <MudItem Style=@(hidden)  xs="8">
                                 <MudText Style="position: absolute;top: 30%;">English</MudText>
                             </MudItem>
                         </MudGrid>
@@ -481,7 +485,7 @@
                             <MudItem xs="4">
                                 <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fgreek-flag-button-flag-of-greece-badge-3d-illustration-picture-id542202524%3Fk%3D6%26m%3D542202524%26s%3D612x612%26w%3D0%26h%3D6o98NbU1Ib-T4GL05sSwoVhQfJ42AY43i7cWJCwVA-M%3D&f=1&nofb=1"></MudAvatar>
                             </MudItem>
-                            <MudItem xs="8">
+                            <MudItem Style=@(hidden)  xs="8">
                                 <MudText Style="position: absolute;top: 30%;">Greek</MudText>
                             </MudItem>
                         </MudGrid>
@@ -496,11 +500,68 @@
 </MudGrid>
 
 @code {
+    bool IsXSmallDown = false;
+    private string hidden = "visibility:visible";
+    BrowserWindowSize browser = new BrowserWindowSize();
+    public Typo typo { get; set; }
+    protected override async void OnInitialized()
+    {
+        browser = await _listener.GetBrowserWindowSize();
+        if (browser.Width < 600)
+        {
+            typo = Typo.body1;
+            hidden = "visibility:hidden";
+            Console.WriteLine("123");
+            StateHasChanged();
+        }
+        else
+        {
+            typo = Typo.h5;
+            Console.WriteLine("321");
+        }
+    }
+
     private bool showList { get; set; } = false;
 
     private void ShowList()
     {
         showList = !showList;
     }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        
+        if (firstRender)
+        {
+    // Subscribe to the OnResized event. This will do work when the browser is resized.
+            _listener.OnResized += WindowResized;
+        }
+    }
+    public void Dispose()
+    {
+    // Always use IDisposable in your component to unsubscribe from the event.
+    // Be a good citizen and leave things how you found them. 
+    // This way event handlers aren't called when nobody is listening.
+        _listener.OnResized -= WindowResized;
+    }
+    async void WindowResized(object _, BrowserWindowSize window)
+    {
+    // Get the browsers's width / height
+        browser = window;
 
+    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
+        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
+
+    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
+        if (IsXSmallDown == true)
+        {
+            typo = Typo.body1;
+            hidden = "visibility:hidden";
+        }else
+        {
+            hidden = "visibility:visible";
+            typo = Typo.h5;
+
+        }
+        StateHasChanged();
+    }
 }
