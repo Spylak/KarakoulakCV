@@ -8,7 +8,7 @@
 <MudItem xs="12">
 <MudCard>
 <MudCardHeader >
-    <MudText Typo="@typo" Style="position: absolute;left: 40%;">Tools & Technologies & Methodologies</MudText>
+    <MudText Typo="typo" Style="position: absolute;left: 40%;">Tools & Technologies & Methodologies</MudText>
 </MudCardHeader>
 <MudCardContent>
 <MudGrid>
@@ -349,13 +349,13 @@
             typo = Typo.body1;
             hidden = "visibility:hidden";
             Console.WriteLine("123");
-            StateHasChanged();
         }
         else
         {
             typo = Typo.h5;
             Console.WriteLine("321");
         }
+        StateHasChanged();
     }
 
     protected override void OnAfterRender(bool firstRender)

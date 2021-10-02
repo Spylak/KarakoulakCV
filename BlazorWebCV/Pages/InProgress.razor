@@ -9,6 +9,18 @@
 <MudCard>
     <MudCardContent>
         <MudList Clickable="true">
+          <MudListItem OnClick="@(() => Click("Masters"))">
+                        <MudGrid>
+                            <MudItem xs="3">
+                                <img height="300"width="300" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.eduopinions.com%2Fwp-content%2Fuploads%2F2017%2F09%2FHellenic-Open-University-HOU-logo.png&f=1&nofb=1"/>
+                            </MudItem>
+                            <MudItem Style=@(hidden)  xs="9">
+                                <p style="position: absolute;top: 50%">
+                                    Enrolled into Part Time Distance Learning MSc in Data Science and Machine Learning in order to receive academic education on the field.
+                                </p>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
             <MudListItem OnClick="@(() => Click("Julia"))">
                 <MudGrid>
                     <MudItem xs="3">
@@ -61,14 +73,13 @@
         {
             typo = Typo.body1;
             hidden = "visibility:hidden";
-            Console.WriteLine("123");
-            StateHasChanged();
         }
         else
         {
             typo = Typo.h5;
-            Console.WriteLine("321");
         }
+        StateHasChanged();
+
     }
     private async Task Click(string name)
     {
@@ -82,6 +93,9 @@
                 break;
             case "Linux":
                 await JsRuntime.InvokeAsync<object>("open", "https://code.visualstudio.com/", "_blank");
+                break;
+            case "Masters":
+                await JsRuntime.InvokeAsync<object>("open", "https://www.eap.gr/education/postgraduate/annual/data-science-and-machine-learning/", "_blank");
                 break;
         }
     }

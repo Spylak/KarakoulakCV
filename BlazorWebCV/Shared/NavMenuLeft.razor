@@ -1,8 +1,8 @@
 @inject NavigationManager navMan
-<MudNavMenu >
+<MudNavMenu Style="height: 95%">
     <MudText Typo="Typo.h6" Class="px-4">Navigation</MudText>
     <MudDivider Class="my-2"/>
-    <MudList Clickable="true">
+    <MudList Style="height: 95%" Clickable="true">
         <MudListItem Text="Profile" OnClick="@(() => Click("Profile"))" Icon="@Icons.Material.Filled.AssignmentInd" IconColor="Color.Default"/>
         <MudListItem Text="Experience" OnClick="@(() => Click("Experience"))" Icon="@Icons.Material.Filled.Work" IconColor="Color.Default"/>
         <MudListItem Text="Projects" OnClick="@(() => Click("Projects"))" Icon="@Icons.Material.Filled.Dns" IconColor="Color.Default"/>
@@ -12,14 +12,13 @@
         <MudListItem Text="Interests" OnClick="@(() => Click("Interests"))" Icon="@Icons.Material.Filled.Interests" IconColor="Color.Default"/>
         <MudListItem Text="In progress" OnClick="@(() => Click("InProgress"))" Icon="@Icons.Material.Filled.Downloading" IconColor="Color.Default"/>
         <MudListItem Text="Contact me" OnClick="@(() => Click("Contact"))" Icon="@Icons.Material.Filled.PermPhoneMsg" IconColor="Color.Default"/>
+        <div style="padding-bottom: 35vh;"></div>
+        <MudListItem OnClick="@(() => Click("Copyright"))" Style="color: dodgerblue; " Text=@copy></MudListItem>
     </MudList>
-    <div style="margin-top: 25vh"></div>
-    <MudNavLink Style="color: dodgerblue" OnClick="@(() => Click("Copyright"))">Copyright @at@date</MudNavLink>
 </MudNavMenu>
 
 @code {
-    private int date = DateTime.Now.Year;
-    private string at = "@";
+    private string copy =$"Copyright @{DateTime.Now.Year}" ;
 
     private async Task Click(string name)
     {

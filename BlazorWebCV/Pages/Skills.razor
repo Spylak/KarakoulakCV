@@ -8,7 +8,7 @@
 <MudItem xs="6">
 <MudCard>
 <MudCardHeader>
-    <MudText Typo="@typo">Programming Skills</MudText>
+    <MudText Typo="typo">Programming Skills</MudText>
 </MudCardHeader>
 <MudCardContent>
 <MudGrid>
@@ -248,7 +248,7 @@
 <MudCard>
     <MudCardContent>
         <div class="row">
-            <MudText Typo="Typo.h5">Soft Skills</MudText>
+            <MudText Typo="typo">Soft Skills</MudText>
             <MudFab Style="margin-left: 80%" Size="Size.Small" Icon="@Icons.Material.Filled.List" OnClick="ShowList"></MudFab>
         </div>
         <MudCarousel Style="height: 300px;" ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(5)" TData="object">
@@ -511,14 +511,12 @@
         {
             typo = Typo.body1;
             hidden = "visibility:hidden";
-            Console.WriteLine("123");
-            StateHasChanged();
         }
         else
         {
             typo = Typo.h5;
-            Console.WriteLine("321");
         }
+        StateHasChanged();
     }
 
     private bool showList { get; set; } = false;
