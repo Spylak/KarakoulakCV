@@ -1,0 +1,222 @@
+﻿@page "/"
+@inject IJSRuntime jsRuntime
+@inject IResizeListener _listener
+@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
+@using Bunit.Extensions
+@implements System.IDisposable
+
+@if (matrix && theme == "dark")
+{
+    <div>
+        <img style="width: 100vw; height: 95vh;" src="https://i.gifer.com/3rCL.gif"/>
+    </div>
+}
+else if (matrix && theme == "light")
+{
+    <div>
+        <img style="width: 100vw; height: 95vh;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F38.media.tumblr.com%2F6ebc429ba22c9156e667161ec913c38b%2Ftumblr_n5mufrqAk21tc216ao8_500.gif&f=1&nofb=1"/>
+    </div>
+}
+else
+{
+    <MudCard >
+        <MudCardContent Style="padding: 12px;">
+            <MudGrid >
+                <MudItem xs="gridOne">
+                    <div  Style="min-height: 100px; max-height: 45vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
+                    <MudGrid >
+                        @foreach (var msg in Messages)
+                        {
+                            @if (msg.Split("&&")[0] == "robot")
+                            {
+                                <MudItem Style=@(hidden)  xs="1">
+                                    <MudAvatar Image="images/avatarme.png"/>
+                                </MudItem>
+                                <MudItem xs="11">
+                                    <MudTextFieldString Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true"    ReadOnly="true" Lines="2"/>
+                                </MudItem>
+                            }
+                            else
+                            {
+                                <MudItem xs="11">
+                                    <MudTextFieldString Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: darkgray"  ReadOnly="true"  Lines="2"/>
+                                </MudItem>
+                                <MudItem Style=@(hidden) xs="1">
+                                    <MudAvatar Image="images/unknown.png"/>
+                                </MudItem>
+                            }
+                        }
+                    </MudGrid>
+                    </div>
+                    <MudItem xs="12">
+                        <EditForm Model="@input" OnSubmit="Send">
+                            <MudGrid>
+
+                                <MudItem xs="10">
+                                    <MudTextField @bind-Value="input.Value" Placeholder="Type here.."> </MudTextField>
+                                </MudItem>
+                                <MudItem xs="2">
+                                    <MudFab Icon="@Icons.Filled.Send" IconColor="Color.Tertiary" ButtonType="ButtonType.Submit"></MudFab>
+                                </MudItem>
+                            </MudGrid>
+
+                        </EditForm>
+                    </MudItem>
+                </MudItem>
+                <MudItem xs="gridTwo" Style=@($"padding: 0;{hidden}")>
+                    @if (theme == "light")
+                    {
+                        <MudCardMedia Height="600" Image="images/robot.png"/>
+                    }
+                    else
+                    {
+                        <MudCardMedia Height="600" Image="images/resizeFinal.gif"/>
+                    }
+                </MudItem>
+            </MudGrid>
+
+        </MudCardContent>
+        <MudDivider Style="margin:0;"/>
+        <MudCardContent>Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.</MudCardContent>
+    </MudCard>
+}
+
+@code
+{
+    [CascadingParameter(Name = "theme")]
+    protected string theme { get; set; }
+    
+    private List<string> Messages = new List<string>()
+    {
+        "robot&&Greetings, welcome to my website. Feel free to take a look around.Type Help for available commands."
+    };
+
+    private class Input
+    {
+        public string Value { get; set; }
+    }
+
+    private Input input = new Input();
+    private string commands;
+
+    private Dictionary<string, string> AutomatedAnswers = new Dictionary<string, string>()
+    {
+        {"Toolkit", "In this section you can take a look at which technologies, tools, methodologies and patterns I am using."},
+        {"Skills", "In this section you can take a look on the skills I currently possess."},
+        {"Interests", "I present some of the interests I have that aren't directly related to the work environment."},
+        {"Profile", "This is a brief overview of who I am."},
+        {"Copyright", "Here is the link to the source code of this project."},
+        {"Experience", "A timeline of my experience in my adulthood life."},
+        {"Projects", "Projects I am currently part of, developing or personal projects for practise."},
+        {"InProgress", "Here are the fields I am currently researching."},
+        {"Contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
+        {"Certifications", "Here are the certifications I have acquired in my journey."}
+    };
+
+    private async Task Help()
+    {
+        
+        Messages.Add($"robot&&{commands}");
+    }
+
+    private async Task Send(EditContext context)
+    {
+        Messages.Add($"user&&{input.Value}");
+        if (AutomatedAnswers.Keys.ToList().Contains(input.Value))
+        {
+            Messages.Add($"robot&&{AutomatedAnswers[input.Value]}");
+        }else if(input.Value=="Help")
+        {
+            Messages.Add($"robot&&{commands}");
+        }
+        else
+        {
+            Messages.Add($"robot&&I don't recognize this command.Available commands :{commands}");
+        }
+        input = new Input();
+        StateHasChanged();
+        
+    }
+
+    private bool matrix = true;
+    BrowserWindowSize browser = new BrowserWindowSize();
+    bool IsXSmallDown = false;
+    private string hidden = "visibility:visible";
+    public Typo typo { get; set; }
+    private int gridOne=6;
+    private int gridTwo=6;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+    // Subscribe to the OnResized event. This will do work when the browser is resized.
+            _listener.OnResized += WindowResized;
+        }
+    }
+
+    public void Dispose()
+    {
+    // Always use IDisposable in your component to unsubscribe from the event.
+    // Be a good citizen and leave things how you found them. 
+    // This way event handlers aren't called when nobody is listening.
+        _listener.OnResized -= WindowResized;
+    }
+
+    async void WindowResized(object _, BrowserWindowSize window)
+    {
+    // Get the browsers's width / height
+        browser = window;
+
+    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
+        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
+
+    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
+        if (IsXSmallDown == true)
+        {
+            typo = Typo.body1;
+            hidden = "visibility:hidden";
+            gridOne = 12;
+            gridTwo = 0;
+        }
+        else
+        {
+            hidden = "visibility:visible";
+            typo = Typo.h5;
+            gridOne = 6;
+            gridTwo = 6;
+        }
+        StateHasChanged();
+    }
+
+    protected override async void OnInitialized()
+    {
+        browser = await _listener.GetBrowserWindowSize();
+        if (browser.Width < 600)
+        {
+            typo = Typo.body1;
+            gridOne = 12;
+            gridTwo = 0;
+            hidden = "visibility:hidden";
+        }
+        else
+        {
+            typo = Typo.h5;
+        }
+        StateHasChanged();
+        foreach (var command in AutomatedAnswers.Keys)
+        {
+            commands += command + ", ";
+        }
+        commands = commands.Substring(0, commands.LastIndexOf(','));
+        browser = await _listener.GetBrowserWindowSize();
+        Matrix();
+        base.OnInitialized();
+    }
+
+    private async Task Matrix()
+    {
+        await Task.Delay(1500);
+        matrix = false;
+        StateHasChanged();
+    }
+}
