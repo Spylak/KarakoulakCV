@@ -4,23 +4,23 @@
 @inject IResizeListener _listener
 @implements System.IDisposable
 @inject IJSRuntime JsRuntime
-<MudGrid>
+<MudGrid >
 <MudItem xs="12">
 <MudCard>
 <MudCardHeader >
     <MudText Typo="typo" Style="position: absolute;left: 40%;">Tools - Technologies - Methodologies</MudText>
 </MudCardHeader>
-<MudCardContent>
-<MudGrid>
-<MudItem xs="3">
-    <MudList Clickable="true">
+<MudCardContent >
+<MudGrid >
+<MudItem xs="griColumns" Style="padding-bottom: 2px;padding-top: 2px;">
+    <MudList Clickable="true" Style="padding: 0">
         <MudListItem OnClick="@(() => Click("Agile"))">
             <MudGrid>
                 <MudItem xs="3">
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftechgenies.com%2Fwp-content%2Fuploads%2F2019%2F08%2FAgile-Lifecycle-Model-1024x699-1.jpeg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Agile</MudText>
                 </MudItem>
             </MudGrid>
@@ -31,7 +31,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.-TGNTIw-nCjgxwZaB3ZowgAAAA%26pid%3DApi&f=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Office Suite</MudText>
                 </MudItem>
             </MudGrid>
@@ -42,7 +42,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Feditorconfig.org%2Flogos%2Fvisualstudio-code.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Visual Studio Code</MudText>
                 </MudItem>
             </MudGrid>
@@ -53,7 +53,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.edureka.co%2Fblog%2Fwp-content%2Fuploads%2F2019%2F10%2Flogo.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">MSSQL Server Management Studio</MudText>
                 </MudItem>
             </MudGrid>
@@ -64,7 +64,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ucaas.nl%2Fwp-content%2Fuploads%2F2020%2F07%2FMicrosoft-Teams-UCaaS.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Microsoft Teams</MudText>
                 </MudItem>
             </MudGrid>
@@ -75,22 +75,22 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.mulesoft.com%2Fsites%2Fdefault%2Ffiles%2Funified_connectivity_15.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">.Net Microservices</MudText>
                 </MudItem>
             </MudGrid>
         </MudListItem>
     </MudList>
 </MudItem>
-<MudItem xs="3">
-    <MudList Clickable="true">
+<MudItem xs="griColumns" Style="padding-bottom: 2px;padding-top: 2px;">
+    <MudList Clickable="true" Style="padding: 0">
         <MudListItem OnClick="@(() => Click("Jira"))">
             <MudGrid>
                 <MudItem xs="3">
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdaks2k3a4ib2z.cloudfront.net%2F58e32bace1998d6e3fee8d74%2F58e32bace1998d6e3fee9055_JIRA_logo.svg.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Jira</MudText>
                 </MudItem>
             </MudGrid>
@@ -101,7 +101,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fraymii.org%2Fs%2Finc%2Fimg%2Fazure-logo.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Azure Portal</MudText>
                 </MudItem>
             </MudGrid>
@@ -112,7 +112,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.birdseyeview.co.th%2Fimages%2Fcontent%2Foriginal-1582363510637.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">JetBrains Rider</MudText>
                 </MudItem>
             </MudGrid>
@@ -123,7 +123,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F17512287%2F46575879-3847d100-c9be-11e8-97dc-1d95d880c187.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Azure Data Studio</MudText>
                 </MudItem>
             </MudGrid>
@@ -134,7 +134,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.logolynx.com%2Fimages%2Flogolynx%2Fs_d5%2Fd5631ac6013e2c34bea37a5e291b6169.jpeg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Discord</MudText>
                 </MudItem>
             </MudGrid>
@@ -145,22 +145,22 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.tutorialsteacher.com%2FContent%2Fimages%2Fmvc%2Fmvc-architecture.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">MVC Architecture</MudText>
                 </MudItem>
             </MudGrid>
         </MudListItem>
     </MudList>
 </MudItem>
-<MudItem xs="3">
-    <MudList Clickable="true">
+<MudItem xs="griColumns" Style="padding-bottom: 2px;padding-top: 2px;">
+    <MudList Clickable="true" Style="padding: 0">
         <MudListItem OnClick="@(() => Click("Github"))">
             <MudGrid>
                 <MudItem xs="3">
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.techspot.com%2Fimages2%2Fdownloads%2Ftopdownload%2F2021%2F04%2F2021-04-07-ts3_thumbs-8ba.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Github</MudText>
                 </MudItem>
             </MudGrid>
@@ -171,7 +171,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftechairgroup.com%2Fwp-content%2Fuploads%2F2021%2F02%2Fmicrosoft-azure-devops-logo-400x240.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Azure DevOps</MudText>
                 </MudItem>
             </MudGrid>
@@ -182,7 +182,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fwww.linuxandubuntu.com%2Fwp-content%2Fuploads%2F2019%2F07%2Flinux-logo-penguin.png%3Fw%3D1400&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Linux</MudText>
                 </MudItem>
             </MudGrid>
@@ -193,7 +193,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_485734.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Remote Desktop Access tools</MudText>
                 </MudItem>
             </MudGrid>
@@ -204,7 +204,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fubwp.buffalo.edu%2Fhappe%2Fwp-content%2Fuploads%2Fsites%2F92%2F2019%2F12%2Fslack_logo.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Slack</MudText>
                 </MudItem>
             </MudGrid>
@@ -215,22 +215,22 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-FUAlav87770%2FXPfn7iW8uZI%2FAAAAAAAACkA%2FtgF4kjj8EVQ9fkzjKSi90wSV6ZvEwWewQCLcBGAs%2Fs1600%2FUsing-Repository-Pattern-and-Dependency-Injection-with-ASPNET-MVC-and-Entity-Framework-.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Repository Pattern</MudText>
                 </MudItem>
             </MudGrid>
         </MudListItem>
     </MudList>
 </MudItem>
-<MudItem xs="3">
-    <MudList Clickable="true">
+<MudItem xs="griColumns" Style="padding-bottom: 2px;padding-top: 2px;">
+    <MudList Clickable="true" Style="padding: 0">
         <MudListItem OnClick="@(() => Click("PowerPlatform"))">
             <MudGrid>
                 <MudItem xs="3">
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dds.pe%2Fwp-content%2Fuploads%2F2020%2F10%2FLogo-Microsoft-Power-Platform-rectangular.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Microsoft Power Platform</MudText>
                 </MudItem>
             </MudGrid>
@@ -241,7 +241,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.windowsmode.com%2Fwp-content%2Fuploads%2F2019%2F05%2FVisual-Studio-2019-official-logo.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Visual Studio</MudText>
                 </MudItem>
             </MudGrid>
@@ -252,7 +252,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pinclipart.com%2Fpicdir%2Fmiddle%2F116-1161113_docker-logo-png-clipart.png&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Docker Containers</MudText>
                 </MudItem>
             </MudGrid>
@@ -263,7 +263,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fih0.redbubble.net%2Fimage.603535617.7699%2Fst%252Csmall%252C215x235-pad%252C210x230%252Cf8f8f8.lite-1.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem xs="9">
                     <MudText Style="position: absolute;top: 30%;">Postman</MudText>
                 </MudItem>
             </MudGrid>
@@ -274,7 +274,7 @@
                     <MudAvatar Image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.techhive.com%2Fimages%2Farticle%2F2014%2F09%2Foutlook-logo-100457446-large.jpg&f=1&nofb=1">
                     </MudAvatar>
                 </MudItem>
-                <MudItem Style=@(hidden) xs="9">
+                <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">Outlook</MudText>
                 </MudItem>
             </MudGrid>
@@ -292,7 +292,7 @@
     private string hidden = "visibility:visible";
     BrowserWindowSize browser = new BrowserWindowSize();
     public Typo typo { get; set; }
-
+    private int griColumns = 3;
     private async Task Click(string name)
     {
         switch (name)
@@ -376,10 +376,12 @@
         {
             typo = Typo.body1;
             hidden = "visibility:hidden";
+            griColumns = 12;
             Console.WriteLine("123");
         }
         else
         {
+            griColumns = 3;
             typo = Typo.h5;
             Console.WriteLine("321");
         }
@@ -415,10 +417,12 @@
         if (IsXSmallDown == true)
         {
             typo = Typo.body1;
+            griColumns = 12;
             hidden = "visibility:hidden";
         }
         else
         {
+            griColumns = 3;
             hidden = "visibility:visible";
             typo = Typo.h5;
         }
