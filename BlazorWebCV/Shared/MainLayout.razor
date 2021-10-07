@@ -16,10 +16,12 @@
         <MudSpacer/>
         <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="typo"  >Karakoulak Spyridon</MudText></b>
         <MudSpacer />
-        <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Color="Color.Success"></MudFab>
+        <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <CascadingValue Value="@theme" Name="theme">
         <NavMenuLeft/>
+                </CascadingValue>
     </MudDrawer>
     <MudMainContent Style="overflow: hidden" >
         <CascadingValue Value="@theme" Name="theme">
@@ -72,6 +74,7 @@
             StateHasChanged();
         }
     }
+    
     Color color = Color.Success;
     MudTheme currentTheme = new MudTheme();
     MudTheme defaultTheme = new MudTheme()

@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/Profile"
 @inject IJSRuntime jsRuntime
 @inject IResizeListener _listener
 @using Breakpoints = BlazorPro.BlazorSize.Breakpoints
@@ -23,30 +24,30 @@ else
         <MudCardContent Style="padding: 12px;">
             <MudGrid >
                 <MudItem xs="gridOne">
-                    <div  Style="min-height: 100px; max-height: 45vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
-                    <MudGrid >
-                        @foreach (var msg in Messages)
-                        {
-                            @if (msg.Split("&&")[0] == "robot")
+                    <div Style="min-height: 100px; max-height: 45vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
+                        <MudGrid >
+                            @foreach (var msg in Messages)
                             {
-                                <MudItem Style=@(hidden)  xs="1">
-                                    <MudAvatar Image="images/avatarme.png"/>
-                                </MudItem>
-                                <MudItem xs="11">
-                                    <MudTextFieldString Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true"    ReadOnly="true" Lines="2"/>
-                                </MudItem>
+                                @if (msg.Split("&&")[0] == "robot")
+                                {
+                                    <MudItem Style=@(hidden) xs="1">
+                                        <MudAvatar Image="images/avatarme.png"/>
+                                    </MudItem>
+                                    <MudItem xs="11">
+                                        <MudTextFieldString Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
+                                    </MudItem>
+                                }
+                                else
+                                {
+                                    <MudItem xs="11">
+                                        <MudTextFieldString Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
+                                    </MudItem>
+                                    <MudItem Style=@(hidden) xs="1">
+                                        <MudAvatar Image="images/unknown.png"/>
+                                    </MudItem>
+                                }
                             }
-                            else
-                            {
-                                <MudItem xs="11">
-                                    <MudTextFieldString Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: darkgray"  ReadOnly="true"  Lines="2"/>
-                                </MudItem>
-                                <MudItem Style=@(hidden) xs="1">
-                                    <MudAvatar Image="images/unknown.png"/>
-                                </MudItem>
-                            }
-                        }
-                    </MudGrid>
+                        </MudGrid>
                     </div>
                     <MudItem xs="12">
                         <EditForm Model="@input" OnSubmit="Send">
@@ -73,11 +74,53 @@ else
                         <MudCardMedia Height="600" Image="images/resizeFinal.gif"/>
                     }
                 </MudItem>
+
             </MudGrid>
 
         </MudCardContent>
         <MudDivider Style="margin:0;"/>
-        <MudCardContent>Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.</MudCardContent>
+        <MudCardContent>
+            Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
+        </MudCardContent>
+                <MudDivider Style="margin:0;"/>
+        <MudCardContent Style=@($"background-color: {color}")>
+            <MudCarousel Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(12)" TData="object">
+                <MudCarouselItem  Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                    <MudText Style="margin-top: 20px;">  
+                        My name is Karakoulak Spyridon.<br/>
+                        I am a Full Stack Developer with a passion for new technologies and progression.<br/>
+                        Programming is a way of life that I find particularly exciting, combining innovation, <br/>
+                        challenges and future growth. Currently I enjoy working on Blazor, C# and .NET! <br/>
+                    </MudText>  
+                </MudCarouselItem>
+                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                    <MudText Style="margin-top: 20px;">    
+                        <br/>
+                        I develop and maintain web and software applications & dynamic websites! <br/>
+                        The moment .Net MAUI releases I will dive into the world of phone apps! <br/>
+                    </MudText>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                     <MudText Style="margin-top: 20px;">    
+                                            <br/>
+                        In my free time I study for my Master's Degree in Data Science and Machine Learning <br/>
+                        in order to gain expertise in the field, since everything in this era <br/>
+                        and the one coming ahead consists of data, loads of data!<br/>
+                    </MudText>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                         @if (theme == "light")
+                                    {
+                                        <img style="height: 150px;width: 100%;" src="images/lightlogo.png"/>
+                                    }
+                                    else
+                                    {
+                                        <img style="height: 150px;width: 100%" src="images/dev.png"/>
+                                    }
+                </MudCarouselItem>
+            </MudCarousel>
+        </MudCardContent>
+                <MudDivider Style="margin:0;"/>
     </MudCard>
 }
 
@@ -85,7 +128,15 @@ else
 {
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
-    
+    private  string color { get; set; }
+    protected override void OnParametersSet()
+    {
+        color = theme == "dark" ? "black" : "#bfbbbb";
+        base.OnParametersSet();
+    }
+    private string AnimationEntrance = "animate__animated animate__lightSpeedInLeft animate__delay-1s";
+    private string AnimationExit = "animate__animated animate__lightSpeedOutRight";
+
     private List<string> Messages = new List<string>()
     {
         "robot&&Greetings, welcome to my website. Feel free to take a look around.Type Help for available commands."
@@ -115,27 +166,36 @@ else
 
     private async Task Help()
     {
-        
         Messages.Add($"robot&&{commands}");
     }
 
     private async Task Send(EditContext context)
     {
         Messages.Add($"user&&{input.Value}");
-        if (AutomatedAnswers.Keys.ToList().Contains(input.Value))
+        if (input.Value.Length > 0)
         {
-            Messages.Add($"robot&&{AutomatedAnswers[input.Value]}");
-        }else if(input.Value=="Help")
-        {
-            Messages.Add($"robot&&{commands}");
+
+            if (AutomatedAnswers.Keys.ToList().Contains(input.Value))
+            {
+                Messages.Add($"robot&&{AutomatedAnswers[input.Value]}");
+            }
+            else if (input.Value == "Help")
+            {
+                Messages.Add($"robot&&{commands}");
+            }
+            else
+            {
+                Messages.Add($"robot&&I don't recognize this command. Available commands :{commands}");
+            }
         }
         else
         {
-            Messages.Add($"robot&&I don't recognize this command.Available commands :{commands}");
+            Messages.Add($"robot&&No command was given. Available commands :{commands}");
+
         }
+        await Task.Yield();
         input = new Input();
         StateHasChanged();
-        
     }
 
     private bool matrix = true;
@@ -143,8 +203,9 @@ else
     bool IsXSmallDown = false;
     private string hidden = "visibility:visible";
     public Typo typo { get; set; }
-    private int gridOne=6;
-    private int gridTwo=6;
+    private int gridOne = 6;
+    private int gridTwo = 6;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

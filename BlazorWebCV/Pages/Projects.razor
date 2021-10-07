@@ -7,7 +7,7 @@
             <MudCardMedia Image="https://images.freeimages.com/images/large-previews/754/camel-1190448.jpg" Height="250" />
             <MudCardContent>
                 <MudText Color="Color.Tertiary" Typo="Typo.h5">ProjectCamilla</MudText>
-                <MudText Style="color: mediumpurple" Typo="Typo.body2">Coded in .Net Core 2.1 with DevExtreme</MudText>
+                <MudText Style="color: mediumpurple" Typo="Typo.body2">Coded in .Net Core with DevExtreme</MudText>
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">DevExtreme Library, MVC Project with Database.</MudText>
             </MudCardContent>
             <MudCardActions>
@@ -24,8 +24,9 @@
                 <MudText Style="color: mediumpurple"  Typo="Typo.body2">Blazor WebAssebly, Web API and Database.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudButton Variant="Variant.Text" Color="Color.Info">Learn More</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Info" OnClick="@(()=>Click("ProjectCooking"))">Learn More</MudButton>
             </MudCardActions>
+            <MudOverlay Absolute="true" AutoClose="true" DarkBackground="true"  Visible="@popOver["ProjectCooking"]"></MudOverlay>
         </MudCard>
     </div >
     
@@ -152,10 +153,6 @@
             case "ThemingProject":
                 await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/ThemingProject", "_blank");
                 break;
-            case "ProjectCamilla":
-                break;
-            case "ProjectCooking":
-                break;
             case "HiddenVillaProject":
                 await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/HiddenVilla", "_blank");
                 break;
@@ -174,10 +171,21 @@
             case "Wolftrack":
                 await JsRuntime.InvokeAsync<object>("open", "https://github.com/MrSpyretos/Wolftrack", "_blank");
                 break;
-            case "ArduinoProject":
-                break;
         }
     }
+    private Dictionary<string,bool> popOver = new Dictionary<string, bool>()
+    {
+        {"ThemingProject",false},
+        {"ProjectCamilla",false},
+        {"ProjectCooking",false},
+        {"HiddenVillaProject",false},
+        {"Botcraft",false},
+        {"Crowdfund",false},
+        {"BulkyBookProject",false},
+        {"DiscordBot",false},
+        {"Wolftrack",false},
+        {"ArduinoProject",false}
+    };
     private async Task Click(string name)
     {
         switch (name)
@@ -187,6 +195,7 @@
             case "ProjectCamilla":
                 break;
             case "ProjectCooking":
+                popOver["ProjectCooking"] = !popOver["ProjectCooking"];
                 break;
             case "HiddenVillaProject":
                 break;
