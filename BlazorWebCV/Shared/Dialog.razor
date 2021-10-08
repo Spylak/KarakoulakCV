@@ -1,0 +1,18 @@
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h5">
+        @Title</MudText>
+        <MudDivider/>
+    </TitleContent>
+    <DialogContent>
+        <MudText Align="Align.Center">@ContentText</MudText>
+    </DialogContent>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+
+    void Cancel() => MudDialog.Cancel();
+}

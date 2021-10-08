@@ -1,5 +1,4 @@
 ﻿@page "/"
-@page "/Profile"
 @inject IJSRuntime jsRuntime
 @inject IResizeListener _listener
 @using Breakpoints = BlazorPro.BlazorSize.Breakpoints
@@ -152,21 +151,21 @@ else
 
     private Dictionary<string, string> AutomatedAnswers = new Dictionary<string, string>()
     {
-        {"Toolkit", "In this section you can take a look at which technologies, tools, methodologies and patterns I am using."},
-        {"Skills", "In this section you can take a look on the skills I currently possess."},
-        {"Interests", "I present some of the interests I have that aren't directly related to the work environment."},
-        {"Profile", "This is a brief overview of who I am."},
-        {"Copyright", "Here is the link to the source code of this project."},
-        {"Experience", "A timeline of my experience in my adulthood life."},
-        {"Projects", "Projects I am currently part of, developing or personal projects for practise."},
-        {"InProgress", "Here are the fields I am currently researching."},
-        {"Contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
-        {"Certifications", "Here are the certifications I have acquired in my journey."}
+        {"toolkit", "In this section you can take a look at which technologies, tools, methodologies and patterns I am using."},
+        {"skills", "In this section you can take a look on the skills I currently possess."},
+        {"interests", "I present some of the interests I have that aren't directly related to the work environment."},
+        {"profile", "This is a brief overview of who I am."},
+        {"copyright", "Here is the link to the source code of this project."},
+        {"experience", "A timeline of my experience in my adulthood life."},
+        {"projects", "Projects I am currently part of, developing or personal projects for practise."},
+        {"inprogress", "Here are the fields I am currently researching."},
+        {"contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
+        {"certifications", "Here are the certifications I have acquired in my journey."}
     };
 
     private async Task Help()
     {
-        Messages.Add($"robot&&{commands}");
+        Messages.Add($"robot&&Available commands: {commands}");
     }
 
     private async Task Send(EditContext context)
@@ -175,7 +174,7 @@ else
         if (input.Value.Length > 0)
         {
 
-            if (AutomatedAnswers.Keys.ToList().Contains(input.Value))
+            if (AutomatedAnswers.Keys.ToList().Contains(input.Value.ToLower()))
             {
                 Messages.Add($"robot&&{AutomatedAnswers[input.Value]}");
             }
