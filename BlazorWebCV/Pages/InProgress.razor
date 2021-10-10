@@ -1,33 +1,30 @@
 @page "/InProgress"
 @inject IJSRuntime JsRuntime
-@inject IResizeListener _listener
-@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
-@implements System.IDisposable
 
 
 <h3 style="text-align: center">In Progress</h3>
 <MudCard>
     <MudCardContent>
         <MudList Clickable="true">
-          <MudListItem OnClick="@(() => Click("Masters"))">
-                        <MudGrid>
-                            <MudItem xs="3">
-                                <img height="300"width="300" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.eduopinions.com%2Fwp-content%2Fuploads%2F2017%2F09%2FHellenic-Open-University-HOU-logo.png&f=1&nofb=1"/>
-                            </MudItem>
-                            <MudItem Style=@(hidden)  xs="9">
-                                <p style="position: absolute;top: 50%">
-                                    Enrolled into Part Time Distance Learning MSc in Data Science and Machine Learning in order to receive academic education on the field.
-                                </p>
-                            </MudItem>
-                        </MudGrid>
-                    </MudListItem>
+            <MudListItem OnClick="@(() => Click("Masters"))">
+                <MudGrid>
+                    <MudItem xs="12" sm="6">
+                        <img height="300px" width="300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.eduopinions.com%2Fwp-content%2Fuploads%2F2017%2F09%2FHellenic-Open-University-HOU-logo.png&f=1&nofb=1"/>
+                    </MudItem>
+                    <MudItem xs="12" sm="6">
+                        <p style="text-align: center">
+                            Enrolled into Part Time Distance Learning MSc in Data Science and Machine Learning in order to receive academic education on the field.
+                        </p>
+                    </MudItem>
+                </MudGrid>
+            </MudListItem>
             <MudListItem OnClick="@(() => Click("Julia"))">
                 <MudGrid>
-                    <MudItem xs="3">
-                        <img height="300"width="300" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.technotification.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fjulia-programming-language-770x515.png&f=1&nofb=1"/>
+                    <MudItem sm="6" xs="12">
+                        <img height="300px" width="300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.technotification.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fjulia-programming-language-770x515.png&f=1&nofb=1"/>
                     </MudItem>
-                    <MudItem Style=@(hidden)  xs="9">
-                        <p style="position: absolute;top: 50%">
+                    <MudItem xs="12" sm="6">
+                        <p style="text-align: center">
                             Studying Julia programming language and exploring it's potentials for Data Science and Machine Learning appliances.
                         </p>
                     </MudItem>
@@ -35,11 +32,11 @@
             </MudListItem>
             <MudListItem OnClick="@(() => Click("Dotnet"))">
                 <MudGrid>
-                    <MudItem xs="3">
-                        <img height="300"width="300" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhot33331.github.io%2Fassets%2Fimg%2Fdotnet-bot-surfing.png&f=1&nofb=1"/>
+                    <MudItem xs="12" sm="6">
+                        <img height="300px" width="300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhot33331.github.io%2Fassets%2Fimg%2Fdotnet-bot-surfing.png&f=1&nofb=1"/>
                     </MudItem>
-                    <MudItem Style=@(hidden)  xs="9">
-                        <p style="position: absolute;top: 50%">
+                    <MudItem xs="12" sm="6">
+                        <p style="text-align: center;">
                             Getting up to date with the recent updates of .Net 6 and Minimal APIs as well as Blazor's new features.
                         </p>
                     </MudItem>
@@ -47,11 +44,11 @@
             </MudListItem>
             <MudListItem OnClick="@(() => Click("Linux"))">
                 <MudGrid>
-                    <MudItem xs="3">
-                        <img height="300"width="300" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.techian.com%2Fwp-content%2Fuploads%2Flinux-distros-1152x864.jpg&f=1&nofb=1"/>
+                    <MudItem xs="12" sm="6">
+                        <img height="300px" width="300px" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.techian.com%2Fwp-content%2Fuploads%2Flinux-distros-1152x864.jpg&f=1&nofb=1"/>
                     </MudItem>
-                    <MudItem Style=@(hidden)  xs="9">
-                        <p style="position: absolute;top: 50%">
+                    <MudItem xs="12" sm="6">
+                        <p style="text-align: center">
                             Becoming familiar with the Linux environment and it's usages.
                         </p>
                     </MudItem>
@@ -62,25 +59,7 @@
 </MudCard>
 
 @code {
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    BrowserWindowSize browser = new BrowserWindowSize();
-    public Typo typo { get; set; }
-    protected override async void OnInitialized()
-    {
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-        }
-        else
-        {
-            typo = Typo.h5;
-        }
-        StateHasChanged();
 
-    }
     private async Task Click(string name)
     {
         switch (name)
@@ -98,43 +77,6 @@
                 await JsRuntime.InvokeAsync<object>("open", "https://www.eap.gr/education/postgraduate/annual/data-science-and-machine-learning/", "_blank");
                 break;
         }
-    }
-    protected override void OnAfterRender(bool firstRender)
-    {
-        
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown == true)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-        }else
-        {
-            hidden = "visibility:visible";
-            typo = Typo.h5;
-
-        }
-        StateHasChanged();
     }
 
 }
