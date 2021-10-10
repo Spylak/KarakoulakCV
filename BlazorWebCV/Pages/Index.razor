@@ -173,23 +173,23 @@ else
         Messages.Add($"user&&{input.Value}");
         if (input.Value.Length > 0)
         {
-
-            if (AutomatedAnswers.Keys.ToList().Contains(input.Value.ToLower()))
+            var value = input.Value.ToLower();
+            if (AutomatedAnswers.Keys.ToList().Contains(value))
             {
-                Messages.Add($"robot&&{AutomatedAnswers[input.Value]}");
+                Messages.Add($"robot&&{AutomatedAnswers[value]}");
             }
-            else if (input.Value == "Help")
+            else if (value=="help")
             {
                 Messages.Add($"robot&&{commands}");
             }
             else
             {
-                Messages.Add($"robot&&I don't recognize this command. Available commands :{commands}");
+                Messages.Add($"robot&&I don't recognize this command. Available commands: {commands}");
             }
         }
         else
         {
-            Messages.Add($"robot&&No command was given. Available commands :{commands}");
+            Messages.Add($"robot&&No command was given. Available commands: {commands}");
 
         }
         await Task.Yield();
