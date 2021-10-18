@@ -18,18 +18,6 @@
                     </MudItem>
                 </MudGrid>
             </MudListItem>
-            <MudListItem OnClick="@(() => Click("Julia"))">
-                <MudGrid>
-                    <MudItem sm="6" xs="12">
-                        <img height="300px" width="300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.technotification.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fjulia-programming-language-770x515.png&f=1&nofb=1"/>
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <p style="text-align: center">
-                            Studying Julia programming language and exploring it's potentials for Data Science and Machine Learning appliances.
-                        </p>
-                    </MudItem>
-                </MudGrid>
-            </MudListItem>
             <MudListItem OnClick="@(() => Click("Dotnet"))">
                 <MudGrid>
                     <MudItem xs="12" sm="6">
@@ -64,9 +52,6 @@
     {
         switch (name)
         {
-            case "Julia":
-                await JsRuntime.InvokeAsync<object>("open", "https://julialang.org/", "_blank");
-                break;
             case "Dotnet":
                 await JsRuntime.InvokeAsync<object>("open", "https://docs.microsoft.com/en-us/dotnet/maui/", "_blank");
                 break;
