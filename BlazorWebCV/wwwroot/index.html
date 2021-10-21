@@ -16,7 +16,12 @@
 </head>
 
 <body>
-    <div id="app"><div style="background: black;height: 100vh;"><h3 style="color: lawngreen;position: absolute;top: 50%;left:45%;">Loading...</h3></div></div>
+    <div id="app"><div style="background: black;height: 100vh;">
+        <div class="spinner-border" role="status" style="color: lawngreen;position: absolute;top: 50%;left:50%;width: 5rem;height: 5rem">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <h3 style="color: lawngreen;position: absolute;top: 60%;left:49%;">Loading...</h3>
+    </div></div>
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>

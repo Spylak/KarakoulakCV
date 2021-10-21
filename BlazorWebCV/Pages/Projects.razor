@@ -2,7 +2,19 @@
 @inject IJSRuntime JsRuntime
 @inject IDialogService DialogService
 <MudGrid style="color: purple">
-
+         <MudItem xs="12" sm="4">
+                <MudCard>
+                    <MudCardMedia Image="https://images.freeimages.com/images/large-previews/635/ticket-office-1232607.jpg" Height="250"/>
+                    <MudCardContent>
+                        <MudText Color="Color.Tertiary" Typo="Typo.h5">ProjectLizzy</MudText>
+                        <MudText Style="color: mediumpurple" Typo="Typo.body2">Coded in .Net Core with DevExtreme</MudText>
+                        <MudText Style="color: mediumpurple" Typo="Typo.body2">DevExtreme Library, MVC Project with Database.</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Info"  OnClick="@(() => Click("ProjectLizzy"))">Learn More</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>   
     <MudItem xs="12" sm="4">
         <MudCard>
             <MudCardMedia Image="https://images.freeimages.com/images/large-previews/754/camel-1190448.jpg" Height="250"/>
@@ -176,6 +188,7 @@
     private Dictionary<string, string> popOverContent = new Dictionary<string, string>()
     {
         {"ThemingProject", "This is a static page project that demonstrates Pixel Perfect UI/UX Design, given a set of images in Figma I had to replicate that in HTML and CSS."},
+        {"ProjectLizzy","This ia a ticketing system with custom integration for AzDo for tracking and submission of tickets (requests, incidents etc.), creating tickets in the project results in creating the appropriate ticket category in Azure DevOps."},
         {
             "ProjectCamilla", "This is a project I was placed to in my first job.I was responsible for parts of it's maintenance as well as adding some features. It is an MVC project " +
                               "consisting of the main application, a WEB API app taking care of external calls and a worker app. It is written in .Net Core, JavaScript and jQuery" +
