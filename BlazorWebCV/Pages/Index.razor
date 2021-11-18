@@ -34,13 +34,13 @@ else
                                         <MudAvatar Image="images/avatarme.png"/>
                                     </MudItem>
                                     <MudItem xs="11">
-                                        <MudTextFieldString Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
+                                        <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
                                     </MudItem>
                                 }
                                 else
                                 {
                                     <MudItem xs="11">
-                                        <MudTextFieldString Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
+                                        <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
                                     </MudItem>
                                     <MudItem Style=@(hidden) xs="1">
                                         <MudAvatar Image="images/unknown.png"/>

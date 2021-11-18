@@ -4,6 +4,19 @@
 @inject IResizeListener _listener
 @implements System.IDisposable
 @inject IJSRuntime JsRuntime
+
+@if (gridLoad=="hidden" && theme=="dark")
+{
+    <div>
+        <img style="width: 100vw; height: 95vh;" src="https://i.gifer.com/3rCL.gif"/>
+    </div>
+
+}else if (gridLoad=="hidden" && theme == "light")
+{    
+    <div>
+        <img style="width: 100vw; height: 95vh;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F38.media.tumblr.com%2F6ebc429ba22c9156e667161ec913c38b%2Ftumblr_n5mufrqAk21tc216ao8_500.gif&f=1&nofb=1"/>
+    </div>
+}
 <MudGrid >
 <MudItem xs="12">
 <MudCard>
@@ -288,6 +301,21 @@
 </MudGrid>
 
 @code {
+    [CascadingParameter(Name = "theme")]
+    protected string theme { get; set; }
+    private string gridLoad ="hidden";
+    protected override async Task OnInitializedAsync()
+    {
+        await Visible();
+
+        StateHasChanged();
+    }
+
+    public async Task Visible()
+    {
+        await Task.Delay(1500);
+        gridLoad = "visible";
+    }
     bool IsXSmallDown = false;
     private string hidden = "visibility:visible";
     BrowserWindowSize browser = new BrowserWindowSize();

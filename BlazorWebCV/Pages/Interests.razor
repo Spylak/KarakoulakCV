@@ -18,7 +18,7 @@ else
 {
     <h3 style="text-align: center">Interests</h3>
 }
-<MudGrid Style=@($"visibility:")>
+<MudGrid >
     <MudItem xs="columns">
         <MudCard>
             <MudCardContent>
@@ -142,7 +142,6 @@ else
     }
     bool IsXSmallDown = false;
     private string hidden = "visibility:visible";
-    private string gridLoad ="hidden";
     BrowserWindowSize browser = new BrowserWindowSize();
     public Typo typo { get; set; }
 
@@ -155,7 +154,7 @@ else
             _listener.OnResized += WindowResized;
         }
     }
-
+    private string gridLoad ="hidden";
     public async Task Visible()
     {
         await Task.Delay(1500);
