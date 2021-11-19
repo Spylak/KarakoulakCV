@@ -93,6 +93,17 @@
                 </MudItem>
             </MudGrid>
         </MudListItem>
+        <MudListItem OnClick="@(() => Click("Postgresql"))">
+            <MudGrid>
+                <MudItem xs="3">
+                    <MudAvatar Image="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_251be2af3ae607c45c14e816eaa1cf41/postgresql.png">
+                    </MudAvatar>
+                </MudItem>
+                <MudItem  xs="9">
+                    <MudText Style="position: absolute;top: 30%;">Postgresql</MudText>
+                </MudItem>
+            </MudGrid>
+        </MudListItem>
     </MudList>
 </MudItem>
 <MudItem xs="griColumns" Style="padding-bottom: 2px;padding-top: 2px;">
@@ -160,6 +171,17 @@
                 </MudItem>
                 <MudItem  xs="9">
                     <MudText Style="position: absolute;top: 30%;">MVC Architecture</MudText>
+                </MudItem>
+            </MudGrid>
+        </MudListItem> 
+        <MudListItem OnClick="@(() => Click("RStudio"))">
+            <MudGrid>
+                <MudItem xs="3">
+                    <MudAvatar Image="https://c3.klipartz.com/pngpicture/348/233/sticker-png-numix-circle-for-windows-rstudio-icon-thumbnail.png">
+                    </MudAvatar>
+                </MudItem>
+                <MudItem  xs="9">
+                    <MudText Style="position: absolute;top: 30%;">RStudio</MudText>
                 </MudItem>
             </MudGrid>
         </MudListItem>
@@ -292,6 +314,17 @@
                 </MudItem>
             </MudGrid>
         </MudListItem>
+        <MudListItem OnClick="@(() => Click("DBeaver"))">
+            <MudGrid>
+                <MudItem xs="3">
+                    <MudAvatar Image="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DBeaver_logo.svg/1024px-DBeaver_logo.svg.png">
+                    </MudAvatar>
+                </MudItem>
+                <MudItem  xs="9">
+                    <MudText Style="position: absolute;top: 30%;">DBeaver</MudText>
+                </MudItem>
+            </MudGrid>
+        </MudListItem>
     </MudList>
 </MudItem>
 </MudGrid>
@@ -384,12 +417,21 @@
                 break;
             case "Outlook":
                 await JsRuntime.InvokeAsync<object>("open", "https://en.wikipedia.org/wiki/Outlook.com", "_blank");
+                break; 
+            case "DBeaver":
+                await JsRuntime.InvokeAsync<object>("open", "https://dbeaver.io/", "_blank");
                 break;
             case "Microservices":
                 await JsRuntime.InvokeAsync<object>("open", "https://en.wikipedia.org/wiki/Microservices", "_blank");
                 break;
             case "MVC":
                 await JsRuntime.InvokeAsync<object>("open", "https://www.w3schools.in/mvc-architecture/", "_blank");
+                break;
+            case "Postgresql":
+                await JsRuntime.InvokeAsync<object>("open", "https://www.postgresql.org/", "_blank");
+                break;
+            case "RStudio":
+                await JsRuntime.InvokeAsync<object>("open", "https://www.rstudio.com/", "_blank");
                 break;
             case "Repository":
                 await JsRuntime.InvokeAsync<object>("open", "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application", "_blank");
