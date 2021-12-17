@@ -170,9 +170,9 @@ else
 
     private async Task Send(EditContext context)
     {
-        Messages.Add($"user&&{input.Value}");
-        if (input.Value.Length > 0)
+        if (input.Value is not null)
         {
+            Messages.Add($"user&&{input.Value}");
             var value = input.Value.ToLower();
             if (AutomatedAnswers.Keys.ToList().Contains(value))
             {
@@ -190,7 +190,6 @@ else
         else
         {
             Messages.Add($"robot&&No command was given. Available commands: {commands}");
-
         }
         await Task.Yield();
         input = new Input();

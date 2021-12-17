@@ -18,7 +18,7 @@
 <body>
     <div id="app">
         <div style="background: black;height: 100vh;text-align: center">
-                <div class="lds-ring" style="margin-top: 40%"><div></div><div></div><div></div><div></div></div>
+                <div class="lds-ring loadingH" ><div></div><div></div><div></div><div></div></div>
                 <h3 style="color: lawngreen;">Loading...</h3>
     </div>
     
@@ -37,6 +37,17 @@
 
 </html>
 <style>
+    @media screen and (max-width:500px)  {
+        .loadingH {
+            margin-top: 50%;
+        }
+    }
+       @media screen and (min-width:500px)  {
+        .loadingH {
+            margin-top: 20%;
+        }
+    }
+    
     .lds-ring {
         display: inline-block;
         position: relative;
