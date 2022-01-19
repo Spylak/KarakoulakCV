@@ -1,13 +1,13 @@
 @page "/Certifications"
 
-@if (gridLoad=="hidden" && theme=="dark")
+@if (gridLoad == "hidden" && theme == "dark")
 {
     <div>
         <img style="width: 100vw; height: 95vh;" src="https://i.gifer.com/3rCL.gif"/>
     </div>
-
-}else if (gridLoad=="hidden" && theme == "light")
-{    
+}
+else if (gridLoad == "hidden" && theme == "light")
+{
     <div>
         <img style="width: 100vw; height: 95vh;" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F38.media.tumblr.com%2F6ebc429ba22c9156e667161ec913c38b%2Ftumblr_n5mufrqAk21tc216ao8_500.gif&f=1&nofb=1"/>
     </div>
@@ -15,64 +15,70 @@
 else
 {
     <h3 style="text-align: center">Certifications</h3>
-            <MudCarousel Style="height:85vh; color: darkorange;" ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(8)" TData="object">
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/Blazor.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/microservices.jpg" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/powerapps.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/MVC5.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/CSharpDev.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/ASPNETDev.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/AgileDev.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/MicrosoftCLoud.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/GoogleITSupp.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/GoogleITAutom.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/Python3.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/PythonDataScience.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/DJANGO.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Slide">
-                    <img src="Certs/PY4E.png" width="100%" height="100%"/>
-                </MudCarouselItem>
-            </MudCarousel>
+    <MudCarousel Style="height:85vh; color: darkorange;" ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(8)" TData="object">
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/powerapps.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/Blazor.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/microservices.jpg" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/MicrosoftCLoud.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/MVC5.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/CSharpDev.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/ASPNETDev.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/AgileDev.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/GoogleITSupp.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/GoogleITAutom.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/Python3.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/PythonDataScience.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/DJANGO.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Slide">
+            <img src="Certs/PY4E.png" width="100%" height="100%"/>
+        </MudCarouselItem>
+    </MudCarousel>
 }
+
 @code {
+
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
-    private string gridLoad ="hidden";
+
+    private string gridLoad = "hidden";
+
     protected override async Task OnInitializedAsync()
     {
         await Visible();
 
         StateHasChanged();
     }
+
     public async Task Visible()
     {
         await Task.Delay(1500);
         gridLoad = "visible";
     }
+
 }
