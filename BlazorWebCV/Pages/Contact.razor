@@ -2,7 +2,9 @@
 @inject IJSRuntime JsRuntime
 @using System.ComponentModel.DataAnnotations
 @inject NavigationManager _navigationManager
-<div style="margin-top: 15vh"></div>
+<div style="text-align: center">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Style="margin-top: 10vh" OnClick="OpenOverlay" >Google Form</MudButton>
+</div>
 <div class="row">
     <div style="max-width:400px;margin:auto;">
         <MudCard>
@@ -19,17 +21,17 @@
             </MudCardContent>
         </MudCard>
     </div>
-        <div style="max-width:400px;margin:auto;">
+    <div style="max-width:400px;margin:auto;">
         <EditForm Model="Model" OnValidSubmit="SendLocalEmail">
             <DataAnnotationsValidator/>
             <MudCard Style="height: 300px;">
                 <MudCardContent>
                     <div class="row">
-                        
+
                         <div class="col">
-                            
-                    <MudTextField Variant="Variant.Outlined" @bind-Value="Model.Subject" Label="Subject..."/>
-                    <ValidationMessage For="(() => Model.Subject)"/>
+
+                            <MudTextField Variant="Variant.Outlined" @bind-Value="Model.Subject" Label="Subject..."/>
+                            <ValidationMessage For="(() => Model.Subject)"/>
                         </div>
                         <div class="col">
 
@@ -46,6 +48,9 @@
         </EditForm>
     </div>
 </div>
+<MudOverlay @bind-Visible="isVisible" DarkBackground="true" ZIndex="9999" AutoClose="true" Style="text-align: center">
+<iframe style="height:800px;width:500px;" src="https://docs.google.com/forms/d/e/1FAIpQLSdLSfIU9dKcVsb1SNUKX6_Fysz3hVYCXq3DhYDyd14jQv52OQ/viewform?embedded=true"  frameborder="0" marginheight="0" marginwidth="0">Φόρτωση…</iframe>
+</MudOverlay>
 
 @code {
     private EmailModel Model = new EmailModel();
@@ -64,6 +69,12 @@
         [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
     }
+    private bool isVisible;
 
-
+    public void OpenOverlay()
+    {
+        isVisible = true;
+        StateHasChanged();
+    }
+    
 }
