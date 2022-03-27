@@ -14,4 +14,21 @@
         <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\AgileDev.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\ASPNETDev.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\Blazor.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\CSharpDev.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\DJANGO.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\GoogleITAutom.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\GoogleITSupp.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\microservices.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\MicrosoftCLoud.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\MVC5.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\powerapps.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\PY4E.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\Python3.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Certs\PythonDataScience.png" />
+    </ItemGroup>
+
 </Project>
