@@ -97,7 +97,6 @@ else
                     <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">    
                         Currently I enjoy working on Blazor, C# and .NET! <br/>
                         I develop and maintain web and software applications & dynamic websites! <br/>
-                        The moment .Net MAUI releases I will dive into the world of phone apps! <br/>
                     </MudText>
                 </MudCarouselItem>
                 <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
@@ -287,7 +286,7 @@ else
 
     private async Task Matrix()
     {
-        await Task.Delay(1500);
+        await Task.Delay(1000);
         matrix = false;
         StateHasChanged();
     }

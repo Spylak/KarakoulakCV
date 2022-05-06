@@ -1,17 +1,5 @@
 @page "/InProgress"
 @inject IJSRuntime JsRuntime
-@if (gridLoad=="hidden" && theme=="dark")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
-
-}else if (gridLoad=="hidden" && theme == "light")
-{    
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
-    </div>
-}
 
 <h3 style="text-align: center">In Progress</h3>
 <MudCard>
@@ -29,18 +17,6 @@
                     </MudItem>
                 </MudGrid>
             </MudListItem>
-            <MudListItem OnClick="@(() => Click("Dotnet"))">
-                <MudGrid>
-                    <MudItem xs="12" sm="6">
-                        <img height="300px" width="300px" src="images/maui.webp"/>
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <p style="text-align: center;">
-                            Getting up to date with the recent updates of .Net 6 and Minimal APIs as well as Blazor's new features.
-                        </p>
-                    </MudItem>
-                </MudGrid>
-            </MudListItem>
             <MudListItem OnClick="@(() => Click("Linux"))">
                 <MudGrid>
                     <MudItem xs="12" sm="6">
@@ -48,7 +24,7 @@
                     </MudItem>
                     <MudItem xs="12" sm="6">
                         <p style="text-align: center">
-                            Becoming familiar with the Linux environment and it's usages.
+                            Better understanding of Linux environment and it's usages.
                         </p>
                     </MudItem>
                 </MudGrid>
@@ -60,18 +36,6 @@
 @code {
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
-    private string gridLoad ="hidden";
-    protected override async Task OnInitializedAsync()
-    {
-        await Visible();
-
-        StateHasChanged();
-    }
-    public async Task Visible()
-    {
-        await Task.Delay(1500);
-        gridLoad = "visible";
-    }
     private async Task Click(string name)
     {
         switch (name)

@@ -1,28 +1,18 @@
 @page "/Experience"
 
-@if (gridLoad=="hidden" && theme=="dark")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
-
-}else if (gridLoad=="hidden" && theme == "light")
-{    
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
-    </div>
-}
 <MudTimeline>
 
     <MudTimelineItem Color="Color.Dark" Size="Size.Small">
         <ItemOpposite>
-            <MudText Style="color: #8900ab"  Typo="Typo.h5">04/2021-present</MudText>
+            <MudText Style="color: #8900ab"  Typo="Typo.h5">04/2021-06/2022</MudText>
         </ItemOpposite>
         <ItemContent>
             <MudCard>
                 <MudCardContent>
-                    <MudText Style="color: #8900ab"  Typo="Typo.h6" GutterBottom="true">Junior Developer</MudText>
-                    <MudText>Development and maintenance of Projects I am assigned.</MudText>
+                    <MudText Style="color: #8900ab"  Typo="Typo.h6" GutterBottom="true">Developer</MudText>
+                    <MudText>
+                        Development and maintenance of a C# ASP.NET Core MVC solution, with DevExtreme and jQuery library on front end and Ajax for asynchronous updates of UI, SQL Server as database, Web API Project for external exposure and a worker Console App for scheduled tasks, CI/CD on AzureDevOps and two-way integration of the main app to AzureDevOps for Work Items and Azure Wiki Pages.
+                    </MudText>
                 </MudCardContent>
             </MudCard>
         </ItemContent>
@@ -30,27 +20,19 @@
     
     <MudTimelineItem Color="Color.Tertiary" Size="Size.Small">
         <ItemOpposite>
-            <MudText Color="Color.Tertiary" Typo="Typo.h5">11/2020-03/2021</MudText>
+            <MudText Color="Color.Tertiary" Typo="Typo.h5">07/2020-03/2021</MudText>
         </ItemOpposite>
         <ItemContent>
             <MudCard>
                 <MudCardContent>
                     <MudText Color="Color.Tertiary" Typo="Typo.h6" GutterBottom="true">Freelance Developer</MudText>
-                    <MudText>Developed a discord chatting bot for internal usage at a gaming discord server and completed minor tasks requested by the server community.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Warning" Size="Size.Small">
-        <ItemOpposite>
-            <MudText style="color: #d4c900"  Typo="Typo.h5">08/2020-10/2020</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Style="color: #d4c900"  Typo="Typo.h6" GutterBottom="true">Junior Developer</MudText>
-                    <MudText>Data Visualization and Integration at the Architectural office of E.Koutoulaki.</MudText>
+                    <MudText>
+                        •Developed a discord chatting bot with C# and Discord.Net for internal usage at a gaming discord server and completed minor tasks requested by the server community.
+                        <br/>
+                        •Programmed simulations and data visualizations to represent microclimate changes for urban design and prove that the outcome would be beneficial for sustainability.
+                        <br/>
+                        •Developed a client side C# .Net 6 Blazor WebAssembly app using MudBlazor and MVU architecture hosted in Azure and communicates through HTTP with a webAPI application, has authentication with JWT and 2FA via email, Google SSO and finally uses Postgresql as a database.
+                    </MudText>
                 </MudCardContent>
             </MudCard>
         </ItemContent>
@@ -169,16 +151,4 @@
 @code {
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
-    private string gridLoad ="hidden";
-    protected override async Task OnInitializedAsync()
-    {
-        await Visible();
-
-        StateHasChanged();
-    }
-    public async Task Visible()
-    {
-        await Task.Delay(1500);
-        gridLoad = "visible";
-    }
 }

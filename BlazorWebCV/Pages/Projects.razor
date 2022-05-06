@@ -2,19 +2,21 @@
 @inject IJSRuntime JsRuntime
 @inject IDialogService DialogService
 
-@if (gridLoad=="hidden" && theme=="dark")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
 
-}else if (gridLoad=="hidden" && theme == "light")
-{    
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
-    </div>
-}
 <MudGrid style="color: purple">
+ <MudItem xs="12" sm="4">
+            <MudCard>
+                <MudCardMedia Image="images/Projects/gyxiLogo.png" Height="250"/>
+                <MudCardContent>
+                    <MudText Color="Color.Tertiary" Typo="Typo.h5">Gyxi</MudText>
+                    <MudText Style="color: mediumpurple" Typo="Typo.body2">Coded in Blazor with MudBlazor.</MudText>
+                    <MudText Style="color: mediumpurple" Typo="Typo.body2">Blazor WebApp with token authentication and webAPI integration.</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Text" Color="Color.Info" OnClick="@(() => Click("Gyxi"))">Learn More</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
     <MudItem xs="12" sm="4">
             <MudCard>
                 <MudCardMedia Image="images/Projects/weddingInv.webp" Height="250"/>
@@ -185,18 +187,6 @@
 @code {
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
-    private string gridLoad ="hidden";
-    protected override async Task OnInitializedAsync()
-    {
-        await Visible();
-
-        StateHasChanged();
-    }
-    public async Task Visible()
-    {
-        await Task.Delay(1500);
-        gridLoad = "visible";
-    }
     private async Task Code(string name)
     {
         switch (name)
@@ -232,6 +222,7 @@
     {
         
         {"ThemingProject", "This is a static page project that demonstrates Pixel Perfect UI/UX Design, given a set of images in Figma I had to replicate that in HTML and CSS."},
+        {"Gyxi", "This is a C# .Net 6 Blazor WebAssembly app using MudBlazor and MVU architecture."},
         {
             "WeddingInvitation", "This is a project that is meant to be used for wedding invitations in digital form. It consists of a web app in Blazor WebAssembly, an API in .Net 6 and as a database there is an integration google sheets API. "+
                                  "It uses CI/CD through Github Actions and it is hosted in Azure, the API project as App Service and the client web app as Static Web App Service (since it's SPA)."

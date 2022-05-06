@@ -5,18 +5,21 @@
 @implements System.IDisposable
 @inject IJSRuntime JsRuntime
 
+
 @if (gridLoad=="hidden" && theme=="dark")
 {
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
+    <div style="background: black;text-align: center;height: 100vh">
+        <MudProgressCircular Style="margin-top:25%" Color="Color.Success" Indeterminate="true" />
     </div>
-
 }else if (gridLoad=="hidden" && theme == "light")
-{    
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
+{        
+    <div style="background: black;text-align: center;height: 100vh">
+        <MudProgressCircular Style="margin-top:25%"  Color="Color.Default" Indeterminate="true" />
     </div>
 }
+else
+{
+    
 <MudGrid >
 <MudItem xs="12">
 <MudCard>
@@ -332,6 +335,7 @@
 </MudCard>
 </MudItem>
 </MudGrid>
+}
 
 @code {
     [CascadingParameter(Name = "theme")]
@@ -346,7 +350,7 @@
 
     public async Task Visible()
     {
-        await Task.Delay(1500);
+        await Task.Delay(1000);
         gridLoad = "visible";
     }
     bool IsXSmallDown = false;
