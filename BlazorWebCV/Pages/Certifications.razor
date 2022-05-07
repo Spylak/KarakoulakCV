@@ -1,19 +1,6 @@
 @page "/Certifications"
 
-@if (gridLoad == "hidden" && theme == "dark")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
-}
-else if (gridLoad == "hidden" && theme == "light")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
-    </div>
-}
-else
-{
+
     <h3 style="text-align: center">Certifications</h3>
     <MudCarousel Style="height:85vh; color: darkorange;" @bind-SelectedIndex="count"  ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(8)" TData="object">
         
@@ -24,7 +11,7 @@ else
             </MudCarouselItem>
         }
     </MudCarousel>
-}
+
 @code {
     private int count = 0;
     [CascadingParameter(Name = "theme")]
@@ -49,14 +36,6 @@ else
         "images/Certs/DJANGO.webp",
         "images/Certs/PY4E.webp"
     };
-    private string gridLoad = "hidden";
-
-    protected override async Task OnInitializedAsync()
-    {
-        await Visible();
-
-        StateHasChanged();
-    }
     private async Task OnClick()
     {
         count++;
@@ -64,11 +43,6 @@ else
         {
             count = 0;
         }
-    }
-    public async Task Visible()
-    {
-        await Task.Delay(1000);
-        gridLoad = "visible";
     }
 
 }
