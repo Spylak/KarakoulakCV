@@ -6,6 +6,20 @@
 <MudGrid style="color: purple">
  <MudItem xs="12" sm="4">
             <MudCard>
+                <MudCardMedia Image="images/Projects/nuget.jpg" Height="250"/>
+                <MudCardContent>
+                    <MudText Color="Color.Tertiary" Typo="Typo.h5">BlazorIDB</MudText>
+                    <MudText Style="color: mediumpurple" Typo="Typo.body2">Coded in .Net 6.</MudText>
+                    <MudText Style="color: mediumpurple" Typo="Typo.body2">A nuget package for Blazor that utilizes IndexedDb.</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton OnClick="@(() => Code("BlazorIDB"))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                    <MudButton Variant="Variant.Text" Color="Color.Info" OnClick="@(() => Click("BlazorIDB"))">Learn More</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+ <MudItem xs="12" sm="4">
+            <MudCard>
                 <MudCardMedia Image="images/Projects/gyxiLogo.png" Height="250"/>
                 <MudCardContent>
                     <MudText Color="Color.Tertiary" Typo="Typo.h5">Gyxi</MudText>
@@ -215,6 +229,9 @@
             case "WeddingInvitation":
                 await JsRuntime.InvokeAsync<object>("open", "https://github.com/Spylak/WeddingInvitation", "_blank");
                 break;
+            case "BlazorIDB":
+                await JsRuntime.InvokeAsync<object>("open", "https://github.com/Spylak/BlazorIDB", "_blank");
+                break;
         }
     }
 
@@ -252,7 +269,8 @@
             "ArduinoProject", "This was my first introduction to scrum-like schedule in professional ground, the goal of my project was to change the " +
                               "functionality of a Fitness Tracker board using Arduino IDE, changing the source code of a related" +
                               "project in order to validate and replicate it’s behavior, transforming it into an optical density device for liquids."
-        }
+        },
+        {"BlazorIDB","This is a simple wrapper of the idb-keyval.js library for Blazor applications. It is designed to be used similar to Entity Framework Database."}
     };
 
     private async Task Click(string name)
