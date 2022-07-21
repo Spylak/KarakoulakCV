@@ -3,7 +3,9 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
+using System.Text.Json.Nodes;
 using BlazorPro.BlazorSize;
+using BlazorWebCV.Models;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,12 +21,14 @@ namespace BlazorWebCV
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
             builder.Services.AddMudServices();
+            var skillsModel = builder.Configuration.GetValue<JsonObject>("Skills");
+            builder.Services.Configure<SkillsModel>(options =>
+                builder.Configuration.GetSection("Skills").Bind(options));
             builder.Services.AddMediaQueryService();
             builder.Services.AddScoped<ResizeListener>();
             builder.Services.AddResizeListener(options =>
                             {
                                 options.ReportRate = 300;
-                                options.EnableLogging = true;
                                 options.SuppressInitEvent = true;
                             });
             builder.Services.AddScoped(
