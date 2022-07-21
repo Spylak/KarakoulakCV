@@ -21,9 +21,10 @@ namespace BlazorWebCV
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
             builder.Services.AddMudServices();
-            var skillsModel = builder.Configuration.GetValue<JsonObject>("Skills");
             builder.Services.Configure<SkillsModel>(options =>
                 builder.Configuration.GetSection("Skills").Bind(options));
+            builder.Services.Configure<ProjectsModel>(options =>
+                builder.Configuration.Bind(options));
             builder.Services.AddMediaQueryService();
             builder.Services.AddScoped<ResizeListener>();
             builder.Services.AddResizeListener(options =>
