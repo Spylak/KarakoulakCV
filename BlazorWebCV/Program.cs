@@ -29,6 +29,8 @@ namespace BlazorWebCV
                 builder.Configuration.Bind(options));
             builder.Services.Configure<ExperienceModel>(options =>
                 builder.Configuration.Bind(options));
+            builder.Services.Configure<CertsModel>(options =>
+                builder.Configuration.Bind(options));
             builder.Services.AddMediaQueryService();
             builder.Services.AddScoped<ResizeListener>();
             builder.Services.AddResizeListener(options =>

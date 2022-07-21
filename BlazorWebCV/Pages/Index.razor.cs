@@ -14,10 +14,10 @@ namespace BlazorWebCV.Pages;
 public partial class Index
 {
     [CascadingParameter(Name = "theme")]
+    protected string theme { get; set; }
     [Inject]
     private IJSRuntime jsRuntime { get; set; }
     [Inject] private IResizeListener _listener { get; set; }
-    protected string theme { get; set; }
     private  string color { get; set; }
     private int count = 0;
     protected override void OnParametersSet()
@@ -37,7 +37,6 @@ public partial class Index
     {
         public string Value { get; set; }
     }
-
     private Input input = new Input();
     private string commands;
 
@@ -96,81 +95,14 @@ public partial class Index
         }
     }
     private bool matrix = true;
-    BrowserWindowSize browser = new BrowserWindowSize();
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    private int phoneMargin = 0;
-    public Typo typo { get; set; }
-    private int gridOne = 6;
-    private int gridTwo = 6;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-            phoneMargin = 30;
-            gridOne = 12;
-            gridTwo = 0;
-        }
-        else
-        {
-            hidden = "visibility:visible";
-            phoneMargin = 0;
-            typo = Typo.h5;
-            gridOne = 6;
-            gridTwo = 6;
-        }
-        StateHasChanged();
-    }
 
     protected override async void OnInitialized()
     {
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.body1;
-            gridOne = 12;
-            gridTwo = 0;
-            hidden = "visibility:hidden";
-            phoneMargin = 30;
-        }
-        else
-        {
-            typo = Typo.h5;
-        }
-        StateHasChanged();
         foreach (var command in AutomatedAnswers.Keys)
         {
             commands += command + ", ";
         }
         commands = commands.Substring(0, commands.LastIndexOf(','));
-        browser = await _listener.GetBrowserWindowSize();
         Matrix();
         base.OnInitialized();
     }

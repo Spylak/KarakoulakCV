@@ -1,21 +1,45 @@
 @page "/Experience"
 @using BlazorWebCV.Helpers
-
-<MudTimeline>
+<MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+    <MudTimeline>
+        @foreach (var item in ExperienceModel.Value.Experience.Values)
+        {
+            var color = Color.Warning;
+            <MudTimelineItem Color="color" Size="Size.Small" >
+                <ItemOpposite>
+                    <MudText Color="color" Typo="Typo.h5">@item["date"]</MudText>
+                </ItemOpposite>
+                <ItemContent>
+                    <MudCard>
+                        <MudCardContent>
+                            <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
+                            @if(!string.IsNullOrWhiteSpace(item["organisation"]))
+                            {
+                                <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
+                            }
+                            <MudText>
+                                @item["description"]
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+</MudHidden>
+<MudHidden Invert="true" Breakpoint="Breakpoint.Xs">
+<MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Right">
     @foreach (var item in ExperienceModel.Value.Experience.Values)
     {
-        var color = MudBlazor.Color.Warning;
-        <MudTimelineItem Color="color" Size="Size.Small">
-            <ItemOpposite>
-                <MudText Color="color" Typo="Typo.h5">@item["date"]</MudText>
-            </ItemOpposite>
+        var color = Color.Warning;
+        <MudTimelineItem Color="color" Size="Size.Small" >
             <ItemContent>
                 <MudCard>
                     <MudCardContent>
-                        <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
+                        <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"] @@ @item["date"]</MudText>
                         @if(!string.IsNullOrWhiteSpace(item["organisation"]))
                         {
-                        <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
+                            <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
                         }
                         <MudText>
                             @item["description"]
@@ -26,6 +50,7 @@
         </MudTimelineItem>
     }
 </MudTimeline>
+</MudHidden>
 @code {
     
 }

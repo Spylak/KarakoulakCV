@@ -15,40 +15,56 @@ else if (matrix && theme == "light")
 }
 else
 {
-    <section >
-        <MudCard Style="height: 90vh">
-            <MudCardContent Style="padding: 12px;">
-                <MudGrid >
-                    <MudItem xs="gridOne">
-                        <div Style="min-height: 100px; max-height: 30vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
-                            <MudGrid >
-                                @foreach (var msg in Messages)
-                                {
-                                    if (msg.Split("&&")[0] == "robot")
+    <MudGrid>
+        <MudItem xs="12">
+            <MudCard>
+                <MudCardContent>
+                    <MudGrid >
+                        <MudItem xs="12" sm="6" Style="padding:0">
+                            @if (theme == "light")
+                            {
+                                <MudImage Src="images/robot.webp" Style="width: 100%;height: 70vh"/>
+                            }
+                            else
+                            {
+                                <MudImage Src="images/me.webp" Style="width: 100%;height: 70vh"/>
+                            }
+                        </MudItem>
+
+                        <MudItem xs="12" sm="6" Style="padding:0">
+                            <div Style="min-height: 100px; max-height: 50vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
+                                <MudGrid >
+                                    @foreach (var msg in Messages)
                                     {
-                                        <MudItem Style=@(hidden) xs="1">
-                                            <MudAvatar Image="images/avatarme.png"/>
-                                        </MudItem>
-                                        <MudItem xs="11">
-                                            <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
-                                        </MudItem>
+                                        if (msg.Split("&&")[0] == "robot")
+                                        {
+                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                                                <MudItem sm="1">
+                                                    <MudAvatar Image="images/avatarme.png"/>
+                                                </MudItem>
+                                            </MudHidden>
+                                            <MudItem xs="12" sm="11">
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
+                                            </MudItem>
+                                        }
+                                        else
+                                        {
+                                            <MudItem xs="12" sm="11">
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
+                                            </MudItem>
+                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                                                <MudItem sm="1">
+                                                    <MudAvatar Image="images/unknown.png"/>
+
+                                                </MudItem>
+                                            </MudHidden>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <MudItem xs="11">
-                                            <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
-                                        </MudItem>
-                                        <MudItem Style=@(hidden) xs="1">
-                                            <MudAvatar Image="images/unknown.png"/>
-                                        </MudItem>
-                                    }
-                                }
-                            </MudGrid>
-                        </div>
+                                </MudGrid>
+                            </div>
                         <MudItem xs="12">
                             <EditForm Model="@input" OnSubmit="Send">
                                 <MudGrid>
-
                                     <MudItem xs="10">
                                         <MudTextField @bind-Value="input.Value" Placeholder="Type here.."> </MudTextField>
                                     </MudItem>
@@ -56,48 +72,34 @@ else
                                         <MudFab Icon="@Icons.Filled.Send" IconColor="Color.Tertiary" ButtonType="ButtonType.Submit"></MudFab>
                                     </MudItem>
                                 </MudGrid>
-
                             </EditForm>
                         </MudItem>
-                    </MudItem>
-                    <MudItem xs="gridTwo" Style=@($"padding: 0;{hidden}")>
-                        @if (theme == "light")
-                        {
-                            <MudImage Src="images/robot.webp" Style="width: 100%;height: 100%"/>
-                        }
-                        else
-                        {
-                            <MudImage Src="images/me.webp" Style="width: 100%;height: 100%"/>
-                        }
-                    </MudItem>
-
-                </MudGrid>
-
-            </MudCardContent>
-            <div style=@($"margin-top:-{phoneMargin}vh")>
-                <MudDivider Style="margin:0;"/>
-                <MudCardContent>
-                    Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
+                                                    <div style="position: relative;bottom:-10px">
+                                                Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
+                                                    <MudDivider Style="margin:0;"/>
+                                                                                </div>
+                        </MudItem>
+                    </MudGrid>
                 </MudCardContent>
-                <MudDivider Style="margin:0;"/>
-                <MudCardContent Style=@($"background-color: {color}")>
+                                <MudDivider Style="margin:0;"/>
+                                <MudCardContent Style=@($"background-color: {color}")>
                     <MudCarousel @bind-SelectedIndex="count" Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
-                        <MudCarouselItem  Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">  
+                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
                                 My name is Karakoulak Spyridon.<br/>
                                 I am a Full Stack Developer with a passion for new technologies and progression.<br/>
                                 Programming is a way of life that I find particularly exciting, combining innovation, <br/>
                                 challenges and future growth.<br/>
-                            </MudText>  
+                            </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">    
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
                                 Currently I enjoy working on Blazor, C# and .NET! <br/>
                                 I develop and maintain web and software applications & dynamic websites! <br/>
                             </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;"> 
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
                                 In my free time I study for my Master's Degree in Data Science and Machine Learning <br/>
                                 in order to gain expertise in the field, since everything in this era <br/>
                                 and the one coming ahead consists of data, loads of data!<br/>
@@ -116,39 +118,86 @@ else
                     </MudCarousel>
                 </MudCardContent>
                 <MudDivider Style="margin:0;"/>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Experience</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        
+        <MudItem xs="12">
+            <Experience/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Projects</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Projects/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Tools - Technologies - Methodologies</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Tools/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Skills</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Skills/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Certifications</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Certifications/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Interests</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Interests/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">In Progress</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <InProgress/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Contact</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Contact/>
+        </MudItem>
+        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <div style="text-align: center; margin: 20px">
+                <p>The code is open source and everything used in this project can be found there</p>
+                <p> along with their respectable links.Click <a target="_blank" style="color: dodgerblue" href="https://github.com/MrSpyretos/KarakoulakCV">here</a> for source code.</p>
             </div>
-        </MudCard>
-    </section>
-    <section>
-        <Experience/>
-    </section> 
-    <section>
-        <Projects/>
-    </section> 
-    <section>
-        <Tools/>
-    </section> 
-    <section>
-        <Skills/>
-    </section> 
-    <section>
-        <Certifications/>
-    </section> 
-    <section>
-        <Interests/>
-    </section>
-    <section>
-        <InProgress/>
-    </section>
-    <section>
-        <Contact/>
-    </section>
-    <section>
-        <Copyright/>
-    </section>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+    </MudGrid>
+    <div style="height: 50px"></div>
 }
 
 @code
 {
-    
+
 }

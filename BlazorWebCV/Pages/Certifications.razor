@@ -1,48 +1,15 @@
 @page "/Certifications"
-
-
-    <h3 style="text-align: center">Certifications</h3>
-    <MudCarousel Style="height:85vh; color: darkorange;" @bind-SelectedIndex="count"  ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(8)" TData="object">
+<MudCarousel Style="height:85vh; color: darkorange;" @bind-SelectedIndex="count"  ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(8)" TData="object">
         
-        @foreach (var item in ImagePath)
+        @foreach (var item in Certs.Value.Certs.Values)
         {
             <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                <img style="cursor: pointer;border-radius: 5px" @onclick="OnClick" src="@(item)" width="100%" height="100%"/>
+                <img style="cursor: pointer;border-radius: 5px" @onclick="OnClick" src="@(item["image"])" width="100%" height="100%"/>
             </MudCarouselItem>
         }
     </MudCarousel>
 
 @code {
-    private int count = 0;
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
     
-    private string AnimationEntrance = "animate__animated animate__rotateInDownLeft";
-    private string AnimationExit = "animate__animated animate__rotateOutUpLeft";
-    private List<string> ImagePath = new List<string>()
-    {
-        "images/Certs/powerapps.webp",
-        "images/Certs/Blazor.webp",
-        "images/Certs/microservices.webp",
-        "images/Certs/MicrosoftCloud.webp",
-        "images/Certs/MVC5.webp",
-        "images/Certs/CSharpDev.webp",
-        "images/Certs/ASPNETDev.webp",
-        "images/Certs/AgileDev.webp",
-        "images/Certs/GoogleITSupp.webp",
-        "images/Certs/GoogleITAutom.webp",
-        "images/Certs/Python3.webp",
-        "images/Certs/PythonDataScience.webp",
-        "images/Certs/DJANGO.webp",
-        "images/Certs/PY4E.webp"
-    };
-    private async Task OnClick()
-    {
-        count++;
-        if (count > ImagePath.Count-1)
-        {
-            count = 0;
-        }
-    }
 
 }
