@@ -1,9 +1,5 @@
 ﻿@page "/"
-@page "/Profile"
-@inject IJSRuntime jsRuntime
-@inject IResizeListener _listener
-@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
-@implements System.IDisposable
+@using BlazorWebCV.Models
 
 @if (matrix && theme == "dark")
 {
@@ -19,275 +15,188 @@ else if (matrix && theme == "light")
 }
 else
 {
-    <MudCard >
-        <MudCardContent Style="padding: 12px;">
-            <MudGrid >
-                <MudItem xs="gridOne">
-                    <div Style="min-height: 100px; max-height: 30vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
-                        <MudGrid >
-                            @foreach (var msg in Messages)
+    <MudGrid UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Profile}})">
+        <MudItem xs="12">
+            <MudCard>
+                <MudCardContent>
+                    <MudGrid >
+                        <MudItem xs="12" sm="6" Style="padding:0">
+                            @if (theme == "light")
                             {
-                                @if (msg.Split("&&")[0] == "robot")
-                                {
-                                    <MudItem Style=@(hidden) xs="1">
-                                        <MudAvatar Image="images/avatarme.png"/>
-                                    </MudItem>
-                                    <MudItem xs="11">
-                                        <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
-                                    </MudItem>
-                                }
-                                else
-                                {
-                                    <MudItem xs="11">
-                                        <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
-                                    </MudItem>
-                                    <MudItem Style=@(hidden) xs="1">
-                                        <MudAvatar Image="images/unknown.png"/>
-                                    </MudItem>
-                                }
+                                <MudImage Src="images/robot.webp" Style="width: 100%;height: 70vh"/>
                             }
-                        </MudGrid>
-                    </div>
-                    <MudItem xs="12">
-                        <EditForm Model="@input" OnSubmit="Send">
-                            <MudGrid>
+                            else
+                            {
+                                <MudImage Src="images/me.webp" Style="width: 100%;height: 70vh"/>
+                            }
+                        </MudItem>
 
-                                <MudItem xs="10">
-                                    <MudTextField @bind-Value="input.Value" Placeholder="Type here.."> </MudTextField>
-                                </MudItem>
-                                <MudItem xs="2">
-                                    <MudFab Icon="@Icons.Filled.Send" IconColor="Color.Tertiary" ButtonType="ButtonType.Submit"></MudFab>
-                                </MudItem>
-                            </MudGrid>
+                        <MudItem xs="12" sm="6" Style="padding:0">
+                            <div Style="min-height: 100px; max-height: 50vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
+                                <MudGrid >
+                                    @foreach (var msg in Messages)
+                                    {
+                                        if (msg.Split("&&")[0] == "robot")
+                                        {
+                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                                                <MudItem sm="1">
+                                                    <MudAvatar Image="images/avatarme.png"/>
+                                                </MudItem>
+                                            </MudHidden>
+                                            <MudItem xs="12" sm="11">
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
+                                            </MudItem>
+                                        }
+                                        else
+                                        {
+                                            <MudItem xs="12" sm="11">
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
+                                            </MudItem>
+                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                                                <MudItem sm="1">
+                                                    <MudAvatar Image="images/unknown.png"/>
 
-                        </EditForm>
-                    </MudItem>
-                </MudItem>
-                <MudItem xs="gridTwo" Style=@($"padding: 0;{hidden}")>
-                    @if (theme == "light")
-                    {
-                        <MudCardMedia Height="600" Image="images/robot.webp"/>
-                    }
-                    else
-                    {
-                        <MudCardMedia Height="600" Image="images/me.webp"/>
-                    }
-                </MudItem>
-
-            </MudGrid>
-
-        </MudCardContent>
-        <div style=@($"margin-top:-{phoneMargin}vh")>
-        <MudDivider Style="margin:0;"/>
-        <MudCardContent>
-            Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
-        </MudCardContent>
+                                                </MudItem>
+                                            </MudHidden>
+                                        }
+                                    }
+                                </MudGrid>
+                            </div>
+                        <MudItem xs="12">
+                            <EditForm Model="@input" OnSubmit="Send">
+                                <MudGrid>
+                                    <MudItem xs="10">
+                                        <MudTextField @bind-Value="input.Value" Placeholder="Type here.."> </MudTextField>
+                                    </MudItem>
+                                    <MudItem xs="2">
+                                        <MudFab Icon="@Icons.Filled.Send" IconColor="Color.Tertiary" ButtonType="ButtonType.Submit"></MudFab>
+                                    </MudItem>
+                                </MudGrid>
+                            </EditForm>
+                        </MudItem>
+                                                    <div style="position: relative;bottom:-10px">
+                                                Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
+                                                    <MudDivider Style="margin:0;"/>
+                                                                                </div>
+                        </MudItem>
+                    </MudGrid>
+                </MudCardContent>
+                                <MudDivider Style="margin:0;"/>
+                                <MudCardContent Style=@($"background-color: {color}")>
+                    <MudCarousel @bind-SelectedIndex="count" Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
+                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                                My name is Karakoulak Spyridon.<br/>
+                                I am a Full Stack Developer with a passion for new technologies and progression.<br/>
+                                Programming is a way of life that I find particularly exciting, combining innovation, <br/>
+                                challenges and future growth.<br/>
+                            </MudText>
+                        </MudCarouselItem>
+                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                                Currently I enjoy working on Blazor, C# and .NET! <br/>
+                                I develop and maintain web and software applications & dynamic websites! <br/>
+                            </MudText>
+                        </MudCarouselItem>
+                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                                In my free time I study for my Master's Degree in Data Science and Machine Learning <br/>
+                                in order to gain expertise in the field, since everything in this era <br/>
+                                and the one coming ahead consists of data, loads of data!<br/>
+                            </MudText>
+                        </MudCarouselItem>
+                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            @if (theme == "light")
+                            {
+                                <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/lightlogo.png"/>
+                            }
+                            else
+                            {
+                                <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/dev.png"/>
+                            }
+                        </MudCarouselItem>
+                    </MudCarousel>
+                </MudCardContent>
                 <MudDivider Style="margin:0;"/>
-        <MudCardContent Style=@($"background-color: {color}")>
-            <MudCarousel @bind-SelectedIndex="count" Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
-                <MudCarouselItem  Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                    <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">  
-                        My name is Karakoulak Spyridon.<br/>
-                        I am a Full Stack Developer with a passion for new technologies and progression.<br/>
-                        Programming is a way of life that I find particularly exciting, combining innovation, <br/>
-                        challenges and future growth.<br/>
-                    </MudText>  
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                    <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">    
-                        Currently I enjoy working on Blazor, C# and .NET! <br/>
-                        I develop and maintain web and software applications & dynamic websites! <br/>
-                    </MudText>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                     <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;"> 
-                        In my free time I study for my Master's Degree in Data Science and Machine Learning <br/>
-                        in order to gain expertise in the field, since everything in this era <br/>
-                        and the one coming ahead consists of data, loads of data!<br/>
-                    </MudText>
-                </MudCarouselItem>
-                <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                         @if (theme == "light")
-                                    {
-                                        <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/lightlogo.png"/>
-                                    }
-                                    else
-                                    {
-                                        <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/dev.png"/>
-                                    }
-                </MudCarouselItem>
-            </MudCarousel>
-        </MudCardContent>
-        <MudDivider Style="margin:0;"/>
-        </div>
-    </MudCard>
+            </MudCard>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Experience}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Experience</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Experience/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Projects}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Projects</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Projects/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Tools}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Tools - Technologies - Methodologies</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Tools/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Skills}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Skills</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Skills/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Certifications}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Certifications</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Certifications/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Interests}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Interests</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Interests/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.InProgress}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">In Progress</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <InProgress/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Contact}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <h3 style="text-align: center;margin: 20px">Contact</h3>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+        <MudItem xs="12">
+            <Contact/>
+        </MudItem>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Copyright}})" xs="12" style=@($"background-color: {color};padding:0")>
+            <MudDivider Style="margin:0;"/>
+            <div style="text-align: center; margin: 20px">
+                <p>The code is open source and everything used in this project can be found there</p>
+                <p> along with their respectable links.Click <a target="_blank" style="color: dodgerblue" href="https://github.com/MrSpyretos/KarakoulakCV">here</a> for source code.</p>
+            </div>
+            <MudDivider Style="margin:0;"/>
+        </MudItem>
+    </MudGrid>
+    <div style="height: 50px"></div>
 }
 
 @code
 {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
-    private  string color { get; set; }
-    private int count = 0;
-    protected override void OnParametersSet()
-    {
-        color = theme == "dark" ? "black" : "#bfbbbb";
-        base.OnParametersSet();
-    }
-    private string AnimationEntrance = "animate__animated animate__lightSpeedInLeft animate__delay-1s";
-    private string AnimationExit = "animate__animated animate__lightSpeedOutRight";
 
-    private List<string> Messages = new List<string>()
-    {
-        "robot&&Greetings, welcome to my website. Feel free to take a look around.Type Help for available commands."
-    };
-
-    private class Input
-    {
-        public string Value { get; set; }
-    }
-
-    private Input input = new Input();
-    private string commands;
-
-    private Dictionary<string, string> AutomatedAnswers = new Dictionary<string, string>()
-    {
-        {"toolkit", "In this section you can take a look at which technologies, tools, methodologies and patterns I am using."},
-        {"skills", "In this section you can take a look on the skills I currently possess."},
-        {"interests", "I present some of the interests I have that aren't directly related to the work environment."},
-        {"profile", "This is a brief overview of who I am."},
-        {"copyright", "Here is the link to the source code of this project."},
-        {"experience", "A timeline of my experience in my adulthood life."},
-        {"projects", "Projects I am currently part of, developing or personal projects for practise."},
-        {"inprogress", "Here are the fields I am currently researching."},
-        {"contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
-        {"certifications", "Here are the certifications I have acquired in my journey."}
-    };
-
-    private async Task Help()
-    {
-        Messages.Add($"robot&&Available commands: {commands}");
-    }
-
-    private async Task Send(EditContext context)
-    {
-        if (input.Value is not null)
-        {
-            Messages.Add($"user&&{input.Value}");
-            var value = input.Value.ToLower();
-            if (AutomatedAnswers.Keys.ToList().Contains(value))
-            {
-                Messages.Add($"robot&&{AutomatedAnswers[value]}");
-            }
-            else if (value=="help")
-            {
-                Messages.Add($"robot&&{commands}");
-            }
-            else
-            {
-                Messages.Add($"robot&&I don't recognize this command. Available commands: {commands}");
-            }
-        }
-        else
-        {
-            Messages.Add($"robot&&No command was given. Available commands: {commands}");
-        }
-        await Task.Yield();
-        input = new Input();
-        StateHasChanged();
-    }
-    private async Task OnClick()
-    {
-        count++;
-        if (count > 3)
-        {
-            count = 0;
-        }
-    }
-    private bool matrix = true;
-    BrowserWindowSize browser = new BrowserWindowSize();
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    private int phoneMargin = 0;
-    public Typo typo { get; set; }
-    private int gridOne = 6;
-    private int gridTwo = 6;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown == true)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-            phoneMargin = 30;
-            gridOne = 12;
-            gridTwo = 0;
-        }
-        else
-        {
-            hidden = "visibility:visible";
-            phoneMargin = 0;
-            typo = Typo.h5;
-            gridOne = 6;
-            gridTwo = 6;
-        }
-        StateHasChanged();
-    }
-
-    protected override async void OnInitialized()
-    {
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.body1;
-            gridOne = 12;
-            gridTwo = 0;
-            hidden = "visibility:hidden";
-            phoneMargin = 30;
-        }
-        else
-        {
-            typo = Typo.h5;
-        }
-        StateHasChanged();
-        foreach (var command in AutomatedAnswers.Keys)
-        {
-            commands += command + ", ";
-        }
-        commands = commands.Substring(0, commands.LastIndexOf(','));
-        browser = await _listener.GetBrowserWindowSize();
-        Matrix();
-        base.OnInitialized();
-    }
-
-    private async Task Matrix()
-    {
-        await Task.Delay(1000);
-        matrix = false;
-        StateHasChanged();
-    }
 }

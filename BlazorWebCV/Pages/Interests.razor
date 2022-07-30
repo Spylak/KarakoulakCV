@@ -1,25 +1,5 @@
-@page "/Interests"
-@inject IResizeListener _listener
-@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
-@implements System.IDisposable
-@if (gridLoad=="hidden" && theme=="dark")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
-
-}else if (gridLoad=="hidden" && theme == "light")
-{    
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
-    </div>
-}
-else
-{
-    <h3 style="text-align: center">Interests</h3>
-}
 <MudGrid >
-    <MudItem xs="columns">
+    <MudItem xs="12" sm="6">
         <MudCard>
             <MudCardContent>
                 <MudCarousel Style="height: 350px; color: white" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(5)" TData="object">
@@ -39,7 +19,7 @@ else
             </MudCardContent>
         </MudCard>
     </MudItem>
-    <MudItem xs="columns">
+    <MudItem  xs="12" sm="6">
         <MudCard>
             <MudCardContent>
                 <MudCarousel Style="height: 350px; color: white" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(7)" TData="object">
@@ -59,7 +39,7 @@ else
             </MudCardContent>
         </MudCard>
     </MudItem>
-    <MudItem xs="columns">
+    <MudItem  xs="12" sm="6">
         <MudCard>
             <MudCardContent>
                 <MudCarousel Style="height: 350px; color: white" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(9)" TData="object">
@@ -79,7 +59,7 @@ else
             </MudCardContent>
         </MudCard>
     </MudItem>
-    <MudItem xs="columns">
+    <MudItem  xs="12" sm="6">
         <MudCard>
             <MudCardContent>
                 <MudCarousel Style="height: 350px; color: white" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(11)" TData="object">
@@ -103,94 +83,4 @@ else
 
 @code {
 
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
-    private string color { get; set; } 
-    private int columns { get; set; }
-    protected override async void OnInitialized()
-    {
-        if (theme == "dark")
-        {
-            color = "rgba(93, 255, 0, 1)";
-        }
-        else
-        {
-            color = "black";
-        }
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-            columns = 12;
-        }
-        else
-        {
-            typo = Typo.h5;
-            columns = 6;
-        }
-        await Visible();
-
-        StateHasChanged();
-
-    }
-
-    protected override Task OnParametersSetAsync()
-    {
-        color = theme == "dark" ? "rgba(93, 255, 0, 1)" : "black";
-        return base.OnParametersSetAsync();
-    }
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    BrowserWindowSize browser = new BrowserWindowSize();
-    public Typo typo { get; set; }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-    private string gridLoad ="hidden";
-    public async Task Visible()
-    {
-        await Task.Delay(1000);
-        gridLoad = "visible";
-    }
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown == true)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-            columns = 12;
-
-        }else
-        {
-            hidden = "visibility:visible";
-            typo = Typo.h5;
-            columns = 6;
-
-        }
-        StateHasChanged();
-    }
-    private string AnimationEntrance = "animate__animated animate__bounceInDown animate__delay-1s";
-    private string AnimationExit = "animate__animated animate__bounceOutUp";
 }

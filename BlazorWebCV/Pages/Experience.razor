@@ -1,171 +1,55 @@
-@page "/Experience"
-
-<MudTimeline>
-        <MudTimelineItem Color="Color.Dark" Size="Size.Small">
-            <ItemOpposite>
-                <MudText Style="color: #b7a238"  Typo="Typo.h5">05/2022-present</MudText>
-            </ItemOpposite>
+@using BlazorWebCV.Helpers
+<MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+    <MudTimeline>
+        @foreach (var item in ExperienceModel.Value.Experience.Values)
+        {
+            var color = Color.Warning;
+            <MudTimelineItem Color="color" Size="Size.Small" >
+                <ItemOpposite>
+                    <MudText Color="color" Typo="Typo.h5">@item["date"]</MudText>
+                </ItemOpposite>
+                <ItemContent>
+                    <MudCard>
+                        <MudCardContent>
+                            <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
+                            @if(!string.IsNullOrWhiteSpace(item["organisation"]))
+                            {
+                                <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
+                            }
+                            <MudText>
+                                @item["description"]
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+</MudHidden>
+<MudHidden Invert="true" Breakpoint="Breakpoint.Xs">
+<MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Right">
+    @foreach (var item in ExperienceModel.Value.Experience.Values)
+    {
+        var color = Color.Warning;
+        <MudTimelineItem Color="color" Size="Size.Small" >
             <ItemContent>
                 <MudCard>
                     <MudCardContent>
-                        <MudText Style="color: #b7a238"  Typo="Typo.h6" GutterBottom="true">Software Developer</MudText>
-                        <MudText Style="color: #afa3a3"  Typo="Typo.body2" GutterBottom="true">Exelia Technologies</MudText>
+                        <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"] @@ @item["date"]</MudText>
+                        @if(!string.IsNullOrWhiteSpace(item["organisation"]))
+                        {
+                            <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
+                        }
                         <MudText>
-                            Development and maintenance of a C# .NET Core Web API, with React.js library on front end,Azure SQL Database, WebJobs for scheduled tasks.
+                            @item["description"]
                         </MudText>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
         </MudTimelineItem>
-        
-    <MudTimelineItem Color="Color.Dark" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Style="color: #8900ab"  Typo="Typo.h5">04/2021-05/2022</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Style="color: #8900ab"  Typo="Typo.h6" GutterBottom="true">Software Developer</MudText>
-                    <MudText Style="color: #afa3a3"  Typo="Typo.body2" GutterBottom="true">Arhs Developments Hellas</MudText>
-                    <MudText>
-                        Development and maintenance of a C# ASP.NET Core MVC solution, with DevExtreme and jQuery library on front end and Ajax for asynchronous updates of UI, SQL Server as database, Web API Project for external exposure and a worker Console App for scheduled tasks, CI/CD on AzureDevOps and two-way integration of the main app to AzureDevOps for Work Items and Azure Wiki Pages.
-                    </MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Tertiary" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Tertiary" Typo="Typo.h5">07/2020-03/2021</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Color="Color.Tertiary" Typo="Typo.h6" GutterBottom="true">Freelance Software Developer</MudText>
-                    <MudText>
-                        •Developed a discord chatting bot with C# and Discord.Net for internal usage at a gaming discord server and completed minor tasks requested by the server community.
-                        <br/>
-                        •Programmed simulations and data visualizations to represent microclimate changes for urban design and prove that the outcome would be beneficial for sustainability.
-                        <br/>
-                        •Developed a client side C# .Net 6 Blazor WebAssembly app using MudBlazor and MVU architecture hosted in Azure and communicates through HTTP with a webAPI application, has authentication with JWT and 2FA via email, Google SSO and finally uses Postgresql as a database.
-                    </MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-       <MudTimelineItem Color="Color.Info" Size="Size.Small">
-            <ItemOpposite>
-                <MudText Color="Color.Info" Typo="Typo.h5">05/2020-07/2020</MudText>
-            </ItemOpposite>
-            <ItemContent>
-                <MudCard>
-                    <MudCardContent>
-                        <MudText Color="Color.Info" Typo="Typo.h6" GutterBottom="true">Career Transition</MudText>
-                        <MudText>Started studying programming and completed various courses on Coursera.</MudText>
-                    </MudCardContent>
-                </MudCard>
-            </ItemContent>
-        </MudTimelineItem>
-    <MudTimelineItem Color="Color.Transparent" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Style="color: #fa8ef5"  Typo="Typo.h5">02/2020-04/2020</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Style="color: #fa8ef5"  Typo="Typo.h6" GutterBottom="true">Programmer Internship</MudText>
-                    <MudText>Took place in Lars Angenent Lab and consisted of modification and programming on a fitness tracker in order to change it's functionality.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Error" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Error" Typo="Typo.h5">09/2019-01/2020</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Color="Color.Error" Typo="Typo.h6" GutterBottom="true">Master's Thesis</MudText>
-                    <MudText>Research on biodegradation of weathered polypropylene microplastics in marine microsystem environment.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Primary" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Primary" Typo="Typo.h5">07/2019-08/2019</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Color="Color.Primary" Typo="Typo.h6" GutterBottom="true">Engineer Internship</MudText>
-                    <MudText>Completed my internship as an Engineer in Maritime Museum of Crete researching on degradation in coastal areas.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Secondary" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Secondary" Typo="Typo.h5">09/2018-06/2019</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Color="Color.Secondary" Typo="Typo.h6" GutterBottom="true">Energy evaluation of buildings</MudText>
-                    <MudText>Developed simulations to evaluate the energy consumption and requirements of buildings based on different materials.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Success" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Success" Typo="Typo.h5">03/2016-10/2016</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-                <MudCardContent>
-                    <MudText Color="Color.Success" Typo="Typo.h6" GutterBottom="true">Army Services</MudText>
-                    <MudText>Completed my compulsary Army Duties in Paratrooper Division of Greek Army.</MudText>
-                </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    
-    <MudTimelineItem Color="Color.Warning" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Warning" Typo="Typo.h5">09/2015-02/2016</MudText>
-        </ItemOpposite>
-        <ItemContent>
-             <MudCard>
-                        <MudCardContent>
-            <MudText Color="Color.Warning" Typo="Typo.h6" GutterBottom="true">Exchange Program</MudText>
-            <MudText>Took part in Erasmus + Student Exchange Program in Ege University of Izmir.</MudText>
-                        </MudCardContent>
-                        </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
-    <MudTimelineItem Color="Color.Info" Size="Size.Small">
-        <ItemOpposite>
-            <MudText Color="Color.Info" Typo="Typo.h5">09/2013</MudText>
-        </ItemOpposite>
-        <ItemContent>
-            <MudCard>
-            <MudCardContent>
-            <MudText Color="Color.Info" Typo="Typo.h6" GutterBottom="true">Enrolled in University</MudText>
-            <MudText>MSc in Chemical and Environmental Engineering, 5 year's study curriculum.</MudText>
-            </MudCardContent>
-            </MudCard>
-        </ItemContent>
-    </MudTimelineItem>
+    }
 </MudTimeline>
-
+</MudHidden>
 @code {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
+    
 }

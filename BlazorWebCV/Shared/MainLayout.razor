@@ -1,11 +1,6 @@
 @using MudBlazor.Utilities
 @inherits LayoutComponentBase
 @inject NavigationManager navMan
-@inject IJSRuntime JsRuntime
-@inject IResizeListener _listener
-@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
-@implements System.IDisposable
-
 <MediaQueryList>
 <MudThemeProvider Theme="currentTheme"/>
 <MudDialogProvider />
@@ -14,7 +9,7 @@
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer/>
-        <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="typo"  >Karakoulak Spyridon</MudText></b>
+        <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="Typo.h4"  >Karakoulak Spyridon</MudText></b>
         <MudSpacer />
         <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
     </MudAppBar>
@@ -25,35 +20,19 @@
     </MudDrawer>
     <MudMainContent Style="overflow: hidden" >
         <CascadingValue Value="@theme" Name="theme">
-        @Body
+            @Body
         </CascadingValue>
     </MudMainContent>
 </MudLayout>
 </MediaQueryList>
 @code{
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    BrowserWindowSize browser = new BrowserWindowSize();
-    public Typo typo { get; set; }
     protected override async  void OnInitialized()
     {
         currentTheme = darkTheme;
         color = Color.Inherit;
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.h6;
-            hidden = "visibility:hidden";
-        }
-        else
-        {
-            typo = Typo.h4;
-        }
-        StateHasChanged();
-
     }
 
-    private async Task Click()
+    private void Click()
     {
         navMan.NavigateTo("/");
     }
@@ -117,46 +96,7 @@
 
     void DrawerToggle()
     {
-        _drawerOpen
-            = !
-                _drawerOpen;
+        _drawerOpen = !_drawerOpen;
 
-    }
-    protected override void OnAfterRender(bool firstRender)
-    {
-        
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown == true)
-        {
-            typo = Typo.h6;
-            hidden = "visibility:hidden";
-        }else
-        {
-            hidden = "visibility:visible";
-            typo = Typo.h4;
-
-        }
-        StateHasChanged();
     }
 }

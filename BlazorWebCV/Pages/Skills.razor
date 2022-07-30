@@ -1,8 +1,3 @@
-@page "/Skills"
-@inject IResizeListener _listener
-@using Breakpoints = BlazorPro.BlazorSize.Breakpoints
-@implements System.IDisposable
-
 @if (gridLoad=="hidden" && theme=="dark")
 {
     <div style="background: black;text-align: center;height: 100vh">
@@ -21,261 +16,25 @@ else
 <MudItem xs="12" sm="6">
 <MudCard>
 <MudCardHeader>
-    <MudText Typo="typo">Programming Skills</MudText>
+    <MudText Typo="Typo.h6">Programming Skills</MudText>
 </MudCardHeader>
 <MudCardContent>
-<MudGrid>
-<MudItem xs="12" sm="6">
-    <MudList>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/netcore.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> .Net Core</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/sql.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> SQL</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/html.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> HTML</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/js.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> JavaScript</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/jquery.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> jQuery</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/devextreme.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> DevExtreme</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/blazor.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Blazor</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/docker.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Docker</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/ecore.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Entity Framework Core</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/python.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Python</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/r.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;">R</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-    </MudList>
-</MudItem>
-<MudItem xs="12" sm="6">
-    <MudList>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/aspnet.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> ASP.NET</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/csharp.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> C#</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-         <MudListItem>
-                    <MudGrid>
-                        <MudItem xs="3">
-                            <MudAvatar Image="images/Skills/react.png">
-                            </MudAvatar>
-                        </MudItem>
-                        <MudItem   xs="9">
-                            <MudText Style="position: absolute;top: 30%;">React</MudText>
-                        </MudItem>
-                    </MudGrid>
-                </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/css.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> CSS</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/json.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem  xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> JSON</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/ajax.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> AJAX</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/bootstrap.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Bootstrap</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/mudblazor.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> MudBlazor</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/git.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem   xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Git</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/bash.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> Bash</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-        <MudListItem>
-            <MudGrid>
-                <MudItem xs="3">
-                    <MudAvatar Image="images/Skills/yaml.webp">
-                    </MudAvatar>
-                </MudItem>
-                <MudItem xs="9">
-                    <MudText Style="position: absolute;top: 30%;"> YAML</MudText>
-                </MudItem>
-            </MudGrid>
-        </MudListItem>
-    </MudList>
-</MudItem>
-</MudGrid>
+    <MudGrid>
+        @foreach (var item in SkillsModel.Value.ProgrammingSkills)
+        {
+            <MudItem xs="12" sm="6">
+                <MudGrid>
+                    <MudItem xs="3">
+                        <MudAvatar Image="@(((dynamic)item.Value).image)">
+                        </MudAvatar>
+                    </MudItem>
+                    <MudItem xs="9">
+                        <MudText Style="margin-top: 10px;"> @(((dynamic)item.Value).text)</MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+        }
+    </MudGrid>
 </MudCardContent>
 </MudCard>
 </MudItem>
@@ -284,193 +43,25 @@ else
     <MudCardContent>
         <MudGrid>
         <MudItem xs="6">
-            <MudText Typo="typo">Soft Skills</MudText>
+            <MudText Typo="Typo.h6">Soft Skills</MudText>
         </MudItem>
             <MudItem xs="6">
             <MudFab Style="margin-left: 80%" Size="Size.Small" Icon="@Icons.Material.Filled.List" OnClick="ShowList"></MudFab>
             </MudItem>
         </MudGrid>
         <MudCarousel Style="height: 300px;" ShowDelimiters="false" AutoCycleTime="TimeSpan.FromSeconds(5)" TData="object">
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/analytical.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Analytical and Critical Thinking</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/adapt.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Adaptability</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/organized.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Organized and Results Driven</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/doit.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Self Motivated</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/comfort.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Emotional Quality</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/communicative.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Communicative</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/empathy.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Empathy</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/teamwork.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Teamwork</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <img style="height: 100%;width: 100%;" src="images/Skills/dedication.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Dedication</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>                       
-                        <MudItem xs="12" >
-                            <img style="height: 100%;width: 100%;" src="images/Skills/presentation.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>                        
-                        <MudItem xs="12" >
-                            <MudText  Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Presentation Skills</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                <MudGrid>
-                    <MudItem xs="12">
-                        <img style="height: 100%;width: 100%;" src="images/Skills/customerOr.webp"/>
-                    </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudText Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Customer Oriented</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
-            <MudCarouselItem Transition="Transition.Slide">
-                <div class="d-flex" style="height:100%">
-                    <MudGrid>
-                         <MudItem xs="12" >
-                            <img style="height: 100%;width: 100%;" src="images/Skills/commitment.webp"/>
-                        </MudItem>
-                    </MudGrid>
-                    <MudGrid>
-                        <MudItem xs="12" >
-                            <MudText  Style="text-align: center;margin-top: 40%" Typo="Typo.h6">Commitment</MudText>
-                        </MudItem>
-                    </MudGrid>
-                    <MudText></MudText>
-                </div>
-            </MudCarouselItem>
+         @foreach (var item in SkillsModel.Value.SoftSkills)
+         {
+             if (!item.Key.Equals("english") && !item.Key.Equals("greek"))
+             {
+                 <MudCarouselItem Transition="Transition.Slide">
+                     <div style="height:100%;text-align: center">
+                         <img style="height: 85%;width: 100%;" src="@(((dynamic)item.Value).image)"/>
+                         <MudText Style="height: 15%" Typo="Typo.h6"> @(((dynamic)item.Value).text)</MudText>
+                     </div>
+                 </MudCarouselItem>
+             }
+         }
         </MudCarousel>
     </MudCardContent>
 </MudCard>
@@ -479,21 +70,13 @@ else
     <MudItem>
         <div class="row">
             <MudList>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Analytical and Critical thinking"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Adaptability"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Organized and Results Driven"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Self-Motivated"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Emotional Quality"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Communicative"></MudListItem>
-            </MudList>
-            <div style="margin: 15%"></div>
-            <MudList>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Empathy"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Teamwork"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Creative"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Customer Oriented"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Dedication"></MudListItem>
-                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="Commitment"></MudListItem>
+                 @foreach (var item in SkillsModel.Value.SoftSkills)
+                 {
+                     if (!item.Key.Equals("english") && !item.Key.Equals("greek"))
+                     {
+                         <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="@(((dynamic)item.Value).text)"></MudListItem>
+                     }
+                 }
             </MudList>
         </div>
     </MudItem>
@@ -502,34 +85,22 @@ else
     <MudCard>
          <MudCardContent>
         <MudGrid>
-            <MudItem xs="12" sm="6">
-                <MudList>
-                    <MudListItem>
-                        <MudGrid>
-                            <MudItem xs="4">
-                                <MudAvatar Image="images/Skills/english.webp"></MudAvatar>
-                            </MudItem>
-                            <MudItem  xs="8">
-                                <MudText Style="position: absolute;top: 30%;">English</MudText>
-                            </MudItem>
-                        </MudGrid>
-                    </MudListItem>
-                </MudList>
-            </MudItem>
-            <MudItem xs="12" sm="6">
-                <MudList>
-                    <MudListItem>
-                        <MudGrid>
-                            <MudItem xs="4">
-                                <MudAvatar Image="images/Skills/greek.webp"></MudAvatar>
-                            </MudItem>
-                            <MudItem  xs="8">
-                                <MudText Style="position: absolute;top: 30%;">Greek</MudText>
-                            </MudItem>
-                        </MudGrid>
-                    </MudListItem>
-                </MudList>
-            </MudItem>
+        @foreach (var item in SkillsModel.Value.SoftSkills)
+        {
+            if (item.Key.Equals("english") || item.Key.Equals("greek"))
+            {
+                <MudItem xs="12" sm="6">
+                            <MudGrid>
+                                <MudItem xs="4">
+                                    <MudAvatar Image="@(((dynamic)item.Value).image)"/>
+                                </MudItem>
+                                <MudItem  xs="8">
+                                    <MudText Style="margin-top: 10px;">@(((dynamic)item.Value).text)</MudText>
+                                </MudItem>
+                            </MudGrid>
+                </MudItem>
+            }
+        }
         </MudGrid>
        </MudCardContent>
     </MudCard>
@@ -538,75 +109,5 @@ else
 </MudGrid>
 }
 @code {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
-    bool IsXSmallDown = false;
-    private string hidden = "visibility:visible";
-    BrowserWindowSize browser = new BrowserWindowSize();
-    public Typo typo { get; set; }
-    protected override async void OnInitialized()
-    {
-        browser = await _listener.GetBrowserWindowSize();
-        if (browser.Width < 600)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-        }
-        else
-        {
-            typo = Typo.h5;
-        }
-        await Visible();
-
-        StateHasChanged();
-    }
-
-    private bool showList { get; set; } = false;
-    private string gridLoad ="hidden";
-    public async Task Visible()
-    {
-        await Task.Delay(1000);
-        gridLoad = "visible";
-    }
-    private void ShowList()
-    {
-        showList = !showList;
-    }
-    protected override void OnAfterRender(bool firstRender)
-    {
-        
-        if (firstRender)
-        {
-    // Subscribe to the OnResized event. This will do work when the browser is resized.
-            _listener.OnResized += WindowResized;
-        }
-    }
-    public void Dispose()
-    {
-    // Always use IDisposable in your component to unsubscribe from the event.
-    // Be a good citizen and leave things how you found them. 
-    // This way event handlers aren't called when nobody is listening.
-        _listener.OnResized -= WindowResized;
-    }
-    async void WindowResized(object _, BrowserWindowSize window)
-    {
-    // Get the browsers's width / height
-        browser = window;
-
-    // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-        IsXSmallDown = await _listener.MatchMedia(Breakpoints.SmallDown);
-
-    // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-        if (IsXSmallDown == true)
-        {
-            typo = Typo.body1;
-            hidden = "visibility:hidden";
-        }else
-        {
-            hidden = "visibility:visible";
-            typo = Typo.h5;
-
-        }
-        StateHasChanged();
-    }
+   
 }
