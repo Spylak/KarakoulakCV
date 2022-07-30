@@ -1,0 +1,19 @@
+﻿.navMenuActive {
+    background-color: cadetblue;
+    transition: none;
+}
+.navMenuActive:hover {
+    background-color: cadetblue;
+}
+/*.mud-list-item-clickable:focus:not(.mud-selected-item){*/
+/*    background-color: cadetblue;*/
+/*}*/
+
+.navMenuInActive{
+    background-color: inherit;
+    transition: none;
+}
+
+.navMenuInActive:hover{
+    background-color: gray;
+}

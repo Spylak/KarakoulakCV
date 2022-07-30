@@ -1,5 +1,5 @@
 ﻿@page "/"
-@page "/Profile"
+@using BlazorWebCV.Models
 
 @if (matrix && theme == "dark")
 {
@@ -15,7 +15,7 @@ else if (matrix && theme == "light")
 }
 else
 {
-    <MudGrid>
+    <MudGrid UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Profile}})">
         <MudItem xs="12">
             <MudCard>
                 <MudCardContent>
@@ -120,16 +120,15 @@ else
                 <MudDivider Style="margin:0;"/>
             </MudCard>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Experience}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Experience</h3>
             <MudDivider Style="margin:0;"/>
         </MudItem>
-        
         <MudItem xs="12">
             <Experience/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Projects}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Projects</h3>
             <MudDivider Style="margin:0;"/>
@@ -137,7 +136,7 @@ else
         <MudItem xs="12">
             <Projects/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Tools}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Tools - Technologies - Methodologies</h3>
             <MudDivider Style="margin:0;"/>
@@ -145,7 +144,7 @@ else
         <MudItem xs="12">
             <Tools/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Skills}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Skills</h3>
             <MudDivider Style="margin:0;"/>
@@ -153,7 +152,7 @@ else
         <MudItem xs="12">
             <Skills/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Certifications}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Certifications</h3>
             <MudDivider Style="margin:0;"/>
@@ -161,7 +160,7 @@ else
         <MudItem xs="12">
             <Certifications/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Interests}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Interests</h3>
             <MudDivider Style="margin:0;"/>
@@ -169,7 +168,7 @@ else
         <MudItem xs="12">
             <Interests/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.InProgress}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">In Progress</h3>
             <MudDivider Style="margin:0;"/>
@@ -177,7 +176,7 @@ else
         <MudItem xs="12">
             <InProgress/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Contact}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Contact</h3>
             <MudDivider Style="margin:0;"/>
@@ -185,7 +184,7 @@ else
         <MudItem xs="12">
             <Contact/>
         </MudItem>
-        <MudItem xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Copyright}})" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <div style="text-align: center; margin: 20px">
                 <p>The code is open source and everything used in this project can be found there</p>

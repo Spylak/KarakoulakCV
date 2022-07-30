@@ -22,6 +22,17 @@ window.blazorExtensions = {
         document.body.appendChild(link); // Needed for Firefox
         link.click();
         document.body.removeChild(link);
+    },
+    ScrollToElementId: function (elementId) {
+        var element = document.getElementById(elementId);
+        if (!element) {
+            return false;
+        }
+        const id = 'profilePhoto';
+        const yOffset = -70;
+        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+
+        window.scrollTo({top: y, behavior: 'smooth'});
     }
 };
 
