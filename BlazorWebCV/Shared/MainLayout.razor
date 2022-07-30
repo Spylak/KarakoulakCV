@@ -1,22 +1,25 @@
 @using MudBlazor.Utilities
+@using MudBlazor.Services
+@using ResizeOptions = MudBlazor.Services.ResizeOptions
 @inherits LayoutComponentBase
 @inject NavigationManager navMan
-<MediaQueryList>
+@inject IBreakpointService BreakpointListener
 <MudThemeProvider Theme="currentTheme"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
+<CascadingValue Value="CurrentBreakPoint" Name="Breakpoint">
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer/>
-        <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="Typo.h4"  >Karakoulak Spyridon</MudText></b>
+        <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="@(CurrentBreakPoint.Equals(Breakpoint.Xs)?Typo.h6:Typo.h4)"  >Karakoulak Spyridon</MudText></b>
         <MudSpacer />
         <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <CascadingValue Value="@theme" Name="theme">
-        <NavMenuLeft/>
-                </CascadingValue>
+            <NavMenuLeft/>
+        </CascadingValue>
     </MudDrawer>
     <MudMainContent Style="overflow: hidden" >
         <CascadingValue Value="@theme" Name="theme">
@@ -24,7 +27,7 @@
         </CascadingValue>
     </MudMainContent>
 </MudLayout>
-</MediaQueryList>
+</CascadingValue>
 @code{
     protected override async  void OnInitialized()
     {
@@ -97,6 +100,29 @@
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
-
     }
+    private Guid _subscriptionId;
+    private Breakpoint CurrentBreakPoint;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var subscriptionResult = await BreakpointListener.Subscribe((breakpoint) =>
+            {
+                CurrentBreakPoint = breakpoint;
+                InvokeAsync(StateHasChanged);
+            }, new ResizeOptions
+            {
+                ReportRate = 250,
+                NotifyOnBreakpointOnly = true,
+            });
+            CurrentBreakPoint = subscriptionResult.Breakpoint;
+            _subscriptionId = subscriptionResult.SubscriptionId;
+            StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async ValueTask DisposeAsync() => await BreakpointListener.Unsubscribe(_subscriptionId);
 }

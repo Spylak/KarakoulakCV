@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorPro.BlazorSize;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using MudBlazor;
-using Breakpoints = BlazorPro.BlazorSize.Breakpoints;
 
 namespace BlazorWebCV.Pages;
 
@@ -15,9 +13,10 @@ public partial class Index
 {
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
+    [CascadingParameter(Name = "Breakpoint")]
+    protected Breakpoint CurrentBreakpoint { get; set; }
     [Inject]
     private IJSRuntime jsRuntime { get; set; }
-    [Inject] private IResizeListener _listener { get; set; }
     private  string color { get; set; }
     private int count = 0;
     protected override void OnParametersSet()

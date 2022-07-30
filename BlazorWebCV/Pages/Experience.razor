@@ -1,7 +1,7 @@
 @using BlazorWebCV.Helpers
 <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
     <MudTimeline>
-        @foreach (var item in ExperienceModel.Value.Experience.Values)
+        @foreach (var item in ExperienceModel.Value.Experience.Values.OrderBy(i => i["order"]))
         {
             var color = Color.Warning;
             <MudTimelineItem Color="color" Size="Size.Small" >
@@ -28,7 +28,7 @@
 </MudHidden>
 <MudHidden Invert="true" Breakpoint="Breakpoint.Xs">
 <MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Right">
-    @foreach (var item in ExperienceModel.Value.Experience.Values)
+    @foreach (var item in ExperienceModel.Value.Experience.Values.OrderBy(i => i["order"]))
     {
         var color = Color.Warning;
         <MudTimelineItem Color="color" Size="Size.Small" >

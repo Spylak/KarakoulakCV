@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BlazorPro.BlazorSize;
 using BlazorWebCV.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using MudBlazor;
-using Breakpoints = BlazorPro.BlazorSize.Breakpoints;
 
 namespace BlazorWebCV.Pages;
 
 public partial class Skills
 {
     [Inject] private IOptions<SkillsModel> SkillsModel { get; set; }
-    [Inject] private IResizeListener _listener { get; set; }
     [Inject] private IJSRuntime _JsRuntime { get; set; }
     [CascadingParameter(Name = "theme")]
     protected string theme { get; set; }
