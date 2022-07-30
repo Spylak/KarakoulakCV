@@ -25,11 +25,11 @@ else
             <MudItem xs="12" sm="6">
                 <MudGrid>
                     <MudItem xs="3">
-                        <MudAvatar Image="@(((dynamic)item.Value).image)">
+                        <MudAvatar Image="@(item.Value["image"])">
                         </MudAvatar>
                     </MudItem>
                     <MudItem xs="9">
-                        <MudText Style="margin-top: 10px;"> @(((dynamic)item.Value).text)</MudText>
+                        <MudText Style="margin-top: 10px;"> @(item.Value["text"])</MudText>
                     </MudItem>
                 </MudGrid>
             </MudItem>
@@ -56,8 +56,8 @@ else
              {
                  <MudCarouselItem Transition="Transition.Slide">
                      <div style="height:100%;text-align: center">
-                         <img style="height: 85%;width: 100%;" src="@(((dynamic)item.Value).image)"/>
-                         <MudText Style="height: 15%" Typo="Typo.h6"> @(((dynamic)item.Value).text)</MudText>
+                         <img style="height: 85%;width: 100%;" src="@(item.Value["image"])"/>
+                         <MudText Style="height: 15%" Typo="Typo.h6"> @(item.Value["text"])</MudText>
                      </div>
                  </MudCarouselItem>
              }
@@ -74,7 +74,7 @@ else
                  {
                      if (!item.Key.Equals("english") && !item.Key.Equals("greek"))
                      {
-                         <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="@(((dynamic)item.Value).text)"></MudListItem>
+                         <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.ArrowRightAlt" Text="@(item.Value["text"])"></MudListItem>
                      }
                  }
             </MudList>
@@ -92,10 +92,10 @@ else
                 <MudItem xs="12" sm="6">
                             <MudGrid>
                                 <MudItem xs="4">
-                                    <MudAvatar Image="@(((dynamic)item.Value).image)"/>
+                                    <MudAvatar Image="@(item.Value["image"])"/>
                                 </MudItem>
                                 <MudItem  xs="8">
-                                    <MudText Style="margin-top: 10px;">@(((dynamic)item.Value).text)</MudText>
+                                    <MudText Style="margin-top: 10px;">@(item.Value["text"])</MudText>
                                 </MudItem>
                             </MudGrid>
                 </MudItem>

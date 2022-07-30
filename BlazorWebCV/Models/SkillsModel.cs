@@ -5,6 +5,6 @@ namespace BlazorWebCV.Models;
 
 public class SkillsModel
 {
-    public Dictionary<string,ExpandoObject> SoftSkills { get; set; }
-    public Dictionary<string,ExpandoObject> ProgrammingSkills { get; set; }
+    public Dictionary<string,Dictionary<string,string>> SoftSkills { get; set; }
+    public Dictionary<string,Dictionary<string,string>> ProgrammingSkills { get; set; }
 }
