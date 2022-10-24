@@ -1,18 +1,10 @@
-@page "/Contact"
 @inject IJSRuntime JsRuntime
 @using System.ComponentModel.DataAnnotations
 @inject NavigationManager _navigationManager
-<div style="text-align: center">
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" Style="margin-top: 10px" OnClick="OpenOverlay" >Google Form</MudButton>
-</div>
+
 <div class="row">
     <div style="max-width:400px;margin:auto;">
         <MudCard>
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h4">Personal Information</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
             <MudCardContent>
                 <MudText Typo="Typo.h6"><strong style="color: #8900ab">Email: </strong>spylak@@hotmail.com</MudText>
                 <MudText Typo="Typo.h6"><strong style="color: #8900ab">Address: </strong>Chania,Greece</MudText>
@@ -32,16 +24,19 @@
 
                             <MudTextField Variant="Variant.Outlined" @bind-Value="Model.Subject" Label="Subject..."/>
                             <ValidationMessage For="(() => Model.Subject)"/>
+                            <MudTextField Lines="6" Variant="Variant.Outlined" @bind-Value="Model.Body" Label="Message..."/>
+                            <ValidationMessage For="(() => Model.Body)"/>
                         </div>
                         <div class="col">
 
                             <MudCardActions>
-                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Default" Class="ml-auto">Submit</MudButton>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay" >Google Form</MudButton>
+                                <MudSpacer/>
+                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Tertiary" Class="ml-auto">Submit</MudButton>
                             </MudCardActions>
                         </div>
                     </div>
-                    <MudTextField Lines="6" Variant="Variant.Outlined" @bind-Value="Model.Body" Label="Message..."/>
-                    <ValidationMessage For="(() => Model.Body)"/>
+                    
                 </MudCardContent>
             </MudCard>
 
@@ -49,7 +44,11 @@
     </div>
 </div>
 <MudOverlay @bind-Visible="isVisible" DarkBackground="true" ZIndex="9999" AutoClose="true" Style="text-align: center">
-<iframe style="height:800px;width:350px;" src="https://docs.google.com/forms/d/e/1FAIpQLSdLSfIU9dKcVsb1SNUKX6_Fysz3hVYCXq3DhYDyd14jQv52OQ/viewform?embedded=true"  frameborder="0" marginheight="0" marginwidth="0">Φόρτωση…</iframe>
+    <iframe style="height:90vh;width:90vw;background-color: darkgray" 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdLSfIU9dKcVsb1SNUKX6_Fysz3hVYCXq3DhYDyd14jQv52OQ/viewform?embedded=true"
+            frameborder="0" marginheight="0" marginwidth="0">
+        Loading...
+    </iframe>
 </MudOverlay>
 
 @code {

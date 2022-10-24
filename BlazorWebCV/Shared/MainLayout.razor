@@ -11,12 +11,15 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
         <MudSpacer/>
         <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="@(CurrentBreakPoint.Equals(Breakpoint.Xs)?Typo.h6:Typo.h4)"  >Karakoulak Spyridon</MudText></b>
         <MudSpacer />
-        <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
+        <MudTooltip Text="Hello 🙂!">
+        <MudAvatar Image="/images/AvatarReal.jpg" />
+        </MudTooltip>
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+    <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Responsive" Elevation="2">
         <CascadingValue Value="@theme" Name="theme">
             <NavMenuLeft/>
         </CascadingValue>
@@ -26,6 +29,7 @@
             @Body
         </CascadingValue>
     </MudMainContent>
+      
 </MudLayout>
 </CascadingValue>
 @code{
@@ -125,4 +129,5 @@
     }
 
     public async ValueTask DisposeAsync() => await BreakpointListener.Unsubscribe(_subscriptionId);
+   
 }

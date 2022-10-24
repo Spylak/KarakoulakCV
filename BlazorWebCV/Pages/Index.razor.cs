@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -17,11 +18,15 @@ public partial class Index
     protected Breakpoint CurrentBreakpoint { get; set; }
     [Inject]
     private IJSRuntime jsRuntime { get; set; }
+    private string ImageStyle { get; set; }
     private  string color { get; set; }
     private int count = 0;
     protected override void OnParametersSet()
     {
         color = theme == "dark" ? "black" : "#bfbbbb";
+        ImageStyle =
+            (CurrentBreakpoint.Equals(Breakpoint.Xs) ? "width: 100%;height: 50vh" : "width: 100%;height: 70vh;") +
+            "border-radius: 5px";
         base.OnParametersSet();
     }
     private string AnimationEntrance = "animate__animated animate__lightSpeedInLeft animate__delay-1s";
@@ -37,7 +42,7 @@ public partial class Index
         public string Value { get; set; }
     }
     private Input input = new Input();
-    private string commands;
+    private string commands { get; set; } = "";
 
     private Dictionary<string, string> AutomatedAnswers = new Dictionary<string, string>()
     {
@@ -95,14 +100,15 @@ public partial class Index
     }
     private bool matrix = true;
 
-    protected override async void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        StringBuilder commandsBuilder = new StringBuilder();
         foreach (var command in AutomatedAnswers.Keys)
         {
-            commands += command + ", ";
+            commandsBuilder.Append(command).Append(", ");
         }
-        commands = commands.Substring(0, commands.LastIndexOf(','));
-        Matrix();
+        commands = commandsBuilder.ToString().TrimEnd(',',' ');
+        await Matrix();
         base.OnInitialized();
     }
 

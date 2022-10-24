@@ -15,19 +15,19 @@ else if (matrix && theme == "light")
 }
 else
 {
-    <MudGrid UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Profile}})">
+    <MudGrid UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Profile } })">
         <MudItem xs="12">
             <MudCard>
                 <MudCardContent>
                     <MudGrid >
-                        <MudItem xs="12" sm="6" Style="padding:0">
+                        <MudItem xs="12" sm="6" Style="padding:0;">
                             @if (theme == "light")
                             {
-                                <MudImage Src="images/robot.webp" Style="@(CurrentBreakpoint.Equals(Breakpoint.Xs)?"width: 100%;height: 50vh":"width: 100%;height: 70vh")"/>
+                                <MudImage Src="images/robot.webp" Style="@ImageStyle"/>
                             }
                             else
                             {
-                                <MudImage Src="images/me.webp"  Style="@(CurrentBreakpoint.Equals(Breakpoint.Xs)?"width: 100%;height: 50vh":"width: 100%;height: 70vh")"/>
+                                <MudImage Src="images/me.webp" Style="@ImageStyle"/>
                             }
                         </MudItem>
 
@@ -44,13 +44,23 @@ else
                                                 </MudItem>
                                             </MudHidden>
                                             <MudItem xs="12" sm="10">
-                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" Variant="Variant.Filled" DisableUnderLine="true" ReadOnly="true" Lines="2"/>
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" 
+                                                              Variant="Variant.Filled" 
+                                                              DisableUnderLine="true" 
+                                                              ReadOnly="true" 
+                                                              Lines="3"/>
                                             </MudItem>
                                         }
                                         else
                                         {
                                             <MudItem xs="12" sm="10">
-                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="You" Variant="Variant.Filled" DisableUnderLine="true" Style="background-color: #a5a2a2" ReadOnly="true" Lines="2"/>
+                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" 
+                                                              Label="You" 
+                                                              Variant="Variant.Filled" 
+                                                              DisableUnderLine="true" 
+                                                              Style="background-color: #a5a2a2" 
+                                                              ReadOnly="true" 
+                                                              Lines="2"/>
                                             </MudItem>
                                             <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
                                                 <MudItem Style="padding-left: 0" sm="2">
@@ -61,30 +71,37 @@ else
                                     }
                                 </MudGrid>
                             </div>
-                        <MudItem xs="12">
-                            <EditForm Model="@input" OnSubmit="Send">
-                                <MudGrid>
-                                    <MudItem xs="10">
-                                        <MudTextField @bind-Value="input.Value" Placeholder="Type here.."> </MudTextField>
-                                    </MudItem>
-                                    <MudItem xs="2">
-                                        <MudFab Icon="@Icons.Filled.Send" IconColor="Color.Tertiary" ButtonType="ButtonType.Submit"></MudFab>
-                                    </MudItem>
-                                </MudGrid>
-                            </EditForm>
-                        </MudItem>
-                                                    <div style="position: relative;bottom:-10px">
-                                                Press <a style="cursor: pointer;color: dodgerblue" @onclick="Help"> here </a> or type Help in the chat to list the available commands.
-                                                    <MudDivider Style="margin:0;"/>
-                                                                                </div>
+                            <MudItem xs="12">
+                                <EditForm Model="@input" OnSubmit="Send">
+                                    <MudGrid>
+                                        <MudItem xs="10">
+                                            <div style="display: flex">
+                                                <MudIcon Icon="@Icons.Filled.Info" 
+                                                         Style="margin-top: 25px;cursor: pointer" 
+                                                         Title="Help." @onclick="Help"/>
+                                                <MudTextField @bind-Value="input.Value" 
+                                                              Placeholder="Type here..." 
+                                                              Style="margin-left: 10px"/> 
+                                            </div>
+                                        </MudItem>
+                                        <MudItem xs="2">
+                                            <MudFab Icon="@Icons.Filled.Send" 
+                                                    IconColor="Color.Tertiary" 
+                                                    Size="Size.Small" 
+                                                    ButtonType="ButtonType.Submit"
+                                                    Style="margin-top: 15px"/>
+                                        </MudItem>
+                                    </MudGrid>
+                                </EditForm>
+                            </MudItem>
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>
-                                <MudDivider Style="margin:0;"/>
-                                <MudCardContent Style=@($"background-color: {color}")>
-                    <MudCarousel @bind-SelectedIndex="count" Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
-                        <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                <MudDivider Style="margin:0;"/>
+                <MudCardContent @onclick="OnClick" Style=@($"background-color: {color};cursor: pointer;")>
+                    <MudCarousel @bind-SelectedIndex="count"  Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
+                        <MudCarouselItem  Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
+                            <MudText Style="margin-top: 1%;">
                                 My name is Karakoulak Spyridon.<br/>
                                 I am a Full Stack Developer with a passion for new technologies and progression.<br/>
                                 Programming is a way of life that I find particularly exciting, combining innovation, <br/>
@@ -92,13 +109,13 @@ else
                             </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                            <MudText  Style="margin-top: 1%;">
                                 Currently I enjoy working on Blazor, C# and .NET! <br/>
                                 I develop and maintain web and software applications & dynamic websites! <br/>
                             </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            <MudText @onclick="OnClick" Style="margin-top: 1%;cursor: pointer;">
+                            <MudText  Style="margin-top: 1%;">
                                 In my free time I study for my Master's Degree in Data Science and Machine Learning <br/>
                                 in order to gain expertise in the field, since everything in this era <br/>
                                 and the one coming ahead consists of data, loads of data!<br/>
@@ -107,11 +124,11 @@ else
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
                             @if (theme == "light")
                             {
-                                <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/lightlogo.png"/>
+                                <img  style="height: 150px;width: 100%;" src="images/lightlogo.png"/>
                             }
                             else
                             {
-                                <img @onclick="OnClick" style="height: 150px;width: 100%;cursor: pointer;" src="images/dev.png"/>
+                                <img  style="height: 150px;width: 100%;" src="images/dev.png"/>
                             }
                         </MudCarouselItem>
                     </MudCarousel>
@@ -119,7 +136,7 @@ else
                 <MudDivider Style="margin:0;"/>
             </MudCard>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Experience}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Experience</h3>
             <MudDivider Style="margin:0;"/>
@@ -127,7 +144,7 @@ else
         <MudItem xs="12">
             <Experience/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Projects}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Projects } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Projects</h3>
             <MudDivider Style="margin:0;"/>
@@ -135,7 +152,7 @@ else
         <MudItem xs="12">
             <Projects/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Tools}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Tools } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Tools - Technologies - Methodologies</h3>
             <MudDivider Style="margin:0;"/>
@@ -143,7 +160,7 @@ else
         <MudItem xs="12">
             <Tools/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Skills}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Skills } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Skills</h3>
             <MudDivider Style="margin:0;"/>
@@ -151,7 +168,7 @@ else
         <MudItem xs="12">
             <Skills/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Certifications}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Certifications } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Certifications</h3>
             <MudDivider Style="margin:0;"/>
@@ -159,7 +176,7 @@ else
         <MudItem xs="12">
             <Certifications/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Interests}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Interests } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Interests</h3>
             <MudDivider Style="margin:0;"/>
@@ -167,7 +184,7 @@ else
         <MudItem xs="12">
             <Interests/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.InProgress}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.InProgress } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">In Progress</h3>
             <MudDivider Style="margin:0;"/>
@@ -175,7 +192,7 @@ else
         <MudItem xs="12">
             <InProgress/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Contact}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Contact } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Contact</h3>
             <MudDivider Style="margin:0;"/>
@@ -183,7 +200,7 @@ else
         <MudItem xs="12">
             <Contact/>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>(){{"id",SectionModel.Copyright}})" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Copyright } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <div style="text-align: center; margin: 20px">
                 <p>The code is open source and everything used in this project can be found there</p>
@@ -192,6 +209,9 @@ else
             <MudDivider Style="margin:0;"/>
         </MudItem>
     </MudGrid>
+    <MudScrollToTop UserAttributes="@(new Dictionary<string, object>() { { "title", "Scroll to top." } })">
+        <MudFab Color="Color.Primary" Icon="@Icons.Filled.ArrowCircleUp"/>
+    </MudScrollToTop>
     <div style="height: 50px"></div>
 }
 
