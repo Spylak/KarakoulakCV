@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorWebCV.Models;
@@ -19,7 +20,14 @@ public partial class Projects
     [Inject] private IDialogService DialogService { get; set; }
     private async Task Code(string name)
     {
-        await JsRuntime.InvokeAsync<object>("open", ProjectsModel.Value.Projects.Values.FirstOrDefault(i=>i["title"]!.Equals(name))!["repository"], "_blank");
+        try
+        {
+            await JsRuntime.InvokeAsync<object>("open", ProjectsModel.Value.Projects.Values.FirstOrDefault(i=>i["title"]!.Equals(name))!["repository"], "_blank");
+        }
+        catch (Exception ex)
+        {
+            // ignored
+        }
     }
     
     private async Task Click(string name)
