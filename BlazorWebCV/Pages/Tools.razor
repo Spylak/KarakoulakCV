@@ -1,24 +1,10 @@
-@if (gridLoad=="hidden" && theme=="dark")
-{
-    <div style="background: black;text-align: center;height: 100vh">
-        <MudProgressCircular Style="margin-top:25%;width: 70px;height: 70px;" Color="Color.Success" Indeterminate="true" />
-    </div>
-}else if (gridLoad=="hidden" && theme == "light")
-{        
-    <div style="background: black;text-align: center;height: 100vh">
-        <MudProgressCircular Style="margin-top:25%;width: 70px;height: 70px;"  Color="Color.Default" Indeterminate="true" />
-    </div>
-}
-else
-{
-    
 <MudCard>
     <MudCardContent >
         <MudGrid>
             
         @foreach (var item in ToolsModel.Value.Tools.Values)
         {
-            <MudItem xs="12" sm="3" @onclick="@(() => Click(item["text"]))" Style="cursor: pointer">
+            <MudItem xs="12" sm="3">
                 <MudGrid>
                     <MudItem xs="3">
                         <MudAvatar Image="@(item["image"])">
@@ -34,7 +20,6 @@ else
 
     </MudCardContent>
 </MudCard>
-}
 
 @code {
     

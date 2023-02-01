@@ -8,8 +8,8 @@
                     <MudItem xs="12" sm="6">
                         <img height="300px" width="300px" src="images/eap.webp"/>
                     </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <p style="text-align: center">
+                    <MudItem xs="12" sm="6" Style="align-self: center">
+                        <p>
                             Enrolled into Part Time Distance Learning MSc in Data Science and Machine Learning in order to receive academic education on the field.
                         </p>
                     </MudItem>
@@ -20,8 +20,8 @@
                     <MudItem xs="12" sm="6">
                         <img height="300px" width="300px" src="images/linux.webp"/>
                     </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <p style="text-align: center">
+                    <MudItem xs="12" sm="6" Style="align-self: center">
+                        <p >
                             Better understanding of Linux environment and it's usages.
                         </p>
                     </MudItem>
@@ -32,15 +32,10 @@
 </MudCard>
 
 @code {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
     private async Task Click(string name)
     {
         switch (name)
         {
-            case "Dotnet":
-                await JsRuntime.InvokeAsync<object>("open", "https://docs.microsoft.com/en-us/dotnet/maui/", "_blank");
-                break;
             case "Linux":
                 await JsRuntime.InvokeAsync<object>("open", "https://code.visualstudio.com/", "_blank");
                 break;

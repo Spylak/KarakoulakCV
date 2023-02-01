@@ -16,7 +16,7 @@ else if (matrix && theme == "light")
 else
 {
     <MudGrid UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Profile } })">
-        <MudItem xs="12">
+        <MudItem Style="height: 98vh" xs="12">
             <MudCard>
                 <MudCardContent>
                     <MudGrid >
@@ -136,7 +136,7 @@ else
                 <MudDivider Style="margin:0;"/>
             </MudCard>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" style=@($"background-color: {color};padding:0")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" style=@($"background-color: {color};padding:0;margin-top:20px")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Experience</h3>
             <MudDivider Style="margin:0;"/>

@@ -1,15 +1,21 @@
 @using BlazorWebCV.Models
-@inject NavigationManager navMan
 @inject IJSRuntime _jsRuntime
 
-<MudText Typo="Typo.h6" Class="px-4">Navigation</MudText>
-<MudDivider></MudDivider>
+<MudText Typo="Typo.h6" Class="px-4" Style="text-align: center">Navigation</MudText>
+<MudDivider Style="flex-grow: 0"></MudDivider>
 <MudList Clickable="true" Class="my-2">
-    @foreach (var item in NavMenuItems)
+    @foreach (var item in NavMenuItems.SkipLast(1))
     {
-        <MudListItem Style="@(item.Section.Equals(SectionModel.Copyright)?"color : dodgerblue":"")" Text="@item.Text" OnClick="@(() => OnClick(item.Section))" Icon="@item.Icon" IconColor="MudBlazor.Color.Default"/>
+        <MudListItem Text="@item.Text" OnClick="@(() => OnClick(item.Section))" Icon="@item.Icon" IconColor="MudBlazor.Color.Default"/>
     }
+    
 </MudList>
+<MudSpacer></MudSpacer>
+<MudText Style="color : dodgerblue;cursor: pointer"
+         @onclick="@(() => OnClick(NavMenuItems.Last().Section))"
+         Typo="Typo.body2"
+         Class="px-4">@NavMenuItems.Last().Text</MudText>
+
 @code {
 
     [CascadingParameter(Name = "theme")]
@@ -21,82 +27,75 @@
         Color = Theme == "dark" ? "dimgray" : "#bfbbbb";
         base.OnParametersSet();
     }
-    private class NavMenuItem
-    {
-        public  string Text { get; set; }
-        public  string Section { get; set; }
-        public  string Classes { get; set; }
-        public  string Icon { get; set; }
-    }
-    private List<NavMenuItem> NavMenuItems { get; set; } 
+    private List<LeftNavMenuItem> NavMenuItems { get; set; } 
     protected override void OnInitialized()
     {
-        NavMenuItems = new List<NavMenuItem>()
+        NavMenuItems = new ()
         {
-            new NavMenuItem()
+            new ()
             {
                 Text = "Profile",
                 Section = SectionModel.Profile,
                 Classes = "navMenuActive",
                 Icon = Icons.Material.Filled.AssignmentInd
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Experience",
                 Section = SectionModel.Experience,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Work
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Projects",
                 Section = SectionModel.Projects,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Dns
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Toolkit",
                 Section = SectionModel.Tools,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.HomeRepairService
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Skills",
                 Section = SectionModel.Skills,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Extension
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Certifications",
                 Section = SectionModel.Certifications,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Task
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Interests",
                 Section = SectionModel.Interests,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Interests
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "In Progress",
                 Section = SectionModel.InProgress,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Downloading
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = "Contact",
                 Section = SectionModel.Contact,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.PermPhoneMsg
             },
-            new NavMenuItem()
+            new ()
             {
                 Text = $"Copyright @{DateTime.Now.Year}",
                 Section = SectionModel.Copyright,
@@ -108,10 +107,6 @@
 
     private async Task OnClick(string section)
     {
-        // foreach (var item in NavMenuItems)
-        // {
-        //     item.Classes = item.Section.Equals(section) ? "navMenuActive" : "navMenuInActive";
-        // }
         await _jsRuntime.InvokeVoidAsync("blazorExtensions.ScrollToElementId", section);
     }
 }
