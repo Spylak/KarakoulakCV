@@ -1,27 +1,25 @@
 <MudCard>
     <MudCardContent >
         <MudGrid>
-            
-        @foreach (var item in ToolsModel.Value.Tools.Values)
-        {
-            <MudItem xs="12" sm="3">
-                <MudGrid>
-                    <MudItem xs="3">
-                        <MudAvatar Image="@(item["image"])">
-                        </MudAvatar>
-                    </MudItem>
-                    <MudItem xs="9">
-                        <MudText Style="margin-top: 10px;"> @(item["text"])</MudText>
-                    </MudItem>
-                </MudGrid>
-            </MudItem>
-        }
-                </MudGrid>
-
+            @foreach (var item in ToolsModel.Value.Tools.Values)
+            {
+                <MudItem xs="12" sm="3">
+                    <MudGrid>
+                        <MudItem xs="3">
+                            <MudAvatar Image="@(item["image"])">
+                            </MudAvatar>
+                        </MudItem>
+                        <MudItem xs="9">
+                            <MudText Style="margin-top: 10px;"> @(item["text"])</MudText>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            }
+        </MudGrid>
     </MudCardContent>
 </MudCard>
 
 @code {
-    
-   
+
+
 }

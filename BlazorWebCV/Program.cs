@@ -16,10 +16,9 @@ namespace BlazorWebCV
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
             builder.Services.AddMudServices();
+            builder.Services.AddOptions();
             builder.Services.Configure<SkillsModel>(options =>
                 builder.Configuration.GetSection("Skills").Bind(options));
-            builder.Services.Configure<ProjectsModel>(options =>
-                builder.Configuration.Bind(options)); 
             builder.Services.Configure<ToolsModel>(options =>
                 builder.Configuration.Bind(options));
             builder.Services.Configure<ExperienceModel>(options =>

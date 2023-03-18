@@ -1,21 +1,21 @@
 <MudGrid style="color: purple">
-    @if (ProjectsModel.Value.Projects.Values.Any())
+    @if (ProjectModels.Any())
     {
-        foreach (var item in ProjectsModel.Value.Projects.Values.OrderBy(i=>i["order"]))
+        foreach (var item in ProjectModels.OrderBy(i=> i.Order))
         {
             <MudItem xs="12" sm="4">
                 <MudCard>
-                    <MudCardMedia Image="@(item["image"])" Height="250"/>
+                    <MudCardMedia Image="@(item.Image)" Height="250"/>
                     <MudCardContent Style="height: 120px">
-                        <MudText Color="Color.Tertiary" Typo="Typo.h5">@(item["title"])</MudText>
-                        <MudText Style="color: mediumpurple" Typo="Typo.body2">@(item["description"])</MudText>
+                        <MudText Color="Color.Tertiary" Typo="Typo.h5">@(item.Title)</MudText>
+                        <MudText Style="color: mediumpurple" Typo="Typo.body2">@(item.Description)</MudText>
                     </MudCardContent>
                     <MudCardActions>
-                        @if (!string.IsNullOrWhiteSpace(item["repository"]))
+                        @if (!string.IsNullOrWhiteSpace(item.Repository))
                         {
-                            <MudButton OnClick="@(() => Code(item["title"]))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
+                            <MudButton OnClick="@(() => Code(item.Title))" Variant="Variant.Text" Color="Color.Info">Code</MudButton>
                         }
-                        <MudButton Variant="Variant.Text" Color="Color.Info" OnClick="@(() => Click(item["title"]))">Learn More</MudButton>
+                        <MudButton Variant="Variant.Text" Color="Color.Info" OnClick="@(() => Click(item.Title))">Learn More</MudButton>
                     </MudCardActions>
                 </MudCard>
             </MudItem>
