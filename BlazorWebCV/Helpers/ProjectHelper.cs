@@ -9,7 +9,7 @@ public static class ProjectHelper
     {
         List<ProjectModel> projects = new();
         projects.Add(new ProjectModel("BlazorIDB",
-          "images/Projects/nuget.jpg",
+          "images/Projects/nuget.webp",
           "Coded in .Net 6, a nuget package for Blazor that utilizes IndexedDb.",
           "This is a simple wrapper of the idb-keyval.js library for Blazor applications. It is designed to be used similar to Entity Framework Database.",
           "https://github.com/Spylak/BlazorIDB",
