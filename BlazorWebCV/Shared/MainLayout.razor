@@ -42,7 +42,7 @@
                         <Chat @bind-Messages="ChatMessagesContainer.ChatMessages"></Chat>
                     </MudCardContent>
                 </MudCard>
-            <MudAvatar Style="position: fixed;top:90vh;z-index: 9999;border: none;cursor: pointer"
+            <MudAvatar Style="@($"position: fixed;top:{(CurrentBreakPoint.Equals(Breakpoint.Xs) ? "80vh" : "90vh")};z-index: 9999;border: none;cursor: pointer")"
                        @onclick="@(() => IsChatOpen = !IsChatOpen)"
                        Elevation="5"
                        Size="Size.Large"
