@@ -1,16 +1,9 @@
 ﻿@page "/"
 @using BlazorWebCV.Models
 
-@if (matrix && theme == "dark")
+@if (matrix)
 {
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/binary.gif"/>
-    </div>
-}
-else if (matrix && theme == "light")
-{
-    <div>
-        <img style="width: 100vw; height: 95vh;" src="images/swirl.webp"/>
+    <div style="left: 45%;margin-top: 30%" class="lds-hourglass">
     </div>
 }
 else
@@ -20,7 +13,7 @@ else
             <MudCard>
                 <MudCardContent>
                     <MudGrid >
-                        <MudItem xs="12" sm="6" Style="padding:0;">
+                        <MudItem xs="12" Style="padding:0;">
                             @if (theme == "light")
                             {
                                 <MudImage Src="images/robot.webp" Style="@ImageStyle"/>
@@ -29,71 +22,6 @@ else
                             {
                                 <MudImage Src="images/me.webp" Style="@ImageStyle"/>
                             }
-                        </MudItem>
-
-                        <MudItem xs="12" sm="6" Style="padding:0">
-                            <div Style="min-height: 100px; max-height: 50vh;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
-                                <MudGrid >
-                                    @foreach (var msg in Messages)
-                                    {
-                                        if (msg.Split("&&")[0] == "robot")
-                                        {
-                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
-                                                <MudItem Style="padding-left: 18px" sm="2">
-                                                    <MudAvatar Image="images/avatarme.png"/>
-                                                </MudItem>
-                                            </MudHidden>
-                                            <MudItem xs="12" sm="10">
-                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot" 
-                                                              Variant="Variant.Filled" 
-                                                              DisableUnderLine="true" 
-                                                              ReadOnly="true" 
-                                                              Lines="3"/>
-                                            </MudItem>
-                                        }
-                                        else
-                                        {
-                                            <MudItem xs="12" sm="10">
-                                                <MudTextField T="string" Text="@msg.Split("&&")[1]" 
-                                                              Label="You" 
-                                                              Variant="Variant.Filled" 
-                                                              DisableUnderLine="true" 
-                                                              Style="background-color: #a5a2a2" 
-                                                              ReadOnly="true" 
-                                                              Lines="2"/>
-                                            </MudItem>
-                                            <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
-                                                <MudItem Style="padding-left: 0" sm="2">
-                                                    <MudAvatar Image="images/unknown.png"/>
-                                                </MudItem>
-                                            </MudHidden>
-                                        }
-                                    }
-                                </MudGrid>
-                            </div>
-                            <MudItem xs="12">
-                                <EditForm Model="@input" OnSubmit="Send">
-                                    <MudGrid>
-                                        <MudItem xs="10">
-                                            <div style="display: flex">
-                                                <MudIcon Icon="@Icons.Filled.Info" 
-                                                         Style="margin-top: 25px;cursor: pointer" 
-                                                         Title="Help." @onclick="Help"/>
-                                                <MudTextField @bind-Value="input.Value" 
-                                                              Placeholder="Type here..." 
-                                                              Style="margin-left: 10px"/> 
-                                            </div>
-                                        </MudItem>
-                                        <MudItem xs="2">
-                                            <MudFab Icon="@Icons.Filled.Send" 
-                                                    IconColor="Color.Tertiary" 
-                                                    Size="Size.Small" 
-                                                    ButtonType="ButtonType.Submit"
-                                                    Style="margin-top: 15px"/>
-                                        </MudItem>
-                                    </MudGrid>
-                                </EditForm>
-                            </MudItem>
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>
@@ -124,11 +52,11 @@ else
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
                             @if (theme == "light")
                             {
-                                <img  style="height: 150px;width: 100%;" src="images/lightlogo.png"/>
+                                <img  style="height: 150px;width: 100%;" src="images/lightlogo.webp"/>
                             }
                             else
                             {
-                                <img  style="height: 150px;width: 100%;" src="images/dev.png"/>
+                                <img  style="height: 150px;width: 100%;" src="images/dev.webp"/>
                             }
                         </MudCarouselItem>
                     </MudCarousel>
@@ -136,7 +64,7 @@ else
                 <MudDivider Style="margin:0;"/>
             </MudCard>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" style=@($"background-color: {color};padding:0;margin-top:20px")>
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" style=@($"background-color: {color};padding:0;margin-top:5%")>
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Experience</h3>
             <MudDivider Style="margin:0;"/>

@@ -1,0 +1,68 @@
+<MudItem Style="padding:0">
+    <div Style="min-height: 100px; max-height: 300px;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
+        <MudGrid >
+            @foreach (var msg in Messages)
+            {
+                if (msg.Split("&&")[0] == "robot")
+                {
+                    <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                        <MudItem Style="padding-left: 18px" sm="2">
+                            <MudAvatar Image="images/avatarme.png"/>
+                        </MudItem>
+                    </MudHidden>
+                    <MudItem xs="12" sm="10">
+                        <MudTextField T="string" Text="@msg.Split("&&")[1]" Label="Bot"
+                                      Variant="Variant.Filled"
+                                      DisableUnderLine="true"
+                                      ReadOnly="true"
+                                      Lines=5/>
+                    </MudItem>
+                }
+                else
+                {
+                    <MudItem xs="12" sm="10">
+                        <MudTextField T="string" Text="@msg.Split("&&")[1]"
+                                      Label="You"
+                                      Variant="Variant.Filled"
+                                      DisableUnderLine="true"
+                                      Style="background-color: #a5a2a2"
+                                      ReadOnly="true"
+                                      Lines="2"/>
+                    </MudItem>
+                    <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
+                        <MudItem Style="padding-left: 0" sm="2">
+                            <MudAvatar Image="images/unknown.png"/>
+                        </MudItem>
+                    </MudHidden>
+                }
+            }
+        </MudGrid>
+    </div>
+    <MudItem xs="12">
+        <EditForm Model="@input" OnSubmit="Send">
+            <MudGrid>
+                <MudItem xs="10">
+                    <div style="display: flex">
+                        <MudIcon Icon="@Icons.Filled.Info"
+                                 Style="margin-top: 25px;cursor: pointer"
+                                 Title="Help." @onclick="Help"/>
+                        <MudTextField @bind-Value="input.Value"
+                                      Placeholder="Type here..."
+                                      Style="margin-left: 10px"/>
+                    </div>
+                </MudItem>
+                <MudItem xs="2">
+                    <MudFab Icon="@Icons.Filled.Send"
+                            IconColor="Color.Tertiary"
+                            Size="Size.Small"
+                            ButtonType="ButtonType.Submit"
+                            Style="margin-top: 15px"/>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </MudItem>
+</MudItem>
+
+@code {
+
+}

@@ -1,0 +1,36 @@
+@inject IJSRuntime JsRuntime
+
+<MudCard>
+    <MudCardContent>
+        <MudList Clickable="true">
+            <MudListItem OnClick="@(() => Click("Masters"))">
+                <MudGrid>
+                    <MudItem xs="12" sm="6">
+                        <img height="300px" width="300px" src="images/eap.webp"/>
+                    </MudItem>
+                    <MudItem xs="12" sm="6" Style="align-self: center">
+                        <p>
+                            Enrolled into Part Time Distance Learning MSc in Data Science and Machine Learning in order to receive academic education on the field.
+                        </p>
+                    </MudItem>
+                </MudGrid>
+            </MudListItem>
+        </MudList>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private async Task Click(string name)
+    {
+        switch (name)
+        {
+            case "Linux":
+                await JsRuntime.InvokeAsync<object>("open", "https://code.visualstudio.com/", "_blank");
+                break;
+            case "Masters":
+                await JsRuntime.InvokeAsync<object>("open", "https://www.eap.gr/education/postgraduate/annual/data-science-and-machine-learning/", "_blank");
+                break;
+        }
+    }
+
+}

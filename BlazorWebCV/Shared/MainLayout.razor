@@ -1,48 +1,80 @@
-@using MudBlazor.Utilities
 @using MudBlazor.Services
 @using ResizeOptions = MudBlazor.Services.ResizeOptions
+@using BlazorWebCV.State
 @inherits LayoutComponentBase
 @inject NavigationManager navMan
 @inject IBreakpointService BreakpointListener
 <MudThemeProvider Theme="currentTheme"/>
-<MudDialogProvider />
-<MudSnackbarProvider />
+<MudDialogProvider/>
+<MudSnackbarProvider/>
 <CascadingValue Value="CurrentBreakPoint" Name="Breakpoint">
-<MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
-        <MudSpacer/>
-        <b style="cursor: pointer;" @onclick="Click" > <MudText Typo="@(CurrentBreakPoint.Equals(Breakpoint.Xs)?Typo.h6:Typo.h4)"  >Karakoulak Spyridon</MudText></b>
-        <MudSpacer />
-        <MudTooltip Text="Hello 🙂!">
-        <MudAvatar Image="/images/AvatarReal.jpg" />
-        </MudTooltip>
-    </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Responsive" Elevation="2">
-        <CascadingValue Value="@theme" Name="theme">
-            <NavMenuLeft/>
-        </CascadingValue>
-    </MudDrawer>
-    <MudMainContent Style="overflow: hidden" >
-        <CascadingValue Value="@theme" Name="theme">
-            @Body
-        </CascadingValue>
-    </MudMainContent>
-      
-</MudLayout>
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+            <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
+            <MudSpacer/>
+            <b style="cursor: pointer;" @onclick="Click">
+                <MudText Typo="@(CurrentBreakPoint.Equals(Breakpoint.Xs) ? Typo.h6 : Typo.h4)">Karakoulak Spyridon</MudText>
+            </b>
+            <MudSpacer/>
+            <MudTooltip Text="Hello 🙂!">
+                <MudAvatar Image="/images/AvatarReal.jpg"/>
+            </MudTooltip>
+        </MudAppBar>
+        <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Responsive" Elevation="2">
+            <CascadingValue Value="@theme" Name="theme">
+                <NavMenuLeft/>
+            </CascadingValue>
+        </MudDrawer>
+        <MudMainContent Style="overflow: hidden">
+                <MudCard Elevation="5" Style="@($"position: fixed;top:{(CurrentBreakPoint.Equals(Breakpoint.Xs) ? "15vh" : "25vh")};z-index: 9999;height: 450px;width: 280px;visibility: {visibility}")">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Chat</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudIconButton Icon="@Icons.Material.Filled.Minimize"
+                                           @onclick="@(() => IsChatOpen = !IsChatOpen)"
+                                           Color="Color.Default"/>
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <Chat @bind-Messages="ChatMessagesContainer.ChatMessages"></Chat>
+                    </MudCardContent>
+                </MudCard>
+            <MudAvatar Style="position: fixed;top:90vh;z-index: 9999;border: none;cursor: pointer"
+                       @onclick="@(() => IsChatOpen = !IsChatOpen)"
+                       Elevation="5"
+                       Size="Size.Large"
+                       Variant="Variant.Outlined">
+                <MudIcon Color="MudBlazor.Color.Default" Icon="@Icons.Material.Filled.Message" Size="Size.Large"/>
+            </MudAvatar>
+            <CascadingValue Value="@theme" Name="theme">
+                @Body
+            </CascadingValue>
+        </MudMainContent>
+    </MudLayout>
 </CascadingValue>
+
 @code{
-    protected override async  void OnInitialized()
+    [Inject] ChatMessagesContainer ChatMessagesContainer { get; set; }
+    protected override void OnInitialized()
     {
         currentTheme = darkTheme;
         color = Color.Inherit;
     }
 
+    private bool IsChatOpen
+    {
+        get { return visibility == "hidden"; }
+        set { visibility = value ? "hidden" : "visible"; }
+    }
+    private string visibility = "hidden";
     private void Click()
     {
         navMan.NavigateTo("/");
     }
+
     void DarkMode()
     {
         if (currentTheme == defaultTheme)
@@ -60,9 +92,10 @@
             StateHasChanged();
         }
     }
-    
+
     Color color = Color.Success;
     MudTheme currentTheme = new MudTheme();
+
     MudTheme defaultTheme = new MudTheme()
     {
         Palette = new Palette()
@@ -73,6 +106,7 @@
     };
 
     private string theme = "dark";
+
     MudTheme darkTheme = new MudTheme()
     {
         Palette = new Palette()
@@ -99,14 +133,17 @@
             TextDisabled = "rgba(255,255,255, 0.2)"
         }
     };
+
     bool _drawerOpen = true;
 
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
+
     private Guid _subscriptionId;
     private Breakpoint CurrentBreakPoint;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -129,5 +166,5 @@
     }
 
     public async ValueTask DisposeAsync() => await BreakpointListener.Unsubscribe(_subscriptionId);
-   
+
 }

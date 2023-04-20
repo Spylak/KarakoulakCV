@@ -14,12 +14,6 @@ public static class ProjectHelper
           "This is a simple wrapper of the idb-keyval.js library for Blazor applications. It is designed to be used similar to Entity Framework Database.",
           "https://github.com/Spylak/BlazorIDB",
           2));
-        projects.Add(new ProjectModel("Crowdfund",
-          "images/Projects/bitcoin.webp",
-          "Coded in .Net Core,MVC Project Azure SQL database.",
-          "A prototype site with MVC pattern in ASP.NET, CRUD operations built in CodeAcademy.",
-          "https://github.com/MrSpyretos/Crowdfund",
-          12));
         projects.Add(new ProjectModel("ProjectCamilla",
           "images/Projects/camilla.webp",
           "Coded in .Net Core with DevExtreme, DevExtreme Library, MVC Project with SQL Server Database.",
@@ -75,7 +69,7 @@ public static class ProjectHelper
           "https://github.com/Spylak/WeddingInvitation",
           3));
         projects.Add(new ProjectModel("Karakoulak Tavern",
-          "images/Projects/karakoulakPasta.jpg",
+          "images/Projects/karakoulakPasta.webp",
           "SSR Astro.js for the front end, Strapi CMS for the backend and Postgresql as a Database docker Containers.",
           "This application is coded in Astro.js and used node server side rendering, deployed as a docker container in a Linux VPS on Linode, the CMS used was strapi with a Postgresql database all of them containerized and communicate with each other through docker bridge network and exposed with Nginx Server as a reverse proxy.",
           "",
