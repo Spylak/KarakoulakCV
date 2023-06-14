@@ -16,9 +16,13 @@
                             {
                                 <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
                             }
-                            <MudText>
-                                @item["description"]
-                            </MudText>
+                            @foreach(var text in item["description"].Split("\n"))
+                            {
+                                <MudText>
+                                    @text                        
+                                </MudText>
+                                <br/>
+                            }  
                         </MudCardContent>
                     </MudCard>
                 </ItemContent>
