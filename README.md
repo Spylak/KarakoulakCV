@@ -1,2 +1,2 @@
 # KarakoulakCV
-This is a portfolio project on BlazorWebAssembly and dotnet6 using MudBlazor Component library.
+This is a portfolio project Developed with .Net Blazor WebAssembly and using MudBlazor Component library.
