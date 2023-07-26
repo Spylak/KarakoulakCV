@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorWebCV.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -9,8 +10,8 @@ namespace BlazorWebCV.Components;
 
 public partial class Chat
 {
-    [Parameter] public List<string> Messages { get; set; }
-    [Parameter] public EventCallback<List<string>> MessagesChanged { get; set; }
+    [Parameter] public List<ChatMessage> Messages { get; set; }
+    [Parameter] public EventCallback<List<ChatMessage>> MessagesChanged { get; set; }
     private class Input
     {
         public string Value { get; set; }
@@ -44,31 +45,55 @@ public partial class Chat
     }
     private async Task Help()
     {
-        Messages.Add($"robot&&Available commands: {commands}");
+        Messages.Add(new ChatMessage()
+        {
+            Message = $"robot&&Available commands: {commands}",
+            Order = Messages.Count+1
+        });
     }
 
     private async Task Send(EditContext context)
     {
         if (input.Value is not null)
         {
-            Messages.Add($"user&&{input.Value}");
+            Messages.Add(new ChatMessage()
+            {
+                Message = $"user&&{input.Value}",
+                Order = Messages.Count+1
+            });
             var value = input.Value.ToLower();
             if (AutomatedAnswers.Keys.ToList().Contains(value))
             {
-                Messages.Add($"robot&&{AutomatedAnswers[value]}");
+                Messages.Add(new ChatMessage()
+                {
+                    Message = $"robot&&{AutomatedAnswers[value]}",
+                    Order = Messages.Count+1
+                });
             }
             else if (value=="help")
             {
-                Messages.Add($"robot&&{commands}");
+                Messages.Add(new ChatMessage()
+                {
+                    Message = $"robot&&{commands}",
+                    Order = Messages.Count+1
+                });
             }
             else
             {
-                Messages.Add($"robot&&I don't recognize this command. Available commands: {commands}");
+                Messages.Add(new ChatMessage()
+                {
+                    Message = $"robot&&I don't recognize this command. Available commands: {commands}",
+                    Order = Messages.Count+1
+                });
             }
         }
         else
         {
-            Messages.Add($"robot&&No command was given. Available commands: {commands}");
+            Messages.Add(new ChatMessage()
+            {
+                Message = $"robot&&No command was given. Available commands: {commands}",
+                Order = Messages.Count+1
+            });
         }
         await Task.Yield();
         input = new Input();
