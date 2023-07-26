@@ -61,7 +61,7 @@ public partial class Chat
                 Message = $"user&&{input.Value}",
                 Order = Messages.Count+1
             });
-            var value = input.Value.ToLower();
+            var value = input.Value.ToLower().Trim();
             if (AutomatedAnswers.Keys.ToList().Contains(value))
             {
                 Messages.Add(new ChatMessage()
