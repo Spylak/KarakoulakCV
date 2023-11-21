@@ -9,12 +9,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using MudBlazor;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Projects;
 
 public partial class Projects
 {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
     [Inject] private IJSRuntime JsRuntime { get; set; }
     [Inject] private IDialogService DialogService { get; set; }
     private List<ProjectModel> ProjectModels { get; set; } = ProjectHelper.GetProjects();

@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="6.4.9" />
-        <PackageReference Include="HtmlSanitizer" Version="8.0.645" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
-        <PackageReference Include="MudBlazor" Version="6.2.2" />
+        <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="6.6.2" />
+        <PackageReference Include="HtmlSanitizer" Version="8.0.746" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.12" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.12" PrivateAssets="all" />
+        <PackageReference Include="MudBlazor" Version="6.11.0" />
         <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
     </ItemGroup>
 

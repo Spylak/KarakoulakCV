@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Options;
@@ -12,18 +13,15 @@ namespace BlazorWebCV.Pages;
 
 public partial class Index
 {
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
+    [Inject] private AppState AppState { get; set; }
     [CascadingParameter(Name = "Breakpoint")]
     protected Breakpoint CurrentBreakpoint { get; set; }
-    [Inject]
-    private IJSRuntime jsRuntime { get; set; }
     private string ImageStyle { get; set; }
     private  string color { get; set; }
     private int count = 0;
     protected override void OnParametersSet()
     {
-        color = theme == "dark" ? "black" : "#bfbbbb";
+        color = AppState.Theme == AppConstants.DarkTheme ? "black" : "#bfbbbb";
         ImageStyle =
             (CurrentBreakpoint.Equals(Breakpoint.Xs) ? "width: 100%;height: 50vh" : "width: 100%;height: 70vh;") +
             "border-radius: 5px";

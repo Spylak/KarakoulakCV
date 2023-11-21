@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Tools;
 
 public partial class Tools
 {

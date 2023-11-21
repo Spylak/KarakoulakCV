@@ -14,7 +14,7 @@ else
                 <MudCardContent>
                     <MudGrid >
                         <MudItem xs="12" Style="padding:0;">
-                            @if (theme == "light")
+                            @if (AppState.Theme == AppConstants.LightTheme)
                             {
                                 <MudImage Src="images/robot.webp" Style="@ImageStyle"/>
                             }
@@ -50,7 +50,7 @@ else
                             </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            @if (theme == "light")
+                            @if (AppState.Theme == AppConstants.LightTheme)
                             {
                                 <img  style="height: 150px;width: 100%;" src="images/lightlogo.webp"/>
                             }
@@ -125,9 +125,6 @@ else
             <h3 style="text-align: center;margin: 20px">Contact</h3>
             <MudDivider Style="margin:0;"/>
         </MudItem>
-        <MudItem xs="12">
-            <Contact/>
-        </MudItem>
         <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Copyright } })" xs="12" style=@($"background-color: {color};padding:0")>
             <MudDivider Style="margin:0;"/>
             <div style="text-align: center; margin: 20px">
@@ -137,9 +134,6 @@ else
             <MudDivider Style="margin:0;"/>
         </MudItem>
     </MudGrid>
-    <MudScrollToTop UserAttributes="@(new Dictionary<string, object>() { { "title", "Scroll to top." } })">
-        <MudFab Color="Color.Primary" Icon="@Icons.Filled.ArrowCircleUp"/>
-    </MudScrollToTop>
     <div style="height: 50px"></div>
 }
 

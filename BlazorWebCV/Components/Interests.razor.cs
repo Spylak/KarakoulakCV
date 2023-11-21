@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
+using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorWebCV.Components;
 public partial class Interests
 {
-    
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
+    [Inject] AppState AppState { get; set; }
     private string color { get; set; } 
     private string AnimationEntrance = "animate__animated animate__bounceInDown animate__delay-1s";
     private string AnimationExit = "animate__animated animate__bounceOutUp";
     protected override async void OnInitialized()
     {
-        if (theme == "dark")
+        if (AppState.Theme == AppConstants.DarkTheme)
         {
             color = "rgba(93, 255, 0, 1)";
         }
@@ -28,7 +27,7 @@ public partial class Interests
 
     protected override Task OnParametersSetAsync()
     {
-        color = theme == "dark" ? "rgba(93, 255, 0, 1)" : "black";
+        color = AppState.Theme == AppConstants.DarkTheme ? "rgba(93, 255, 0, 1)" : "black";
         return base.OnParametersSetAsync();
     }
   

@@ -3,7 +3,7 @@ using BlazorWebCV.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Certifications;
 
 public partial class Certifications
 {

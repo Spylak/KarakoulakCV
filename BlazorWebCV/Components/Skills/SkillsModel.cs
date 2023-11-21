@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 
-namespace BlazorWebCV.Models;
+namespace BlazorWebCV.Components.Skills;
 
 public class SkillsModel
 {

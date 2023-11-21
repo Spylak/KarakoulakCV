@@ -1,6 +1,6 @@
-namespace BlazorWebCV.Models;
+namespace BlazorWebCV.Shared.RightNavMenu;
 
-public class LeftNavMenuItem
+public class RightNavMenuItem
 {
     public  string Text { get; set; }
     public  string Section { get; set; }

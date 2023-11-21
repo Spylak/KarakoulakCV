@@ -1,0 +1,8 @@
+<MudSpacer/>
+<MudList Clickable="true" Class="my-2">
+    @foreach (var item in NavMenuItems.SkipLast(1))
+    {
+        <MudListItem Text="@item.Text" OnClick="@(() => OnClick(item.Section))" Icon="@item.Icon" IconColor="MudBlazor.Color.Default"/>
+    }
+</MudList>
+<MudSpacer/>

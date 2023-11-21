@@ -1,10 +1,15 @@
 using System.Collections.Generic;
-using BlazorWebCV.Models;
 
-namespace BlazorWebCV.State;
+namespace BlazorWebCV.Components.Chat;
 
-public class ChatMessagesContainer
+public class ChatState
 {
+    public bool IsChatOpen
+    {
+        get { return Visibility == "hidden"; }
+        set { Visibility = value ? "hidden" : "visible"; }
+    }
+    public string Visibility { get; set; } = "hidden";
     public List<ChatMessage> ChatMessages { get; set; } = new List<ChatMessage>()
     {
         new ChatMessage()

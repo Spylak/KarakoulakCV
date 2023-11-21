@@ -1,0 +1,46 @@
+@using BlazorWebCV.Models
+@using BlazorWebCV.State
+@inject IJSRuntime _jsRuntime
+
+<MudAvatar Class="mudAvatarLeftMenu">
+    <MudImage Src="images/avatarme.png"></MudImage>
+</MudAvatar>
+<MudText Typo="TitleTypo" Style="text-align: center">.NET Software Developer</MudText>
+<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: #8900ab">Email: </strong>spylak@hotmail.com</MudText>
+<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: #8900ab">Address: </strong>Greece</MudText>
+<div style="display: flex;justify-content: center">
+    <MudTooltip Text="GitHub">
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Class="mudIconClass" Color="AppState.ButtonColor" Size="Size.Large"></MudIconButton>
+    </MudTooltip>
+    <MudTooltip Text="LinkedIn">
+        <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Class="mudIconClass" Color="AppState.ButtonColor" Size="Size.Large"></MudIconButton>
+    </MudTooltip>
+    <MudTooltip Text="Instagram">
+        <MudIconButton Icon="@Icons.Custom.Brands.Instagram" Class="mudIconClass" Color="AppState.ButtonColor" Size="Size.Large"></MudIconButton>
+    </MudTooltip>
+    <MudTooltip Text="Mail">
+        <MudIconButton Icon="@Icons.Material.Filled.Mail" Class="mudIconClass" Color="AppState.ButtonColor" Size="Size.Large"></MudIconButton>
+    </MudTooltip>
+</div>
+<MudSpacer/>
+<MudText Style="color : dodgerblue;cursor: pointer"
+         @onclick="@(() => OnClick(NavMenuItems.Last().Section))"
+         Typo="Typo.body2"
+         Class="px-4">
+    @NavMenuItems.Last().Text
+</MudText>
+<style>
+    .mudAvatarLeftMenu{
+    margin: auto;
+        height: @MudAvatarDimensions !important;
+        width: @MudAvatarDimensions !important;
+    }
+    .mudIconClass{
+    margin: 15px;
+    background-color:  @(AppState.Theme == AppConstants.DarkTheme ? "inherit" : "lightgray");
+    }
+</style>
+
+@code {
+
+}

@@ -1,33 +1,19 @@
-@using BlazorWebCV.Models
-@inject IJSRuntime _jsRuntime
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BlazorWebCV.Models;
+using BlazorWebCV.State;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using MudBlazor;
 
-<MudText Typo="Typo.h6" Class="px-4" Style="text-align: center">Navigation</MudText>
-<MudDivider Style="flex-grow: 0"></MudDivider>
-<MudList Clickable="true" Class="my-2">
-    @foreach (var item in NavMenuItems.SkipLast(1))
-    {
-        <MudListItem Text="@item.Text" OnClick="@(() => OnClick(item.Section))" Icon="@item.Icon" IconColor="MudBlazor.Color.Default"/>
-    }
-    
-</MudList>
-<MudSpacer></MudSpacer>
-<MudText Style="color : dodgerblue;cursor: pointer"
-         @onclick="@(() => OnClick(NavMenuItems.Last().Section))"
-         Typo="Typo.body2"
-         Class="px-4">@NavMenuItems.Last().Text</MudText>
+namespace BlazorWebCV.Shared.RightNavMenu;
 
-@code {
-
-    [CascadingParameter(Name = "theme")]
-    protected string Theme { get; set; }
-
-    private string Color { get; set; }
-    protected override void OnParametersSet()
-    {
-        Color = Theme == "dark" ? "dimgray" : "#bfbbbb";
-        base.OnParametersSet();
-    }
-    private List<LeftNavMenuItem> NavMenuItems { get; set; } 
+public partial class RightNavMenu
+{
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+    [Inject] private AppState AppState { get; set; }
+    private List<RightNavMenuItem> NavMenuItems { get; set; } 
     protected override void OnInitialized()
     {
         NavMenuItems = new ()
@@ -107,6 +93,6 @@
 
     private async Task OnClick(string section)
     {
-        await _jsRuntime.InvokeVoidAsync("blazorExtensions.ScrollToElementId", section);
+        await JsRuntime.InvokeVoidAsync("blazorExtensions.ScrollToElementId", section);
     }
 }

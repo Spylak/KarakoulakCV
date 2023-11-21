@@ -3,12 +3,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlazorWebCV.Models;
+using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Chat;
 
-public partial class Chat
+public partial class ChatMessages
 {
     [Parameter] public List<ChatMessage> Messages { get; set; }
     [Parameter] public EventCallback<List<ChatMessage>> MessagesChanged { get; set; }
