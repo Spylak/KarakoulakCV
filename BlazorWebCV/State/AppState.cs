@@ -8,6 +8,8 @@ public class AppState
     public string Theme { get; private set; } = AppConstants.DarkTheme;
     public bool LeftNavMenuOpened { get; set; } = true;
     public bool RightNavMenuOpened { get; set; } = false;
+    public int ActiveTabPanelIndex { get; set; } = 0;
+    public string BackgroundColor { get; set; } = "black";
     public Color ButtonColor { get; set; } = Color.Inherit;
     private static readonly MudTheme DarkTheme = new MudTheme()
     {
@@ -32,7 +34,8 @@ public class AppState
             TableLines = "rgba(93, 255, 0, 1)",
             LinesDefault = "rgba(93, 255, 0, 1)",
             LinesInputs = "rgba(93, 255, 0, 0.4)",
-            TextDisabled = "rgba(255,255,255, 0.2)"
+            TextDisabled = "rgba(255,255,255, 0.2)",
+            Primary = "#272c34"
         }
     };
     
@@ -41,11 +44,15 @@ public class AppState
         Palette = new Palette()
         {
             Black = "#272c34",
-            AppbarBackground = "#32333d"
+            AppbarBackground = "#32333d",
+            Primary = "#272c34"
         }
     };
     
     public MudTheme CurrentTheme { get; set; } = DarkTheme;
+    public event Action? ThemeChanged;
+
+    public void NotifyThemeChanged() => ThemeChanged?.Invoke();
 
     public void ToggleLeftNavMenu()
     {
@@ -64,11 +71,15 @@ public class AppState
             case AppConstants.DarkTheme:
                 Theme = AppConstants.LightTheme;
                 CurrentTheme = DefaultTheme;
+                BackgroundColor = "#bfbbbb";
                 break;
             case AppConstants.LightTheme:
                 Theme = AppConstants.DarkTheme;
                 CurrentTheme = DarkTheme;
+                BackgroundColor = "black";
                 break;
         }
+        ButtonColor = ButtonColor == Color.Dark ? Color.Inherit : Color.Dark;
+        NotifyThemeChanged();
     }
 }

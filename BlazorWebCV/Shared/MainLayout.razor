@@ -1,4 +1,3 @@
-
 @inherits LayoutComponentBase
 
 <MudThemeProvider Theme="AppState.CurrentTheme"/>
@@ -8,18 +7,31 @@
     <MudLayout>
         <MudAppBar Elevation="1" Dense="false">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => AppState.ToggleLeftNavMenu())"/>
-            <MudFab Size="Size.Small" OnClick="@((e) => { AppState.ToggleTheme(); AppState.ButtonColor = AppState.ButtonColor == Color.Dark ? Color.Inherit : Color.Dark;})"
+            <MudFab Size="Size.Small" OnClick="@((e) => AppState.ToggleTheme())"
                     Icon="@Icons.Material.Filled.WbSunny"
                     IconColor="AppState.ButtonColor"
                     Style="background-color: rgb(128,128,128)">
             </MudFab>
             <MudSpacer/>
-            <MudIconButton Icon="@(AppState.RightNavMenuOpened ? Icons.Material.Filled.PinInvoke : Icons.Material.Filled.PinEnd)"
-                           Color="Color.Inherit"
-                           Edge="Edge.Start"
-                           OnClick="@((e) => AppState.ToggleRightNavMenu())"/>
+            <MudTabs Color="AppState.ButtonColor"
+                     ActivePanelIndex="AppState.ActiveTabPanelIndex"
+                      MinimumTabWidth="15"
+                     ActivePanelIndexChanged="(i) => TabChoiceChanged(i)">
+                <MudTabPanel Icon="@Icons.Material.Filled.Home"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Dns"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Task"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Interests"/>
+            </MudTabs>
+            <MudSpacer/>
+            @if (AppState.ActiveTabPanelIndex.Equals(0))
+            {
+                <MudIconButton Icon="@(AppState.RightNavMenuOpened ? Icons.Material.Filled.PinInvoke : Icons.Material.Filled.PinEnd)"
+                               Color="Color.Inherit"
+                               Edge="Edge.Start"
+                               OnClick="@((e) => AppState.ToggleRightNavMenu())"/>
+            }
         </MudAppBar>
-        
+
         <MudDrawer @bind-Open="AppState.LeftNavMenuOpened"
                    Width="@RightDrawerWidth"
                    ClipMode="DrawerClipMode.Always"
@@ -27,16 +39,17 @@
                    Elevation="2">
             <LeftNavMenu CurrentBreakPoint="CurrentBreakPoint"/>
         </MudDrawer>
-        
-        <MudDrawer @bind-Open="AppState.RightNavMenuOpened"
-                   ClipMode="DrawerClipMode.Always"
-                   Fixed="true"
-                   OpenMiniOnHover="true"
-                   Anchor="Anchor.Right"
-                   Variant="DrawerVariant.Mini" Elevation="2">
-            <RightNavMenu/>
-        </MudDrawer>
-        
+        @if (AppState.ActiveTabPanelIndex.Equals(0))
+        {
+            <MudDrawer @bind-Open="AppState.RightNavMenuOpened"
+                       ClipMode="DrawerClipMode.Always"
+                       Fixed="true"
+                       OpenMiniOnHover="false"
+                       Anchor="Anchor.Right"
+                       Variant="DrawerVariant.Mini" Elevation="2">
+                <RightNavMenu/>
+            </MudDrawer>
+        }
         <MudMainContent Style="overflow: hidden">
             <Chat/>
             @Body
@@ -54,9 +67,11 @@
     .mud-toolbar{
         padding-right: 0;
     }
+    
     .mud-icon-button-label{
         color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
     }
+    
     .mud-input>input.mud-input-root{
         color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
     }
@@ -65,4 +80,18 @@
         border-width: 2px;
         border-color: @(AppState.ButtonColor == Color.Dark ? "white" : "greenyellow");
     }
+    
+    .mud-tabs-toolbar {
+        position: relative;
+        background-color: transparent;
+    }
+    
+    .mud-tab.mud-tab-active {
+        color: inherit;
+    }
+    
+    .appBackgroundColor {
+        background-color: @AppState.BackgroundColor;
+    }
+    
 </style>

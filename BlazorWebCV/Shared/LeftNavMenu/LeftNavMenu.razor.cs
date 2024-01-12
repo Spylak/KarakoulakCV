@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorWebCV.Enums;
 using BlazorWebCV.Models;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
@@ -9,7 +10,7 @@ using MudBlazor;
 
 namespace BlazorWebCV.Shared.LeftNavMenu;
 
-public partial class LeftNavMenu
+public partial class LeftNavMenu : IAsyncDisposable
 {
     [Parameter]
     public Breakpoint CurrentBreakPoint { get; set; }
@@ -30,7 +31,15 @@ public partial class LeftNavMenu
             TitleTypo = Typo.h3;
         }
     }
-
+    
+    private async void OnNotify()
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+    
     protected override void OnInitialized()
     {
         NavMenuItems = new()
@@ -43,10 +52,33 @@ public partial class LeftNavMenu
                 Icon = ""
             },
         };
+        AppState.ThemeChanged += OnNotify;
+        base.OnInitialized();
     }
 
     private async Task OnClick(string section)
     {
         await _jsRuntime.InvokeVoidAsync("blazorExtensions.ScrollToElementId", section);
+    }
+
+    private async Task OnSocialClick(SocialMedia socialMedia)
+    {
+        switch (socialMedia)
+        {
+            case SocialMedia.Github:
+                await _jsRuntime.InvokeVoidAsync("GlobalFunctions.NewTab", "https://github.com/Spylak");
+                break;
+            case SocialMedia.LinkedIn:
+                await _jsRuntime.InvokeVoidAsync("GlobalFunctions.NewTab", "https://www.linkedin.com/in/spyridon-karakoulak-4267201b9/");
+                break;
+            case SocialMedia.Instagram:
+                await _jsRuntime.InvokeVoidAsync("GlobalFunctions.NewTab", "https://www.instagram.com/karakouluck/");
+                break;
+        }
+    }
+    
+    public async ValueTask DisposeAsync()
+    {
+        AppState.ThemeChanged -= OnNotify;
     }
 }

@@ -73,7 +73,7 @@ public static class ProjectHelper
           "images/Projects/karakoulakPasta.webp",
           "SSR Astro.js for the front end, Strapi CMS for the backend and Postgresql as a Database docker Containers.",
           "This application is coded in Astro.js and used node server side rendering, deployed as a docker container in a Linux VPS on Linode, the CMS used was strapi with a Postgresql database all of them containerized and communicate with each other through docker bridge network and exposed with Nginx Server as a reverse proxy.",
-          "",
+          "https://github.com/Spylak/KarakoulakTavern",
           1));
         return projects;
     }

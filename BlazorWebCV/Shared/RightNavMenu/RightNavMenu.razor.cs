@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BlazorWebCV.Models;
+using BlazorWebCV.Services;
+using BlazorWebCV.Services.IServices;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -13,75 +16,50 @@ public partial class RightNavMenu
 {
     [Inject] private IJSRuntime JsRuntime { get; set; }
     [Inject] private AppState AppState { get; set; }
-    private List<RightNavMenuItem> NavMenuItems { get; set; } 
+    [Inject] private IGlobalFunctionService GlobalFunctionService { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
+    private List<RightNavMenuItem> NavMenuItems { get; set; }
+
     protected override void OnInitialized()
     {
-        NavMenuItems = new ()
+        NavMenuItems = new()
         {
-            new ()
+            new()
             {
                 Text = "Profile",
                 Section = SectionModel.Profile,
                 Classes = "navMenuActive",
                 Icon = Icons.Material.Filled.AssignmentInd
             },
-            new ()
+            new()
             {
                 Text = "Experience",
                 Section = SectionModel.Experience,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Work
             },
-            new ()
-            {
-                Text = "Projects",
-                Section = SectionModel.Projects,
-                Classes = "navMenuInActive",
-                Icon = Icons.Material.Filled.Dns
-            },
-            new ()
+            new()
             {
                 Text = "Toolkit",
                 Section = SectionModel.Tools,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.HomeRepairService
             },
-            new ()
+            new()
             {
                 Text = "Skills",
                 Section = SectionModel.Skills,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Extension
             },
-            new ()
-            {
-                Text = "Certifications",
-                Section = SectionModel.Certifications,
-                Classes = "navMenuInActive",
-                Icon = Icons.Material.Filled.Task
-            },
-            new ()
-            {
-                Text = "Interests",
-                Section = SectionModel.Interests,
-                Classes = "navMenuInActive",
-                Icon = Icons.Material.Filled.Interests
-            },
-            new ()
+            new()
             {
                 Text = "In Progress",
                 Section = SectionModel.InProgress,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Downloading
             },
-            new ()
-            {
-                Text = "Contact",
-                Section = SectionModel.Contact,
-                Classes = "navMenuInActive",
-                Icon = Icons.Material.Filled.PermPhoneMsg
-            },
-            new ()
+            new()
             {
                 Text = $"Copyright @{DateTime.Now.Year}",
                 Section = SectionModel.Copyright,
@@ -91,7 +69,7 @@ public partial class RightNavMenu
         };
     }
 
-    private async Task OnClick(string section)
+    private async Task ScrollTo(string section)
     {
         await JsRuntime.InvokeVoidAsync("blazorExtensions.ScrollToElementId", section);
     }

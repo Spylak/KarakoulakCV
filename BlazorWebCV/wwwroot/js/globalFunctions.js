@@ -42,7 +42,10 @@ window.GlobalFunctions ={
     },
     Home : function (obj){
         window.location.href=obj;
-    }
+    },
+    NewTab : function (url){
+        window.open(url, '_blank');
+    },
 }
 
 function isEmpty(str) {

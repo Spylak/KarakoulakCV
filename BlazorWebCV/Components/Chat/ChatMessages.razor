@@ -29,7 +29,7 @@
                     <div style="display: flex">
                         <MudIcon Icon="@Icons.Filled.Info"
                                  Style="margin-top: 25px;cursor: pointer"
-                                 Title="Help." @onclick="Help"/>
+                                 Title="Help" @onclick="Help"/>
                         <MudTextField @bind-Value="input.Value"
                                       Placeholder="Type here..."
                                       Style="margin-left: 10px"/>
@@ -37,10 +37,10 @@
                 </MudItem>
                 <MudItem xs="2" Style="padding-left: 0">
                     <MudFab Icon="@Icons.Filled.Send"
+                            Style="@($"color: {ChatIconColor} !important; margin-top: 15px;")" 
                             IconColor="Color.Tertiary"
                             Size="Size.Small"
-                            ButtonType="ButtonType.Submit"
-                            Style="margin-top: 15px"/>
+                            ButtonType="ButtonType.Submit"/>
                 </MudItem>
             </MudGrid>
         </EditForm>

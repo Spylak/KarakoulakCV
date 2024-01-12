@@ -1,0 +1,37 @@
+@page "/Interests"
+@using BlazorWebCV.State
+@using BlazorWebCV.Models
+@inject AppState AppState
+@implements IAsyncDisposable
+
+<MudGrid>
+    <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Interests } })" xs="12" style=@($"background-color: {AppState.BackgroundColor};padding:0")>
+        <MudDivider Style="margin:0;"/>
+        <h3 style="text-align: center;margin: 20px">Interests</h3>
+        <MudDivider Style="margin:0;"/>
+    </MudItem>
+    <MudItem xs="12">
+        <Interests/>
+    </MudItem>
+</MudGrid>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AppState.ThemeChanged += OnNotify;
+        base.OnInitialized();
+    }
+
+    private async void OnNotify()
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+    
+    public async ValueTask DisposeAsync()
+    {
+        AppState.ThemeChanged -= OnNotify;
+    }
+}
