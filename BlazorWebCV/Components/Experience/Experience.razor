@@ -1,6 +1,6 @@
 @using BlazorWebCV.Helpers
 <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
-    <MudTimeline>
+    <MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Left">
         @foreach (var item in ExperienceModel.Value.Experience.Values.OrderBy(i => i["order"]))
         {
             var color = Color.Warning;

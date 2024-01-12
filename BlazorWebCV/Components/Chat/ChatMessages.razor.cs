@@ -3,14 +3,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlazorWebCV.Models;
+using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Chat;
 
-public partial class Chat
+public partial class ChatMessages
 {
     [Parameter] public List<ChatMessage> Messages { get; set; }
+    [Parameter] public string ChatIconColor { get; set; }
     [Parameter] public EventCallback<List<ChatMessage>> MessagesChanged { get; set; }
     private class Input
     {
@@ -82,7 +84,7 @@ public partial class Chat
             {
                 Messages.Add(new ChatMessage()
                 {
-                    Message = $"robot&&I don't recognize this command. Available commands: {commands}",
+                    Message = $"robot&&I don't recognize this command. Type help for available commands.",
                     Order = Messages.Count+1
                 });
             }

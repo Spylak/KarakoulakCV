@@ -1,0 +1,37 @@
+@page "/Certifications"
+@using BlazorWebCV.Models
+@using BlazorWebCV.State
+@inject AppState AppState
+@implements IAsyncDisposable
+
+<MudGrid>
+    <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Certifications } })" xs="12" style=@($"background-color: {AppState.BackgroundColor};padding:0")>
+        <MudDivider Style="margin:0;"/>
+        <h3 style="text-align: center;margin: 20px">Certifications</h3>
+        <MudDivider Style="margin:0;"/>
+    </MudItem>
+    <MudItem xs="12">
+        <Certifications/>
+    </MudItem>
+</MudGrid>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AppState.ThemeChanged += OnNotify;
+        base.OnInitialized();
+    }
+
+    private async void OnNotify()
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+    
+    public async ValueTask DisposeAsync()
+    {
+        AppState.ThemeChanged -= OnNotify;
+    }
+}

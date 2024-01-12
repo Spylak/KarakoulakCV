@@ -1,172 +1,97 @@
-@using MudBlazor.Services
-@using ResizeOptions = MudBlazor.Services.ResizeOptions
-@using BlazorWebCV.State
 @inherits LayoutComponentBase
-@inject NavigationManager navMan
-@inject IBreakpointService BreakpointListener
-<MudThemeProvider Theme="currentTheme"/>
+
+<MudThemeProvider Theme="AppState.CurrentTheme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 <CascadingValue Value="CurrentBreakPoint" Name="Breakpoint">
     <MudLayout>
-        <MudAppBar Elevation="1">
-            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
-            <MudFab Size="Size.Small" OnClick="@((e) => DarkMode())" Icon="@Icons.Material.Filled.WbSunny" IconColor="color" Style="background-color: gray"></MudFab>
+        <MudAppBar Elevation="1" Dense="false">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => AppState.ToggleLeftNavMenu())"/>
+            <MudFab Size="Size.Small" OnClick="@((e) => AppState.ToggleTheme())"
+                    Icon="@Icons.Material.Filled.WbSunny"
+                    IconColor="AppState.ButtonColor"
+                    Style="background-color: rgb(128,128,128)">
+            </MudFab>
             <MudSpacer/>
-            <b style="cursor: pointer;" @onclick="Click">
-                <MudText Typo="@(CurrentBreakPoint.Equals(Breakpoint.Xs) ? Typo.h6 : Typo.h4)">Karakoulak Spyridon</MudText>
-            </b>
+            <MudTabs Color="AppState.ButtonColor"
+                     ActivePanelIndex="AppState.ActiveTabPanelIndex"
+                      MinimumTabWidth="15"
+                     ActivePanelIndexChanged="(i) => TabChoiceChanged(i)">
+                <MudTabPanel Icon="@Icons.Material.Filled.Home"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Dns"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Task"/>
+                <MudTabPanel Icon="@Icons.Material.Filled.Interests"/>
+            </MudTabs>
             <MudSpacer/>
-            <MudTooltip Text="Hello 🙂!">
-                <MudAvatar Image="/images/AvatarReal.jpg"/>
-            </MudTooltip>
+            @if (AppState.ActiveTabPanelIndex.Equals(0))
+            {
+                <MudIconButton Icon="@(AppState.RightNavMenuOpened ? Icons.Material.Filled.PinInvoke : Icons.Material.Filled.PinEnd)"
+                               Color="Color.Inherit"
+                               Edge="Edge.Start"
+                               OnClick="@((e) => AppState.ToggleRightNavMenu())"/>
+            }
         </MudAppBar>
-        <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Responsive" Elevation="2">
-            <CascadingValue Value="@theme" Name="theme">
-                <NavMenuLeft/>
-            </CascadingValue>
+
+        <MudDrawer @bind-Open="AppState.LeftNavMenuOpened"
+                   Width="@RightDrawerWidth"
+                   ClipMode="DrawerClipMode.Always"
+                   Variant="DrawerVariant.Responsive"
+                   Elevation="2">
+            <LeftNavMenu CurrentBreakPoint="CurrentBreakPoint"/>
         </MudDrawer>
+        @if (AppState.ActiveTabPanelIndex.Equals(0))
+        {
+            <MudDrawer @bind-Open="AppState.RightNavMenuOpened"
+                       ClipMode="DrawerClipMode.Always"
+                       Fixed="true"
+                       OpenMiniOnHover="false"
+                       Anchor="Anchor.Right"
+                       Variant="DrawerVariant.Mini" Elevation="2">
+                <RightNavMenu/>
+            </MudDrawer>
+        }
         <MudMainContent Style="overflow: hidden">
-                <MudCard Elevation="5" Style="@($"position: fixed;bottom:10vh;z-index: 9999;height: 450px;width: 280px;visibility: {visibility}")">
-                    <MudCardHeader>
-                        <CardHeaderContent>
-                            <MudText Typo="Typo.h6">Chat</MudText>
-                        </CardHeaderContent>
-                        <CardHeaderActions>
-                            <MudIconButton Icon="@Icons.Material.Filled.Minimize"
-                                           @onclick="@(() => IsChatOpen = !IsChatOpen)"
-                                           Size="Size.Small"
-                                           Color="Color.Default"/>
-                        </CardHeaderActions>
-                    </MudCardHeader>
-                    <MudCardContent Style="padding: 0">
-                        <Chat @bind-Messages="ChatMessagesContainer.ChatMessages"></Chat>
-                    </MudCardContent>
-                </MudCard>
-            <MudAvatar Style="position: fixed;bottom:5vh;z-index: 9999;border: none;cursor: pointer"
-                       @onclick="@(() => IsChatOpen = !IsChatOpen)"
-                       Elevation="5"
-                       Color="Color.Dark"
-                       Size="Size.Large"
-                       Variant="Variant.Filled">
-                <MudIcon Color="MudBlazor.Color.Tertiary" Icon="@Icons.Material.Filled.Message" Size="Size.Large"/>
-            </MudAvatar>
-            <CascadingValue Value="@theme" Name="theme">
-                @Body
-            </CascadingValue>
+            <Chat/>
+            @Body
+            <MudScrollToTop
+                Style="position: fixed;bottom: 5vh;z-index: 999999"
+                UserAttributes="@(new Dictionary<string, object>() { { "title", "Scroll to top." } })">
+                <MudFab
+                    Color="Color.Primary" Icon="@Icons.Filled.ArrowCircleUp"/>
+            </MudScrollToTop>
         </MudMainContent>
     </MudLayout>
 </CascadingValue>
 
-@code{
-    [Inject] ChatMessagesContainer ChatMessagesContainer { get; set; }
-    protected override void OnInitialized()
-    {
-        currentTheme = darkTheme;
-        color = Color.Inherit;
+<style>
+    .mud-toolbar{
+        padding-right: 0;
     }
-
-    private bool IsChatOpen
-    {
-        get { return visibility == "hidden"; }
-        set { visibility = value ? "hidden" : "visible"; }
+    
+    .mud-icon-button-label{
+        color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
     }
-    private string visibility = "hidden";
-    private void Click()
-    {
-        navMan.NavigateTo("/");
+    
+    .mud-input>input.mud-input-root{
+        color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
     }
-
-    void DarkMode()
-    {
-        if (currentTheme == defaultTheme)
-        {
-            currentTheme = darkTheme;
-            theme = "dark";
-            color = Color.Inherit;
-            StateHasChanged();
-        }
-        else
-        {
-            currentTheme = defaultTheme;
-            theme = "light";
-            color = Color.Dark;
-            StateHasChanged();
-        }
+    
+    .mud-input.mud-input-outlined:focus-within .mud-input-outlined-border {
+        border-width: 2px;
+        border-color: @(AppState.ButtonColor == Color.Dark ? "white" : "greenyellow");
     }
-
-    Color color = Color.Success;
-    MudTheme currentTheme = new MudTheme();
-
-    MudTheme defaultTheme = new MudTheme()
-    {
-        Palette = new Palette()
-        {
-            Black = "#272c34",
-            AppbarBackground = "#32333d"
-        }
-    };
-
-    private string theme = "dark";
-
-    MudTheme darkTheme = new MudTheme()
-    {
-        Palette = new Palette()
-        {
-            Black = "#27272f",
-            Background = "#32333d",
-            BackgroundGrey = "#27272f",
-            Surface = "#373740",
-            DrawerBackground = "#27272f",
-            DrawerText = "rgba(93, 255, 0, 1)",
-            DrawerIcon = "rgba(93, 255, 0, 1)",
-            AppbarBackground = "#27272f",
-            AppbarText = "rgba(93, 255, 0, 1)",
-            TextPrimary = "rgba(93, 255, 0, 1)",
-            TextSecondary = "rgba(93, 255, 0, 1)",
-            ActionDefault = "#adadb1",
-            ActionDisabled = "rgba(255,255,255, 0.26)",
-            ActionDisabledBackground = "rgba(255,255,255, 0.12)",
-            Divider = "rgba(93, 255, 0, 0.4)",
-            DividerLight = "rgba(93, 255, 0, 0.4)",
-            TableLines = "rgba(93, 255, 0, 1)",
-            LinesDefault = "rgba(93, 255, 0, 1)",
-            LinesInputs = "rgba(93, 255, 0, 0.4)",
-            TextDisabled = "rgba(255,255,255, 0.2)"
-        }
-    };
-
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
+    
+    .mud-tabs-toolbar {
+        position: relative;
+        background-color: transparent;
     }
-
-    private Guid _subscriptionId;
-    private Breakpoint CurrentBreakPoint;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var subscriptionResult = await BreakpointListener.Subscribe((breakpoint) =>
-            {
-                CurrentBreakPoint = breakpoint;
-                InvokeAsync(StateHasChanged);
-            }, new ResizeOptions
-            {
-                ReportRate = 250,
-                NotifyOnBreakpointOnly = true,
-            });
-            CurrentBreakPoint = subscriptionResult.Breakpoint;
-            _subscriptionId = subscriptionResult.SubscriptionId;
-            StateHasChanged();
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
+    
+    .mud-tab.mud-tab-active {
+        color: inherit;
     }
-
-    public async ValueTask DisposeAsync() => await BreakpointListener.Unsubscribe(_subscriptionId);
-
-}
+    
+    .appBackgroundColor {
+        background-color: @AppState.BackgroundColor;
+    }
+    
+</style>

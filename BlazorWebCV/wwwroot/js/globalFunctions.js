@@ -36,6 +36,18 @@ window.blazorExtensions = {
     }
 };
 
+window.GlobalFunctions ={
+    Log : function (obj){
+        console.log(obj);
+    },
+    Home : function (obj){
+        window.location.href=obj;
+    },
+    NewTab : function (url){
+        window.open(url, '_blank');
+    },
+}
+
 function isEmpty(str) {
     return (!str || str.length === 0);
 }

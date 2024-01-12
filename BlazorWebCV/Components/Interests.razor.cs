@@ -1,40 +1,41 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorWebCV.Components;
-public partial class Interests
+public partial class Interests : IAsyncDisposable
 {
-    
-    [CascadingParameter(Name = "theme")]
-    protected string theme { get; set; }
-    private string color { get; set; } 
-    private string AnimationEntrance = "animate__animated animate__bounceInDown animate__delay-1s";
+    [Inject] AppState AppState { get; set; }
+    private string color { get; set; } = "black";
+    private string AnimationEntrance = "animate__animated animate__bounceInDown";
     private string AnimationExit = "animate__animated animate__bounceOutUp";
-    protected override async void OnInitialized()
+    
+    protected override async Task OnInitializedAsync()
     {
-        if (theme == "dark")
-        {
-            color = "rgba(93, 255, 0, 1)";
-        }
-        else
-        {
-            color = "black";
-        }
+        AppState.ThemeChanged += OnNotify;
         await Visible();
-
-        StateHasChanged();
-
+        base.OnInitialized();
     }
 
-    protected override Task OnParametersSetAsync()
+    private async void OnNotify()
     {
-        color = theme == "dark" ? "rgba(93, 255, 0, 1)" : "black";
-        return base.OnParametersSetAsync();
+        color = AppState.Theme == AppConstants.DarkTheme ? "rgba(93, 255, 0, 1)" : "black";
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
     }
-  
+    
+    public async ValueTask DisposeAsync()
+    {
+        AppState.ThemeChanged -= OnNotify;
+    }
+    
     private string gridLoad ="hidden";
     public async Task Visible()
     {
+        OnNotify();
         await Task.Delay(1000);
         gridLoad = "visible";
     }

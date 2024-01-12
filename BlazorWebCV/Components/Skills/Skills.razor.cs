@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 
-namespace BlazorWebCV.Components;
+namespace BlazorWebCV.Components.Skills;
 
 public partial class Skills
 {

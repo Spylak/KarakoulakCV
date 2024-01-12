@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorWebCV.Models;
+namespace BlazorWebCV.Components.Tools;
 
 public class ToolsModel
 {

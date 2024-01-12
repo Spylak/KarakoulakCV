@@ -1,4 +1,4 @@
-namespace BlazorWebCV.Models;
+namespace BlazorWebCV.Components.Chat;
 
 public class ChatMessage
 {

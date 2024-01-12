@@ -1,5 +1,6 @@
 @inject IJSRuntime JsRuntime
 @using System.ComponentModel.DataAnnotations
+@using BlazorWebCV.State
 @inject NavigationManager _navigationManager
 
 <div class="row">
@@ -43,7 +44,7 @@
         </EditForm>
     </div>
 </div>
-<MudOverlay @bind-Visible="isVisible" DarkBackground="true" ZIndex="9999" AutoClose="true" Style="text-align: center">
+<MudOverlay @bind-Visible="IsGoogleFormVisible" DarkBackground="true" ZIndex="9999" AutoClose="true" Style="text-align: center">
     <iframe style="height:90vh;width:90vw;background-color: darkgray" 
             src="https://docs.google.com/forms/d/e/1FAIpQLSdLSfIU9dKcVsb1SNUKX6_Fysz3hVYCXq3DhYDyd14jQv52OQ/viewform?embedded=true"
             frameborder="0" marginheight="0" marginwidth="0">
@@ -52,13 +53,16 @@
 </MudOverlay>
 
 @code {
+    [Inject] AppState AppState { get; set; }
     private EmailModel Model = new EmailModel();
+    
     protected void SendLocalEmail()
     {
         _navigationManager.NavigateTo($"mailto:spylak@hotmail.com?subject={Model.Subject}&body={Model.Body}");
         JsRuntime.InvokeAsync<object>("blazorExtensions.SendLocalEmail",
             new object[] { "spylak@hotmail.com", Model.Subject, Model.Body });
     }
+    
     public class EmailModel
     {
 
@@ -68,11 +72,12 @@
         [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
     }
-    private bool isVisible;
+    
+    private bool IsGoogleFormVisible { get; set; } = false;
 
     public void OpenOverlay()
     {
-        isVisible = true;
+        IsGoogleFormVisible = true;
         StateHasChanged();
     }
     
