@@ -9,25 +9,11 @@
 else
 {
     <MudGrid UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Profile } })">
-        <MudItem Style="height: 98vh" xs="12">
+        <MudItem xs="12">
             <MudCard>
-                <MudCardContent>
-                    <MudGrid >
-                        <MudItem xs="12" Style="padding:0;">
-                            @if (AppState.Theme == AppConstants.LightTheme)
-                            {
-                                <MudImage Src="images/robot.webp" Style="@ImageStyle"/>
-                            }
-                            else
-                            {
-                                <MudImage Src="images/me.webp" Style="@ImageStyle"/>
-                            }
-                        </MudItem>
-                    </MudGrid>
-                </MudCardContent>
                 <MudDivider Style="margin:0;"/>
                 <MudCardContent @onclick="OnClick" Class="appBackgroundColor" Style=";cursor: pointer;">
-                    <MudCarousel @bind-SelectedIndex="_count"  Style="height: 150px;text-align: center" ShowDelimiters="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
+                    <MudCarousel @bind-SelectedIndex="_count"  Style="height: 150px;text-align: center" ShowBullets="false" ShowArrows="false" AutoCycleTime="TimeSpan.FromSeconds(10)" TData="object">
                         <MudCarouselItem  Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
                             <MudText Style="margin-top: 1%;">
                                 My name is Karakoulak Spyridon.<br/>
@@ -64,7 +50,7 @@ else
                 <MudDivider Style="margin:0;"/>
             </MudCard>
         </MudItem>
-        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" Class="appBackgroundColor" style="padding:0;margin-top:5%">
+        <MudItem UserAttributes="@(new Dictionary<string, object>() { { "id", SectionModel.Experience } })" xs="12" Class="appBackgroundColor" Style="padding:0;">
             <MudDivider Style="margin:0;"/>
             <h3 style="text-align: center;margin: 20px">Experience</h3>
             <MudDivider Style="margin:0;"/>

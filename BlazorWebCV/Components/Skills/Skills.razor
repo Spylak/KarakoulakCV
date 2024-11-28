@@ -11,7 +11,8 @@
                         <MudItem xs="12" sm="6">
                             <MudGrid>
                                 <MudItem xs="3">
-                                    <MudAvatar Image="@(item.Value["image"])">
+                                    <MudAvatar>
+                                        <MudImage Src="@(item.Value["image"])"></MudImage>
                                     </MudAvatar>
                                 </MudItem>
                                 <MudItem xs="9">
@@ -38,7 +39,9 @@
                             <MudItem xs="12" sm="6">
                                 <MudGrid>
                                     <MudItem xs="4">
-                                        <MudAvatar Image="@(item.Value["image"])"/>
+                                        <MudAvatar>
+                                            <MudImage Src="@(item.Value["image"])"></MudImage>
+                                        </MudAvatar>
                                     </MudItem>
                                     <MudItem xs="8">
                                         <MudText Style="margin-top: 10px;">@(item.Value["text"])</MudText>
@@ -53,11 +56,10 @@
                         if (!item.Key.Equals("english") && !item.Key.Equals("greek"))
                         {
                             <MudItem xs="6">
-                                <MudListItem IconColor="Color.Default" Icon="@Icons.Material.Filled.Circle" Text="@(item.Value["text"])"></MudListItem>
+                                <MudListItem T="string" IconColor="Color.Default" Icon="@Icons.Material.Filled.Circle" Text="@(item.Value["text"])"></MudListItem>
                             </MudItem>
                         }
                     }
-
                 </MudGrid>
             </MudCardContent>
         </MudCard>

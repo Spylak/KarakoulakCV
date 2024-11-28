@@ -1,14 +1,12 @@
-@using BlazorWebCV.Models
-@using BlazorWebCV.State
 @using BlazorWebCV.Enums
 @inject IJSRuntime _jsRuntime
 
-<MudAvatar  Class="mudAvatarLeftMenu">
+<MudAvatar Class="mudAvatarLeftMenu">
     <MudImage Src="images/meIRL.png" Style="width: 80% !important;"></MudImage>
 </MudAvatar>
 <MudText Typo="TitleTypo" Style="text-align: center">.NET Software Developer</MudText>
-<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: #8900ab">Email: </strong>spylak@hotmail.com</MudText>
-<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: #8900ab">Address: </strong>Greece</MudText>
+<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: rgba(255, 168, 0, 1);">Email: </strong>spylak@hotmail.com</MudText>
+<MudText Typo="Typo.h6" Style="text-align: center"><strong style="color: rgba(255, 168, 0, 1);">Address: </strong>Greece</MudText>
 <div style="display: flex;justify-content: center">
     <MudTooltip Text="@SocialMedia.Github.ToString()">
         <MudIconButton OnClick="() => OnSocialClick(SocialMedia.Github)" Icon="@Icons.Custom.Brands.GitHub" Class="mudIconClass" Color="AppState.ButtonColor" Size="Size.Large"></MudIconButton>
@@ -30,8 +28,8 @@
 <style>
     .mudAvatarLeftMenu{
     margin: auto;
-        height: @MudAvatarDimensions !important;
-        width: @MudAvatarDimensions !important;
+        height: 50% !important;
+        width: 80% !important;
     }
     .mudIconClass{
     margin: 15px;

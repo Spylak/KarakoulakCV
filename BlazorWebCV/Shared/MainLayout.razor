@@ -1,29 +1,51 @@
+@using BlazorWebCV.Models
 @inherits LayoutComponentBase
 
-<MudThemeProvider Theme="AppState.CurrentTheme"/>
+<MudThemeProvider IsDarkMode="AppState.Theme == AppConstants.DarkTheme" 
+                  Theme="_theme"/>
 <MudDialogProvider/>
+<MudPopoverProvider />
 <MudSnackbarProvider/>
 <CascadingValue Value="CurrentBreakPoint" Name="Breakpoint">
     <MudLayout>
         <MudAppBar Elevation="1" Dense="false">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => AppState.ToggleLeftNavMenu())"/>
             <MudFab Size="Size.Small" OnClick="@((e) => AppState.ToggleTheme())"
-                    Icon="@Icons.Material.Filled.WbSunny"
+                    StartIcon="@Icons.Material.Filled.WbSunny"
                     IconColor="AppState.ButtonColor"
                     Style="background-color: rgb(128,128,128)">
             </MudFab>
             <MudSpacer/>
-            <MudTabs Color="AppState.ButtonColor"
-                     ActivePanelIndex="AppState.ActiveTabPanelIndex"
-                      MinimumTabWidth="15"
-                     ActivePanelIndexChanged="(i) => TabChoiceChanged(i)">
-                <MudTabPanel Icon="@Icons.Material.Filled.Home"/>
-                <MudTabPanel Icon="@Icons.Material.Filled.Dns"/>
-                <MudTabPanel Icon="@Icons.Material.Filled.Task"/>
-                <MudTabPanel Icon="@Icons.Material.Filled.Interests"/>
-            </MudTabs>
+                <MudTooltip Text="Home" Placement="Placement.Bottom">
+                    <MudIconButton
+                        OnClick="@(() => ListItemClicked(""))"
+                        Icon="@Icons.Material.Filled.Home"
+                        Style="@IsActive("")"
+                        Color="Color.Inherit"/>
+                </MudTooltip>
+                <MudTooltip Text="Projects" Placement="Placement.Bottom">
+                    <MudIconButton
+                        OnClick="@(() => ListItemClicked(SectionModel.Projects))"
+                        Icon="@Icons.Material.Filled.Dns"
+                        Style="@IsActive(SectionModel.Projects)"
+                        Color="Color.Inherit"/>
+                </MudTooltip>
+                <MudTooltip Text="Certifications" Placement="Placement.Bottom">
+                    <MudIconButton
+                        OnClick="@(() => ListItemClicked(SectionModel.Certifications))"
+                        Icon="@Icons.Material.Filled.Task"
+                        Style="@IsActive(SectionModel.Certifications)"
+                        Color="Color.Inherit"/>
+                </MudTooltip>
+                <MudTooltip Text="Interests" Placement="Placement.Bottom">
+                    <MudIconButton
+                        OnClick="@(() => ListItemClicked(SectionModel.Interests))"
+                        Icon="@Icons.Material.Filled.Interests"
+                        Style="@IsActive(SectionModel.Interests)"
+                        Color="Color.Inherit"/>
+                </MudTooltip>
             <MudSpacer/>
-            @if (AppState.ActiveTabPanelIndex.Equals(0))
+            @if (AppState.CurrentPage.Equals(""))
             {
                 <MudIconButton Icon="@(AppState.RightNavMenuOpened ? Icons.Material.Filled.PinInvoke : Icons.Material.Filled.PinEnd)"
                                Color="Color.Inherit"
@@ -33,13 +55,13 @@
         </MudAppBar>
 
         <MudDrawer @bind-Open="AppState.LeftNavMenuOpened"
-                   Width="@RightDrawerWidth"
                    ClipMode="DrawerClipMode.Always"
                    Variant="DrawerVariant.Responsive"
-                   Elevation="2">
+                   Elevation="2"
+                   Style="max-width: 100%">
             <LeftNavMenu CurrentBreakPoint="CurrentBreakPoint"/>
         </MudDrawer>
-        @if (AppState.ActiveTabPanelIndex.Equals(0))
+        @if (AppState.CurrentPage.Equals(""))
         {
             <MudDrawer @bind-Open="AppState.RightNavMenuOpened"
                        ClipMode="DrawerClipMode.Always"
@@ -57,7 +79,7 @@
                 Style="position: fixed;bottom: 5vh;z-index: 999999"
                 UserAttributes="@(new Dictionary<string, object>() { { "title", "Scroll to top." } })">
                 <MudFab
-                    Color="Color.Primary" Icon="@Icons.Filled.ArrowCircleUp"/>
+                    Color="Color.Primary" StartIcon="@Icons.Material.Filled.ArrowCircleUp"/>
             </MudScrollToTop>
         </MudMainContent>
     </MudLayout>
@@ -66,14 +88,6 @@
 <style>
     .mud-toolbar{
         padding-right: 0;
-    }
-    
-    .mud-icon-button-label{
-        color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
-    }
-    
-    .mud-input>input.mud-input-root{
-        color :@(AppState.ButtonColor == Color.Dark ? "white" : "currentColor");
     }
     
     .mud-input.mud-input-outlined:focus-within .mud-input-outlined-border {

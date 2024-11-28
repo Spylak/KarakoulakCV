@@ -15,19 +15,16 @@ public partial class LeftNavMenu : IAsyncDisposable
     [Parameter]
     public Breakpoint CurrentBreakPoint { get; set; }
     [Inject] AppState AppState { get; set; }
-    public string MudAvatarDimensions { get; set; }
     public Typo TitleTypo { get; set; }
     private List<LeftNavMenuItem> NavMenuItems { get; set; }
     protected override void OnParametersSet()
     {
         if (CurrentBreakPoint == Breakpoint.Sm || CurrentBreakPoint == Breakpoint.Xs)
         {
-            MudAvatarDimensions = "50vw";
             TitleTypo = Typo.h6;
         }
         else
         {
-            MudAvatarDimensions = "20vw";
             TitleTypo = Typo.h3;
         }
     }

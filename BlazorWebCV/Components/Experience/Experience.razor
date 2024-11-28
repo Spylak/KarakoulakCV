@@ -11,18 +11,22 @@
                 <ItemContent>
                     <MudCard>
                         <MudCardContent>
-                            <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
-                            @if(!string.IsNullOrWhiteSpace(item["organisation"]))
+                            <div style="display: flex">
+                                <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
+                                <MudSpacer/>
+                                <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["date"]</MudText>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(item["organisation"]))
                             {
                                 <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>
                             }
-                            @foreach(var text in item["description"].Split("\n"))
+                            @foreach (var text in item["description"].Split("\n"))
                             {
                                 <MudText>
-                                    @text                        
+                                    @text
                                 </MudText>
                                 <br/>
-                            }  
+                            }
                         </MudCardContent>
                     </MudCard>
                 </ItemContent>
@@ -39,7 +43,7 @@
             <ItemContent>
                 <MudCard>
                     <MudCardContent>
-                        <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"] @@ @item["date"]</MudText>
+                        <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"] @item["date"]</MudText>
                         @if(!string.IsNullOrWhiteSpace(item["organisation"]))
                         {
                             <MudText Style="color: #afa3a3" Typo="Typo.body2" GutterBottom="true">@item["organisation"]</MudText>

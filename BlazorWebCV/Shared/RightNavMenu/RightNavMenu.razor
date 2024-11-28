@@ -1,5 +1,5 @@
 <MudSpacer/>
-<MudList Clickable="true" Class="my-2">
+<MudList T="string" ReadOnly="true" Class="my-2" Style="cursor: pointer">
     @foreach (var item in NavMenuItems.SkipLast(1))
     {
         <MudListItem Text="@item.Text"
