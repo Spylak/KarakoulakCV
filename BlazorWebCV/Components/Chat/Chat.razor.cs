@@ -9,8 +9,8 @@ public partial class Chat : IAsyncDisposable
 {
     [Inject] ChatState ChatState { get; set; }
     [Inject] AppState AppState { get; set; }
-    private string ChatIconColor { get; set; } = "rgba(93,255,0,1)";
-    private string ChatMinimizeColor { get; set; } = "rgba(93,255,0,1)";
+    private string ChatIconColor { get; set; } = "#d3d3d3";
+    private string ChatMinimizeColor { get; set; } = "#d3d3d3";
 
     protected override void OnInitialized()
     {
@@ -20,8 +20,8 @@ public partial class Chat : IAsyncDisposable
 
     private async void OnNotify()
     {
-        ChatIconColor = AppState.Theme == AppConstants.DarkTheme ? "rgba(93, 255, 0, 1)" : "white";
-        ChatMinimizeColor = AppState.Theme == AppConstants.DarkTheme ? "rgba(93, 255, 0, 1)" : "black";
+        ChatIconColor = AppState.Theme == AppConstants.DarkTheme ? "#d3d3d3" : "white";
+        ChatMinimizeColor = AppState.Theme == AppConstants.DarkTheme ? "#d3d3d3" : "black";
         await InvokeAsync(() =>
         {
             StateHasChanged();

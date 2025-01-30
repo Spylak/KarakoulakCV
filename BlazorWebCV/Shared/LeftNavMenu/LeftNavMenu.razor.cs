@@ -14,9 +14,9 @@ public partial class LeftNavMenu : IAsyncDisposable
 {
     [Parameter]
     public Breakpoint CurrentBreakPoint { get; set; }
-    [Inject] AppState AppState { get; set; }
+    [Inject] AppState AppState { get; set; } = null!;
     public Typo TitleTypo { get; set; }
-    private List<LeftNavMenuItem> NavMenuItems { get; set; }
+    private List<LeftNavMenuItem> NavMenuItems { get; set; } = [];
     protected override void OnParametersSet()
     {
         if (CurrentBreakPoint == Breakpoint.Sm || CurrentBreakPoint == Breakpoint.Xs)
@@ -74,8 +74,9 @@ public partial class LeftNavMenu : IAsyncDisposable
         }
     }
     
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         AppState.ThemeChanged -= OnNotify;
+        return ValueTask.CompletedTask;
     }
 }

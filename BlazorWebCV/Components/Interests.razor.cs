@@ -20,7 +20,7 @@ public partial class Interests : IAsyncDisposable
 
     private async void OnNotify()
     {
-        color = AppState.Theme == AppConstants.DarkTheme ? "rgba(93, 255, 0, 1)" : "black";
+        color = AppState.Theme == AppConstants.DarkTheme ? "#d3d3d3" : "black";
         await InvokeAsync(() =>
         {
             StateHasChanged();

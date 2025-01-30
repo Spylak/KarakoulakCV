@@ -40,7 +40,7 @@ public partial class MainLayout : IDisposable
 
     private string IsActive(string page)
     {
-         return AppState.CurrentPage == page ? $"color: rgba(255, 168, 0, 1) !important": "";
+         return AppState.CurrentPage == page ? "background-color: gray": "";
     }
     
     public Guid Id { get; } = Guid.NewGuid();
@@ -78,20 +78,20 @@ public partial class MainLayout : IDisposable
             BackgroundGray = "#27272f",
             Surface = "#373740",
             DrawerBackground = "#27272f",
-            DrawerText = "rgba(93, 255, 0, 1)",
-            DrawerIcon = "rgba(93, 255, 0, 1)",
+            DrawerText = "#d3d3d3",
+            DrawerIcon = "#d3d3d3",
             AppbarBackground = "#27272f",
-            AppbarText = "rgba(93, 255, 0, 1)",
-            TextPrimary = "rgba(93, 255, 0, 1)",
-            TextSecondary = "rgba(93, 255, 0, 1)",
+            AppbarText = "#d3d3d3",
+            TextPrimary = "#d3d3d3",
+            TextSecondary = "#d3d3d3",
             ActionDefault = "#adadb1",
             ActionDisabled = "rgba(255,255,255, 0.26)",
             ActionDisabledBackground = "rgba(255,255,255, 0.12)",
-            Divider = "rgba(93, 255, 0, 0.4)",
-            DividerLight = "rgba(93, 255, 0, 0.4)",
-            TableLines = "rgba(93, 255, 0, 1)",
-            LinesDefault = "rgba(93, 255, 0, 1)",
-            LinesInputs = "rgba(93, 255, 0, 0.4)",
+            Divider = "#d3d3d3",
+            DividerLight = "#d3d3d3",
+            TableLines = "#d3d3d3",
+            LinesDefault = "#d3d3d3",
+            LinesInputs = "#d3d3d3",
             TextDisabled = "rgba(255,255,255, 0.2)",
             Primary = "#272c34"
         },

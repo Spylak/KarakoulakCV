@@ -1,20 +1,19 @@
 @using BlazorWebCV.Helpers
 <MudHidden Invert="true" Breakpoint="Breakpoint.SmAndUp">
     <MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Left">
-        @foreach (var item in ExperienceModel.Value.Experience.Values.OrderBy(i => i["order"]))
+        @foreach (var item in ExperienceModel.Value.Experience.Values.OrderByDescending(i => i["order"]))
         {
-            var color = Color.Warning;
-            <MudTimelineItem Color="color" Size="Size.Small" >
+            <MudTimelineItem Color="Color" Size="Size.Small" >
                 <ItemOpposite>
-                    <MudText Color="color" Typo="Typo.h5">@item["date"]</MudText>
+                    <MudText Color="Color" Typo="Typo.h5">@item["date"]</MudText>
                 </ItemOpposite>
                 <ItemContent>
                     <MudCard>
                         <MudCardContent>
                             <div style="display: flex">
-                                <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
+                                <MudText Color="Color" Typo="Typo.h6" GutterBottom="true">@item["title"]</MudText>
                                 <MudSpacer/>
-                                <MudText Color="color" Typo="Typo.h6" GutterBottom="true">@item["date"]</MudText>
+                                <MudText Color="Color" Typo="Typo.h6" GutterBottom="true">@item["date"]</MudText>
                             </div>
                             @if (!string.IsNullOrWhiteSpace(item["organisation"]))
                             {
@@ -58,6 +57,3 @@
     }
 </MudTimeline>
 </MudHidden>
-@code {
-    
-}
