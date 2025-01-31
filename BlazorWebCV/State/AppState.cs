@@ -12,9 +12,22 @@ public class AppState
     public string BackgroundColor { get; set; } = "black";
     public Color ButtonColor { get; set; } = Color.Inherit;
     
-    public event Action? ThemeChanged;
+    public event Action? ThemeChanged;    
+    public event Action? BreakpointChanged;
+    private Breakpoint _currentBreakpoint = Breakpoint.Xs;
+
+    public Breakpoint CurrentBreakPoint
+    {
+        get => _currentBreakpoint;
+        set
+        {
+            _currentBreakpoint = value;
+            NotifyBreakpointChanged();
+        }
+    }
 
     public void NotifyThemeChanged() => ThemeChanged?.Invoke();
+    public void NotifyBreakpointChanged() => BreakpointChanged?.Invoke();
 
     public void ToggleLeftNavMenu()
     {

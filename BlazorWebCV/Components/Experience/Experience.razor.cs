@@ -17,6 +17,7 @@ public partial class Experience : IAsyncDisposable
     protected override void OnInitialized()
     {
         AppState.ThemeChanged += OnNotify;
+        AppState.BreakpointChanged += OnNotify;
         base.OnInitialized();
     }
 
@@ -28,6 +29,7 @@ public partial class Experience : IAsyncDisposable
     
     public ValueTask DisposeAsync()
     {
+        AppState.BreakpointChanged -= OnNotify;
         AppState.ThemeChanged -= OnNotify;
         return ValueTask.CompletedTask;
     }

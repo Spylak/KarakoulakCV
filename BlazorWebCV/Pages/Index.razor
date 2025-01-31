@@ -36,14 +36,7 @@ else
                             </MudText>
                         </MudCarouselItem>
                         <MudCarouselItem Transition="Transition.Custom" CustomTransitionEnter="@AnimationEntrance" CustomTransitionExit="@AnimationExit">
-                            @if (AppState.Theme == AppConstants.LightTheme)
-                            {
-                                <img  style="height: 150px;width: 100%;" src="images/lightlogo.webp"/>
-                            }
-                            else
-                            {
-                                <img  style="height: 150px;width: 100%;" src="images/dev.webp"/>
-                            }
+                            <img  style="height: 150px;width: 100%;" src="images/lightlogo.webp"/>
                         </MudCarouselItem>
                     </MudCarousel>
                 </MudCardContent>

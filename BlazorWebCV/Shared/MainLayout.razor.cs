@@ -3,33 +3,57 @@ using System.Threading.Tasks;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using MudBlazor.Services;
 
 namespace BlazorWebCV.Shared;
 
-public partial class MainLayout : IDisposable
-{ 
-    [Inject] AppState AppState { get; set; }
-    [Inject] NavigationManager NavigationManager { get; set; }
-    [Inject] IBrowserViewportService BrowserViewportService { get; set; }
-    private Breakpoint CurrentBreakPoint { get; set; }
+public partial class MainLayout
+{
+    [Inject] private AppState AppState { get; set; } = null!;
+    [Inject] NavigationManager NavigationManager { get; set; } = null!;
+    [Inject] IBrowserViewportService BrowserViewportService { get; set; } = null!;
     protected override void OnInitialized()
     {
         AppState.ThemeChanged += OnNotify;
         AppState.CurrentPage = NavigationManager.Uri.Split("/")[^1];
         base.OnInitialized();
     }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await BrowserViewportService.SubscribeAsync(this, fireImmediately: true);
+        }
 
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        AppState.ThemeChanged -= OnNotify;
+        await BrowserViewportService.UnsubscribeAsync(this);
+    }
+
+    Guid IBrowserViewportObserver.Id { get; } = Guid.NewGuid();
+
+    ResizeOptions IBrowserViewportObserver.ResizeOptions { get; } = new()
+    {
+        ReportRate = 250,
+        NotifyOnBreakpointOnly = true
+    };
+
+    Task IBrowserViewportObserver.NotifyBrowserViewportChangeAsync(BrowserViewportEventArgs browserViewportEventArgs)
+    {
+        AppState.CurrentBreakPoint = browserViewportEventArgs.Breakpoint;
+        return InvokeAsync(StateHasChanged);
+    }
+    
     private async void OnNotify()
     {
         await InvokeAsync(() =>
         {
             StateHasChanged();
         });
-    }
-    
-    public void Dispose()
-    {
-        AppState.ThemeChanged -= OnNotify;
     }
     
     private void ListItemClicked(string navTo)

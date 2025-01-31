@@ -1,12 +1,14 @@
 @using BlazorWebCV.Models
 @inherits LayoutComponentBase
+@implements IBrowserViewportObserver
+@implements IAsyncDisposable
 
 <MudThemeProvider IsDarkMode="AppState.Theme == AppConstants.DarkTheme" 
                   Theme="_theme"/>
 <MudDialogProvider/>
 <MudPopoverProvider />
 <MudSnackbarProvider/>
-<CascadingValue Value="CurrentBreakPoint" Name="Breakpoint">
+<CascadingValue Value="AppState.CurrentBreakPoint" Name="Breakpoint">
     <MudLayout>
         <MudAppBar Elevation="1" Dense="false">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => AppState.ToggleLeftNavMenu())"/>
@@ -59,7 +61,7 @@
                    Variant="DrawerVariant.Responsive"
                    Elevation="2"
                    Style="max-width: 100%">
-            <LeftNavMenu CurrentBreakPoint="CurrentBreakPoint"/>
+            <LeftNavMenu CurrentBreakPoint="AppState.CurrentBreakPoint"/>
         </MudDrawer>
         @if (AppState.CurrentPage.Equals(""))
         {
