@@ -11,8 +11,8 @@ namespace BlazorWebCV.Components.Experience;
 
 public partial class Experience : IAsyncDisposable
 {
-    [Inject] private IOptions<ExperienceModel> ExperienceModel { get; set; }
-    [Inject] private AppState AppState { get; set; }
+    [Inject] private IOptions<ExperienceModel> ExperienceModel { get; set; } = default!;
+    [Inject] private AppState AppState { get; set; } = null!;
     private Color Color { get; set; } = Color.Default;
     protected override void OnInitialized()
     {

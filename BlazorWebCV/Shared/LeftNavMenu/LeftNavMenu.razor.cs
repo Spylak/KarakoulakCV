@@ -39,16 +39,16 @@ public partial class LeftNavMenu : IAsyncDisposable
     
     protected override void OnInitialized()
     {
-        NavMenuItems = new()
-        {
-            new()
+        NavMenuItems =
+        [
+            new LeftNavMenuItem
             {
                 Text = $"Copyright @{DateTime.Now.Year}",
                 Section = SectionModel.Copyright,
                 Classes = "navMenuInActive",
                 Icon = ""
-            },
-        };
+            }
+        ];
         AppState.ThemeChanged += OnNotify;
         base.OnInitialized();
     }

@@ -4,10 +4,10 @@ namespace BlazorWebCV.Helpers;
 
 public static class RandomHelper
 {
-    private static Random _R = new Random ();
-    public static T RandomEnumValue<T> () where T : Enum
+    private static readonly Random R = new Random ();
+    public static T? RandomEnumValue<T> () where T : Enum
     {
         var v = Enum.GetValues (typeof (T));
-        return (T) v.GetValue (_R.Next(v.Length));
+        return (T?) v.GetValue (R.Next(v.Length));
     }
 }

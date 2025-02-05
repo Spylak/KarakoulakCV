@@ -9,8 +9,8 @@ namespace BlazorWebCV.Pages;
 
 public partial class Index : IAsyncDisposable
 {
-    [Inject] private AppState AppState { get; set; }
-    [Inject] private IJSRuntime JsRuntime { get; set; }
+    [Inject] private AppState AppState { get; set; } = null!;
+    [Inject] private IJSRuntime JsRuntime { get; set; } = null!;
 
     [Parameter]
     [SupplyParameterFromQuery(Name = "scrollTo")]
@@ -18,18 +18,7 @@ public partial class Index : IAsyncDisposable
 
     [CascadingParameter(Name = "Breakpoint")]
     protected Breakpoint CurrentBreakpoint { get; set; }
-
-    private string ImageStyle { get; set; }
     private int _count = 0;
-
-    protected override async Task OnParametersSetAsync()
-    {
-        ImageStyle =
-            (CurrentBreakpoint.Equals(Breakpoint.Xs) ? "width: 100%;height: 50vh" : "width: 100%;height: 70vh;") +
-            "border-radius: 5px";
-        await base.OnParametersSetAsync();
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!string.IsNullOrWhiteSpace(ScrollTo))
@@ -41,10 +30,10 @@ public partial class Index : IAsyncDisposable
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    private string AnimationEntrance = "animate__animated animate__lightSpeedInLeft animate__delay-1s";
-    private string AnimationExit = "animate__animated animate__lightSpeedOutRight";
+    private const string AnimationEntrance = "animate__animated animate__lightSpeedInLeft animate__delay-1s";
+    private const string AnimationExit = "animate__animated animate__lightSpeedOutRight";
 
-    private async Task OnClick()
+    private void OnClick()
     {
         _count++;
         if (_count > 3)
@@ -53,32 +42,30 @@ public partial class Index : IAsyncDisposable
         }
     }
 
-    private bool matrix = true;
+    private bool _matrix = true;
     
     protected override async Task OnInitializedAsync()
     {
         AppState.ThemeChanged += OnNotify;
         await Matrix();
-        base.OnInitialized();
+        await base.OnInitializedAsync();
     }
 
     private async Task Matrix()
     {
         await Task.Delay(1000);
-        matrix = false;
+        _matrix = false;
         StateHasChanged();
     }
     
     private async void OnNotify()
     {
-        await InvokeAsync(() =>
-        {
-            StateHasChanged();
-        });
+        await InvokeAsync(StateHasChanged);
     }
     
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         AppState.ThemeChanged -= OnNotify;
+        return ValueTask.CompletedTask;
     }
 }

@@ -29,7 +29,7 @@
 
 .loading-progress circle {
     fill: none;
-    stroke: #bfbbbb;
+    stroke: dimgray;
     stroke-width: 0.6rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);

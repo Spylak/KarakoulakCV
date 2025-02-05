@@ -1,7 +1,7 @@
 @inject IJSRuntime JsRuntime
 @using System.ComponentModel.DataAnnotations
 @using BlazorWebCV.State
-@inject NavigationManager _navigationManager
+@inject NavigationManager NavigationManager
 
 <div class="row">
     <div style="max-width:400px;margin:auto;">
@@ -58,7 +58,7 @@
     
     protected void SendLocalEmail()
     {
-        _navigationManager.NavigateTo($"mailto:spylak@hotmail.com?subject={Model.Subject}&body={Model.Body}");
+        NavigationManager.NavigateTo($"mailto:spylak@hotmail.com?subject={Model.Subject}&body={Model.Body}");
         JsRuntime.InvokeAsync<object>("blazorExtensions.SendLocalEmail",
             new object[] { "spylak@hotmail.com", Model.Subject, Model.Body });
     }

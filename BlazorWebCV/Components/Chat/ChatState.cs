@@ -12,12 +12,8 @@ public class ChatState
     public string Visibility { get; set; } = "hidden";
     public List<ChatMessage> ChatMessages { get; set; } = new List<ChatMessage>()
     {
-        new ChatMessage()
-        {
-            Order = 0,
-            Message = "robot&&Greetings, welcome to my website!\n" +
+        new ChatMessage(0, "robot&&Greetings, welcome to my website!\n" +
                       "Feel free to take a look around.\n" +
-                      "Type Help for available commands."
-        }
+                      "Type Help for available commands.")
     };
 }

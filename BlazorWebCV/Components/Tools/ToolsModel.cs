@@ -4,5 +4,5 @@ namespace BlazorWebCV.Components.Tools;
 
 public class ToolsModel
 {
-    public Dictionary<string,Dictionary<string,string>> Tools { get; set; }
+    public Dictionary<string, Dictionary<string, string>> Tools { get; set; } = [];
 }

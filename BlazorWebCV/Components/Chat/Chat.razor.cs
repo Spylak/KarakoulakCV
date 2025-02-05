@@ -7,8 +7,8 @@ namespace BlazorWebCV.Components.Chat;
 
 public partial class Chat : IAsyncDisposable
 {
-    [Inject] ChatState ChatState { get; set; }
-    [Inject] AppState AppState { get; set; }
+    [Inject] ChatState ChatState { get; set; } = null!;
+    [Inject] private AppState AppState { get; set; } = null!;
     private string ChatIconColor { get; set; } = "#d3d3d3";
     private string ChatMinimizeColor { get; set; } = "#d3d3d3";
 
@@ -28,8 +28,9 @@ public partial class Chat : IAsyncDisposable
         });
     }
     
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         AppState.ThemeChanged -= OnNotify;
+        return ValueTask.CompletedTask;
     }
 }

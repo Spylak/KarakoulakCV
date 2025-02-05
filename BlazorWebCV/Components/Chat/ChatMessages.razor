@@ -1,3 +1,4 @@
+@using BlazorWebCV.State
 <div Style="padding:0">
     <div Style="height: 300px;overflow-y: scroll;overflow-x: hidden; display: flex;flex-direction: column-reverse;">
         @foreach (var msg in Messages
@@ -25,14 +26,14 @@
             }
     </div>
     <div>
-        <EditForm Model="@input" OnSubmit="Send">
+        <EditForm Model="@_input" OnSubmit="Send">
             <MudGrid Style="align-items: center">
                 <MudItem xs="10">
                     <div style="display: flex">
                         <MudIcon Icon="@Icons.Material.Filled.Info"
                                  Style="margin-top: 25px;cursor: pointer"
                                  Title="Help" @onclick="Help"/>
-                        <MudTextField @bind-Value="input.Value"
+                        <MudTextField @bind-Value="_input.Value"
                                       Placeholder="Type here..."
                                       Style="margin-left: 10px"/>
                     </div>
@@ -40,7 +41,7 @@
                 <MudItem xs="2" Style="padding-left: 0">
                     <MudFab StartIcon="@Icons.Material.Filled.Send"
                             Style="@($"color: {ChatIconColor} !important; margin-top: 15px;")" 
-                            IconColor="Color.Tertiary"
+                            IconColor="@AppState.ButtonColor"
                             Size="Size.Small"
                             ButtonType="ButtonType.Submit"/>
                 </MudItem>

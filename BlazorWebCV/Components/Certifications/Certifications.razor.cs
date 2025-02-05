@@ -7,13 +7,6 @@ namespace BlazorWebCV.Components.Certifications;
 
 public partial class Certifications
 {
-    [Inject] private IOptions<CertsModel> Certs { get; set; }
-    private string overlayImage = "";
-    private bool isVisible;
-    private async Task OnClick(string image)
-    {
-        isVisible = true;
-        overlayImage = image;
-        StateHasChanged();
-    }
+    [Inject] private IOptions<CertsModel> Certs { get; set; } = default!;
+    private string _overlayImage = "";
 }

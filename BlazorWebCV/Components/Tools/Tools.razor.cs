@@ -6,5 +6,5 @@ namespace BlazorWebCV.Components.Tools;
 
 public partial class Tools
 {
-    [Inject] private IOptions<ToolsModel> ToolsModel { get; set; }
+    [Inject] private IOptions<ToolsModel> ToolsModel { get; set; } = default!;
 }

@@ -30,8 +30,9 @@
         });
     }
     
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         AppState.ThemeChanged -= OnNotify;
+        return ValueTask.CompletedTask;
     }
 }

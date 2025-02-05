@@ -50,10 +50,7 @@ public partial class MainLayout
     
     private async void OnNotify()
     {
-        await InvokeAsync(() =>
-        {
-            StateHasChanged();
-        });
+        await InvokeAsync(StateHasChanged);
     }
     
     private void ListItemClicked(string navTo)
