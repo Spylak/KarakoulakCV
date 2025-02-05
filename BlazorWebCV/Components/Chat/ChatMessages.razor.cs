@@ -30,7 +30,6 @@ public partial class ChatMessages
         {"profile", "This is a brief overview of who I am."},
         {"copyright", "Here is the link to the source code of this project."},
         {"experience", "A timeline of my experience in my adulthood life."},
-        {"projects", "Projects I am currently part of, developing or personal projects for practise."},
         {"inprogress", "Here are the fields I am currently researching."},
         {"contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
         {"certifications", "Here are the certifications I have acquired in my journey."}

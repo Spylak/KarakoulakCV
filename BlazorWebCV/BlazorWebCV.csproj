@@ -28,6 +28,17 @@
       <_ContentIncludedByDefault Remove="wwwroot\Certs\PY4E.png" />
       <_ContentIncludedByDefault Remove="wwwroot\Certs\Python3.png" />
       <_ContentIncludedByDefault Remove="wwwroot\Certs\PythonDataScience.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\camilla.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\chip.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\discord.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\footprint.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\gyxiLogo.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\htmlcss.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\karakoulakPasta.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\lizzy.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\nuget.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\recipe.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Projects\weddingInv.webp" />
     </ItemGroup>
 
     <ItemGroup>
