@@ -15,6 +15,7 @@ public partial class MainLayout
     protected override void OnInitialized()
     {
         AppState.ThemeChanged += OnNotify;
+        AppState.LeftMenuOpenedChanged += OnNotify;
         AppState.CurrentPage = NavigationManager.Uri.Split("/")[^1];
         base.OnInitialized();
     }
@@ -31,6 +32,7 @@ public partial class MainLayout
     public async ValueTask DisposeAsync()
     {
         AppState.ThemeChanged -= OnNotify;
+        AppState.LeftMenuOpenedChanged -= OnNotify;
         await BrowserViewportService.UnsubscribeAsync(this);
     }
 

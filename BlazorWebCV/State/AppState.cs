@@ -13,6 +13,7 @@ public class AppState
     public Color ButtonColor { get; set; } = Color.Inherit;
     
     public event Action? ThemeChanged;    
+    public event Action? LeftMenuOpenedChanged;    
     public event Action? BreakpointChanged;
     private Breakpoint _currentBreakpoint = Breakpoint.Xs;
 
@@ -32,6 +33,7 @@ public class AppState
     public void ToggleLeftNavMenu()
     {
         LeftNavMenuOpened = !LeftNavMenuOpened;
+        LeftMenuOpenedChanged?.Invoke();
     }
     
     public void ToggleRightNavMenu()

@@ -1,6 +1,9 @@
 @using BlazorWebCV.Enums
 @inject IJSRuntime _jsRuntime
-
+<div style="text-align: right">
+    <MudIconButton Icon="@Icons.Material.Filled.Close"
+                   OnClick="@((e) => AppState.ToggleLeftNavMenu())"/>
+</div>
 <MudAvatar Class="mudAvatarLeftMenu">
     <MudImage Src="images/meIRL.png" Style="width: 80% !important;"></MudImage>
 </MudAvatar>
