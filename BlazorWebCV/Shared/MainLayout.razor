@@ -17,28 +17,7 @@
                     IconColor="AppState.ButtonColor"
                     Style="background-color: rgb(128,128,128)">
             </MudFab>
-            <MudSpacer/>
-                <MudTooltip Text="Home" Placement="Placement.Bottom">
-                    <MudIconButton
-                        OnClick="@(() => ListItemClicked(""))"
-                        Icon="@Icons.Material.Filled.Home"
-                        Style="@IsActive("")"
-                        Color="Color.Inherit"/>
-                </MudTooltip>
-                <MudTooltip Text="Certifications" Placement="Placement.Bottom">
-                    <MudIconButton
-                        OnClick="@(() => ListItemClicked(SectionModel.Certifications))"
-                        Icon="@Icons.Material.Filled.Task"
-                        Style="@IsActive(SectionModel.Certifications)"
-                        Color="Color.Inherit"/>
-                </MudTooltip>
-                <MudTooltip Text="Interests" Placement="Placement.Bottom">
-                    <MudIconButton
-                        OnClick="@(() => ListItemClicked(SectionModel.Interests))"
-                        Icon="@Icons.Material.Filled.Interests"
-                        Style="@IsActive(SectionModel.Interests)"
-                        Color="Color.Inherit"/>
-                </MudTooltip>
+                
             <MudSpacer/>
             @if (AppState.CurrentPage.Equals(""))
             {

@@ -118,35 +118,9 @@ public partial class MainLayout
         },
         Typography = new Typography
         {
-            Default = new Default
+            Default = new DefaultTypography()
             {
-                FontFamily = new[] { "Roboto", "Helvetica", "Arial", "sans-serif" },
-                FontSize = "1rem",
-                FontWeight = 400,
-                LineHeight = 1.5,
-                LetterSpacing = ".00938em"
-            },
-            H1 = new H1
-            {
-                FontSize = "6rem",
-                FontWeight = 300,
-                LineHeight = 1.167,
-                LetterSpacing = "-.01562em"
-            },
-            H2 = new H2
-            {
-                FontSize = "3.75rem",
-                FontWeight = 300,
-                LineHeight = 1.2,
-                LetterSpacing = "-.00833em"
-            },
-            Button = new Button
-            {
-                FontSize = ".875rem",
-                FontWeight = 500,
-                LineHeight = 1.75,
-                LetterSpacing = ".02857em",
-                TextTransform = "uppercase"
+                FontFamily = new[] { "Roboto", "Helvetica", "Arial", "sans-serif" }
             }
         },
         LayoutProperties = new LayoutProperties

@@ -3,7 +3,6 @@
 public static class SectionModel
 {
     public const string Experience = "experience";
-    public const string Certifications = "certifications";
     public const string InProgress = "inprogress";
     public const string Interests = "interests";
     public const string Skills = "skills";

@@ -2,7 +2,6 @@ global using BlazorWebCV.Constants;
 using System;
 using System.Net.Http;
 using BlazorWebCV;
-using BlazorWebCV.Components.Certifications;
 using BlazorWebCV.Components.Chat;
 using BlazorWebCV.Components.Experience;
 using BlazorWebCV.Components.Skills;
@@ -28,8 +27,6 @@ builder.Services.Configure<SkillsModel>(options =>
 builder.Services.Configure<ToolsModel>(options =>
     builder.Configuration.Bind(options));
 builder.Services.Configure<ExperienceModel>(options =>
-    builder.Configuration.Bind(options));
-builder.Services.Configure<CertsModel>(options =>
     builder.Configuration.Bind(options));
 builder.Services.AddScoped(
     sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
