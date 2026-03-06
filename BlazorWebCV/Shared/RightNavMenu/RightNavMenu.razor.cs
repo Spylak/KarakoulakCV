@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BlazorWebCV.Models;
-using BlazorWebCV.Services;
 using BlazorWebCV.Services.IServices;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
@@ -51,20 +48,6 @@ public partial class RightNavMenu
                 Section = SectionModel.Skills,
                 Classes = "navMenuInActive",
                 Icon = Icons.Material.Filled.Extension
-            },
-            new RightNavMenuItem
-            {
-                Text = "In Progress",
-                Section = SectionModel.InProgress,
-                Classes = "navMenuInActive",
-                Icon = Icons.Material.Filled.Downloading
-            },
-            new RightNavMenuItem
-            {
-                Text = $"Copyright @{DateTime.Now.Year}",
-                Section = SectionModel.Copyright,
-                Classes = "navMenuInActive",
-                Icon = ""
             }
         ];
     }

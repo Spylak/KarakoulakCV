@@ -12,7 +12,7 @@ public class GlobalFunctionService : IGlobalFunctionService
         _jsRuntime = jsRuntime;
     }
 
-    public async Task ConsoleLog<T>(T obj) where  T : class
+    public async Task ConsoleLog<T>(T obj)
     {
         await _jsRuntime.InvokeVoidAsync("GlobalFunctions.Log", obj);
     }

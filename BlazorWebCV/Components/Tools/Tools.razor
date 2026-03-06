@@ -6,9 +6,7 @@
                 <MudItem xs="12" sm="3">
                     <MudGrid>
                         <MudItem xs="3">
-                            <MudAvatar>
-                                <MudImage Src="@(item["image"])"></MudImage>
-                            </MudAvatar>
+                            <MudIcon Style="margin: 0.5rem" Icon="@item["icon"]"></MudIcon>
                         </MudItem>
                         <MudItem xs="9">
                             <MudText Style="margin-top: 10px;"> @(item["text"])</MudText>
@@ -19,8 +17,3 @@
         </MudGrid>
     </MudCardContent>
 </MudCard>
-
-@code {
-
-
-}

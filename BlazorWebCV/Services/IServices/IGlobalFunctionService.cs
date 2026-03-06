@@ -4,5 +4,5 @@ namespace BlazorWebCV.Services.IServices;
 
 public interface IGlobalFunctionService
 {
-    Task ConsoleLog<T>(T obj) where T : class;
+    Task ConsoleLog<T>(T obj);
 }

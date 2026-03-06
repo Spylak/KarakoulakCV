@@ -1,6 +1,6 @@
 <MudSpacer/>
 <MudList T="string" ReadOnly="true" Class="my-2" Style="cursor: pointer">
-    @foreach (var item in NavMenuItems.SkipLast(1))
+    @foreach (var item in NavMenuItems)
     {
         <MudListItem Text="@item.Text"
                      OnClick="@(() => ScrollTo(item.Section))"

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorWebCV.Models;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -26,12 +25,9 @@ public partial class ChatMessages
     {
         {"toolkit", "In this section you can take a look at which technologies, tools, methodologies and patterns I am using."},
         {"skills", "In this section you can take a look on the skills I currently possess."},
-        {"interests", "I present some of the interests I have that aren't directly related to the work environment."},
         {"profile", "This is a brief overview of who I am."},
         {"copyright", "Here is the link to the source code of this project."},
-        {"experience", "A timeline of my experience in my adulthood life."},
-        {"inprogress", "Here are the fields I am currently researching."},
-        {"contact", "Here are my contact details as well as a contact form prompting you to your accustomed email client."},
+        {"experience", "A timeline of my experience in my adulthood life."}
     };
     
     protected override void OnInitialized()
