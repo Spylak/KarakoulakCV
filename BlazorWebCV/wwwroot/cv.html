@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spyridon Karakoulak – CV</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9pt;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    :root {
+      --accent: #5c6bc0;
+      --accent-dark: #37474f;
+      --left-bg: #37474f;
+      --left-text: #eceff1;
+      --left-muted: #b0bec5;
+      --left-border: #546e7a;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .edu-right-entry a,
+    .info-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .edu-right-entry a:hover,
+    .info-link:hover {
+      text-decoration-style: solid;
+      color: var(--accent-dark);
+    }
+
+    /* Info links sit on dark left bg — use lighter tint */
+    .left .info-link {
+      color: #9fa8da;
+    }
+
+    .left .info-link:hover {
+      color: #e8eaf6;
+    }
+
+    .edu-right-entry a::after,
+    .info-link::after {
+      content: attr(data-title);
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      font-size: 7.5pt;
+      white-space: nowrap;
+      padding: 2px 6px;
+      border-radius: 3px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0s;
+    }
+
+    .edu-right-entry a:hover::after,
+    .info-link:hover::after {
+      opacity: 1;
+    }
+
+    .cv {
+      display: flex;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .left {
+      width: 72mm;
+      min-width: 72mm;
+      background: var(--left-bg);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .photo-block { text-align: center; }
+
+    .photo-block img {
+      width: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .name-block { text-align: center; margin-top: 6px; }
+
+    .name-block h1 {
+      font-size: 14pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: var(--left-text);
+    }
+
+    .name-block .title {
+      font-size: 9pt;
+      color: var(--left-muted);
+      margin-top: 2px;
+    }
+
+    .left-section h2 {
+      font-size: 10pt;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid var(--left-border);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      color: var(--left-text);
+    }
+
+    .left-section p,
+    .left-section li {
+      font-size: 8.5pt;
+      line-height: 1.5;
+      color: var(--left-text);
+    }
+
+    .left-section ul { list-style: none; padding: 0; }
+
+    .info-row {
+      display: flex;
+      gap: 4px;
+      font-size: 8.5pt;
+      line-height: 1.6;
+    }
+
+    .info-row { color: var(--left-text); }
+    .info-row .label { font-weight: bold; white-space: nowrap; color: var(--left-text); }
+
+    .edu-entry { margin-bottom: 7px; }
+
+    .edu-entry .degree {
+      font-weight: bold;
+      font-size: 8.5pt;
+      line-height: 1.4;
+    }
+
+    .edu-entry .school { font-size: 8pt; color: #333; }
+
+    .edu-entry .edu-date {
+      font-size: 7.5pt;
+      color: #555;
+      text-align: right;
+    }
+
+    /* Technologies list (left column) */
+    .tech-item {
+      margin-bottom: 5px;
+    }
+
+    .tech-item .tech-name {
+      font-size: 8.5pt;
+      font-weight: bold;
+      color: var(--left-text);
+    }
+
+    .tech-item .tech-desc {
+      font-size: 7.5pt;
+      color: var(--left-muted);
+      line-height: 1.3;
+    }
+
+    /* Education (right column) */
+    .edu-section-header {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border-bottom: 2px solid var(--accent-dark);
+      padding-bottom: 4px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      color: var(--accent-dark);
+    }
+
+    .edu-right-entry {
+      font-size: 8.5pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+    }
+
+    .edu-right-entry .degree-r {
+      font-weight: bold;
+    }
+
+    .edu-right-entry .sep {
+      color: #888;
+      margin: 0 4px;
+    }
+
+    .edu-right-entry .edu-right-date {
+      color: #555;
+    }
+
+    /* ── RIGHT COLUMN ── */
+    .right {
+      flex: 1;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right-header {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border-bottom: 2px solid var(--accent-dark);
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .exp-entry { margin-bottom: 8px; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .exp-header .org {
+      font-weight: bold;
+      font-size: 10pt;
+      color: var(--accent-dark);
+    }
+
+    .exp-header .meta {
+      font-size: 8pt;
+      color: #333;
+      text-align: right;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    .exp-entry .desc {
+      font-size: 8.5pt;
+      line-height: 1.4;
+      color: #1a1a1a;
+    }
+
+    .exp-entry .desc .project-name {
+      display: block;
+      text-decoration: underline;
+      margin-top: 2px;
+      font-size: 8.5pt;
+    }
+
+    .exp-entry .desc ul { list-style: none; padding-left: 0; }
+    .exp-entry .desc ul li::before { content: "• "; }
+    .exp-entry .desc ul li { line-height: 1.4; }
+
+    @media print {
+      body { background: #fff; }
+      .cv { width: 100%; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="cv">
+
+  <!-- ══════════════════ LEFT ══════════════════ -->
+  <aside class="left">
+
+    <div class="photo-block">
+      <img src="images/meIRL.png" alt="Spyridon Karakoulak" />
+      <div class="name-block">
+        <h1>Spyridon Karakoulak</h1>
+        <div class="title">.NET Developer</div>
+      </div>
+    </div>
+
+    <div class="left-section">
+      <h2>Profile</h2>
+      <p>
+        Experienced software developer with a passion for technology and constant progression.
+        I enjoy building reliable, scalable systems and turning complex problems into clean, maintainable solutions.
+      </p>
+    </div>
+
+    <div class="left-section">
+      <h2>Personal Information</h2>
+      <div class="info-row"><span class="label">Mobile:</span><span>+306980031900</span></div>
+      <div class="info-row"><span class="label">Email:</span><span>spylak@proton.me</span></div>
+      <div class="info-row"><span class="label">Address:</span><span>Chania, Greece</span></div>
+      <div class="info-row"><span class="label">LinkedIn:</span><span><a class="info-link" href="https://www.linkedin.com/in/spyridon-karakoulak-4267201b9/" data-title="linkedin.com/in/spyridon-karakoulak">Karakoulak</a></span></div>
+      <div class="info-row"><span class="label">Github:</span><span><a class="info-link" href="https://github.com/Spylak" data-title="github.com/Spylak">Spylak</a></span></div>
+      <div class="info-row"><span class="label">Website:</span><span><a class="info-link" href="https://www.karakoulak.com" data-title="www.karakoulak.com">www.karakoulak.com</a></span></div>
+      <div class="info-row"><span class="label">Army:</span><span>Paratrooper</span></div>
+    </div>
+
+    <div class="left-section">
+      <h2>Technologies &amp; Skills</h2>
+
+      <div class="tech-item">
+        <span class="tech-name">Web Development</span>
+        <span class="tech-desc">ASP.NET, Blazor, Razor Pages</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">API Design</span>
+        <span class="tech-desc">RESTful, OpenAPI, API Gateways</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Cloud Platforms</span>
+        <span class="tech-desc">Azure (SQL, Blob Storage, App Services, WebJobs, Static Web Apps)</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">CI/CD Pipelines</span>
+        <span class="tech-desc">AzDO, GitHub Actions, BitBucket</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Containerization</span>
+        <span class="tech-desc">Docker, Kubernetes</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Messaging</span>
+        <span class="tech-desc">RabbitMQ, Azure Service Bus, SignalR</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Database Management</span>
+        <span class="tech-desc">SQL Server, PostgreSQL, ElasticSearch, NoSQL, Entity Framework</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Source Control</span>
+        <span class="tech-desc">GitHub, Azure DevOps, BitBucket</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Security &amp; Auth</span>
+        <span class="tech-desc">OAuth2, OpenID, 2FA/OTP</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Background tasks</span>
+        <span class="tech-desc">Hangfire, Quartz, WebJobs</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">AI &amp; Data Tools</span>
+        <span class="tech-desc">Agents, OpenAI API, Google APIs, Python (NumPy, Pandas, Matplotlib)</span>
+      </div>
+
+      <div class="tech-item">
+        <span class="tech-name">Architecture</span>
+        <span class="tech-desc">SOLID, CQRS, Microservices, Mediator</span>
+      </div>
+
+    </div>
+
+    <div class="left-section">
+      <h2>Languages</h2>
+      <ul>
+        <li>Greek (Native)</li>
+        <li>English (C2)</li>
+        <li>German (A2)</li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════ RIGHT ══════════════════ -->
+  <main class="right">
+    <div class="right-header">Experience</div>
+
+    <!-- Natech -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <span class="org">Software Developer, Natech Banking Solutions</span>
+        <span class="meta">Ioannina (Remote), 12/2024 – present</span>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Upgraded and maintained a secure internal banking platform with real-time features, OAuth2, containerized deployments and decoupled messaging, improving team productivity, operational reliability, and compliance.</li>
+          <li>Strengthened account security on Snappi, a neobank app, by implementing forgot password and forgot username recovery flows, active device management, OTP-based verification and user data validation, reducing account takeover risk and improving trust for end users.</li>
+          <li>Ensured financial integrity for a custom wallet app by developing a gaming transaction service handling payments, deposits, and withdrawals against a third-party backendm leveraging reserve amount APIs to guarantee idempotency and safe transaction reversal in failure scenarios.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Exelia -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <span class="org">Software Developer, Exelia Technologies</span>
+        <span class="meta">Cyprus (Remote), 05/2022 – 11/2024</span>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Reduced administrative overhead for medical staff by automating consultation transcription and AI-powered visit summaries on a doctor's virtual assistant platform.</li>
+          <li>Streamlined email campaign operations for marketing teams by integrating Google account management and automating scheduled and event-driven sends at scale.</li>
+          <li>Improved scalability of a shipping procurement system by decomposing a monolith into independently deployable microservices using Clean Architecture and CQRS.</li>
+          <li>Modernized a legacy utilities management system to handle large datasets efficiently, significantly improving data retrieval performance with ElasticSearch.</li>
+          <li>Enhanced operational visibility into fuel and lubricants inventory by extending an existing platform with automated background processing and improved data workflows.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ARHS -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <span class="org">Software Developer, ARHS Developments Hellas</span>
+        <span class="meta">Athens (Remote), 04/2021 – 05/2022</span>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Enabled IT teams to centrally track and manage infrastructure resources by building a full-stack enterprise web platform with external API exposure.</li>
+          <li>Eliminated manual documentation drift by integrating two-way synchronization between the platform and Azure DevOps Work Items and Wiki Pages.</li>
+          <li>Reduced manual operational effort by automating recurring tasks via a scheduled background service and extending CI/CD pipelines on Azure DevOps.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Freelance -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <span class="org">Freelance Software Developer</span>
+        <span class="meta">Chania, 05/2020 – 03/2021</span>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Delivered an online presence for a local restaurant with a content-managed website, enabling the owner to update menus and offerings independently.</li>
+          <li>Built a secure, cloud-hosted database management UI for a client's NoSQL backend with two-factor SMS authentication to protect sensitive data access.</li>
+          <li>Reduced friction for event guests by providing a digital wedding invitation platform with RSVP management, replacing paper-based coordination.</li>
+          <li>Automated community interactions for a gaming Discord server, reducing moderator workload through a custom bot with external API integration.</li>
+          <li>Supported urban planning decisions with data-driven microclimate simulations and visualizations for a sustainability study.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Lars Angenent -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <span class="org">Programmer Intern, Lars Angenent Lab</span>
+        <span class="meta">Tuebingen, 02/2020 – 04/2020</span>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Lowered the cost of optical density measurement in lab research by repurposing a consumer fitness tracker chip as a custom scientific instrument using Arduino.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu-section-header">Education</div>
+
+    <div class="edu-right-entry"><span class="degree-r">MSc. Telecommunications &amp; Automation</span><span class="sep">·</span><a href="https://hmu.gr/en/postgraduate-studies/postgraduate-programs" data-title="Hellenic Mediterranean University">HMU</a><span class="sep">·</span><span class="edu-right-date">09/2023 – 06/2025</span></div>
+    <div class="edu-right-entry"><span class="degree-r">MSc. Data Science &amp; Machine Learning</span><span class="sep">·</span><a href="https://www.eap.gr/en/data-science-and-machine-learning/" data-title="Hellenic Open University">HOU</a><span class="sep">·</span><span class="edu-right-date">09/2021 – 12/2024</span></div>
+    <div class="edu-right-entry"><span class="degree-r">.NET Development Camp</span><span class="sep">·</span>Code.Hub &amp; <a href="https://www.athtech.gr/en/" data-title="Athens Tech College">AthTech</a><span class="sep">·</span><span class="edu-right-date">10/2020 – 11/2020</span></div>
+    <div class="edu-right-entry"><span class="degree-r">Erasmus Program</span><span class="sep">·</span><a href="https://ege.edu.tr/eng-0/homepage.html" data-title="Ege University of Izmir">Ege University</a><span class="sep">·</span><span class="edu-right-date">09/2015 – 02/2016</span></div>
+    <div class="edu-right-entry"><span class="degree-r">MSc. Chemical &amp; Environmental Engineering</span><span class="sep">·</span><a href="https://www.chenveng.tuc.gr/en/home" data-title="Technical University of Crete">TUC</a><span class="sep">·</span><span class="edu-right-date">09/2013 – 03/2021</span></div>
+
+  </main>
+</div>
+</body>
+</html>
