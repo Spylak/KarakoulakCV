@@ -192,6 +192,9 @@
     }
 
     .edu-right-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       font-size: 8.5pt;
       line-height: 1.5;
       color: #1a1a1a;
@@ -229,7 +232,7 @@
       color: var(--accent-dark);
     }
 
-    .exp-entry { margin-bottom: 8px; }
+    .exp-entry { margin-bottom: 14px; }
 
     .exp-header {
       display: flex;
@@ -269,7 +272,12 @@
     .exp-entry .desc ul li { line-height: 1.4; }
 
     @media print {
-      body { background: #fff; }
+      @page { margin: 0; size: A4 portrait; }
+      body {
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
       .cv { width: 100%; margin: 0; }
     }
   </style>
@@ -396,7 +404,7 @@
       <div class="desc">
         <ul>
           <li>Upgraded and maintained a secure internal banking platform with real-time features, OAuth2, containerized deployments and decoupled messaging, improving team productivity, operational reliability, and compliance.</li>
-          <li>Strengthened account security on Snappi, a neobank app, by implementing forgot password and forgot username recovery flows, active device management, OTP-based verification and user data validation, reducing account takeover risk and improving trust for end users.</li>
+          <li>Strengthened account security on a neobank app, by implementing forgot password and forgot username recovery flows, active device management, OTP-based verification and user data validation, reducing account takeover risk and improving trust for end users.</li>
           <li>Ensured financial integrity for a custom wallet app by developing a gaming transaction service handling payments, deposits, and withdrawals against a third-party backendm leveraging reserve amount APIs to guarantee idempotency and safe transaction reversal in failure scenarios.</li>
         </ul>
       </div>

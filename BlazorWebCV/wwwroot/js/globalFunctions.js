@@ -46,6 +46,12 @@ window.GlobalFunctions ={
     NewTab : function (url){
         window.open(url, '_blank');
     },
+    DownloadCvPdf : function () {
+        var win = window.open('/cv.html', '_blank');
+        win.onload = function () {
+            win.print();
+        };
+    },
 }
 
 function isEmpty(str) {

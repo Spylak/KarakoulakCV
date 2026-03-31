@@ -5,4 +5,5 @@ namespace BlazorWebCV.Services.IServices;
 public interface IGlobalFunctionService
 {
     Task ConsoleLog<T>(T obj);
+    Task DownloadCvPdf();
 }

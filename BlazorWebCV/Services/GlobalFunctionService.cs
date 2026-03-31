@@ -16,4 +16,9 @@ public class GlobalFunctionService : IGlobalFunctionService
     {
         await _jsRuntime.InvokeVoidAsync("GlobalFunctions.Log", obj);
     }
+
+    public async Task DownloadCvPdf()
+    {
+        await _jsRuntime.InvokeVoidAsync("GlobalFunctions.DownloadCvPdf");
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using BlazorWebCV.Services.IServices;
 using BlazorWebCV.State;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
@@ -12,6 +13,7 @@ public partial class MainLayout
     [Inject] private AppState AppState { get; set; } = null!;
     [Inject] NavigationManager NavigationManager { get; set; } = null!;
     [Inject] IBrowserViewportService BrowserViewportService { get; set; } = null!;
+    [Inject] private IGlobalFunctionService GlobalFunctionService { get; set; } = null!;
     protected override void OnInitialized()
     {
         AppState.ThemeChanged += OnNotify;
@@ -55,6 +57,11 @@ public partial class MainLayout
         await InvokeAsync(StateHasChanged);
     }
     
+    private async Task DownloadCv()
+    {
+        await GlobalFunctionService.DownloadCvPdf();
+    }
+
     private void ListItemClicked(string navTo)
     {
         AppState.CurrentPage = navTo;
